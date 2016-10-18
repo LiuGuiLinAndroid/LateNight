@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case Constants.HANDLER_WHAT_IS_FIRST:
-                    if (!isFirst()) {
+                    if (isFirst()) {
                         //判断是否自动登录
                         boolean autoLogin = SharePreUtils.getBoolean(SplashActivity.this, Constants.SHARE_AUTO_LOGIN, false);
                         if (autoLogin) {
@@ -64,6 +64,7 @@ public class SplashActivity extends AppCompatActivity {
         shimmer = new Shimmer();
         //启动动画
         shimmer.start(shimmer_tv);
+        //启动动画
 
         handler.sendEmptyMessageDelayed(Constants.HANDLER_WHAT_IS_FIRST, 2000);
     }

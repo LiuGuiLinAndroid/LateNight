@@ -14,6 +14,8 @@
     <string name="text_app">App</string>
     <string name="text_break">跳过</string>
     <string name="text_terms">创建账号既代表你同意\n使用条款和隐私条约</string>
+    <string name="text_terms_title">使用条款/隐私条约</string>
+    <string name="text_forget">忘记密码</string>
 
     <string name="splash_title">Gank</string>
     <string name="splash_me">刘某人</string>

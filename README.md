@@ -57,4 +57,7 @@
 - 20.创建Constants常量类
 - 21.新增Bmob
 - 22.新增Bugly
+- 23.创建TermsActivity隐私条约
+- 24.创建ForgetActivity忘记密码
+- 25.调整登录UI
 

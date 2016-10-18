@@ -9,6 +9,9 @@ package com.liuguilin.gankclient.entity;
  *  描述：    常量&接口&方法&字段
  */
 
+import android.graphics.Paint;
+import android.widget.TextView;
+
 public class Constants {
 
 
@@ -30,16 +33,13 @@ public class Constants {
     public static final String GANK_POST_DATA = "https://gank.io/api/add2gank";
 
     //Bmob key
-    public static  final  String BMOB_KEY = "4fe28fde75bfc96aad66a887a63592fd";
+    public static final String BMOB_KEY = "4fe28fde75bfc96aad66a887a63592fd";
     //Bugly key
-    public static  final  String BUGLY_KEY = "bd467eaf8d";
-
+    public static final String BUGLY_KEY = "bd467eaf8d";
 
 
     //延时启动
     public static final int HANDLER_WHAT_IS_FIRST = 10001;
-
-
 
 
     //第一次运行
@@ -48,5 +48,12 @@ public class Constants {
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
 
 
+    //设置下划线
+    public static void setHtml(TextView textView) {
+        //设置下划线
+        textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        //抗锯齿
+        textView.getPaint().setAntiAlias(true);
+    }
 
 }

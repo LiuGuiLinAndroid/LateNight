@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">GankClient</string>
 
+    <string name="text_login">登录</string>
+    <string name="text_registered">注册</string>
+    <string name="text_all">All</string>
+    <string name="text_android">Android</string>
+    <string name="text_ios">IOS</string>
+    <string name="text_video">小视频</string>
+    <string name="text_girl">妹子</string>
+    <string name="text_extension">扩展资源</string>
+    <string name="text_web">前端</string>
+    <string name="text_recommended">瞎推荐</string>
+    <string name="text_app">App</string>
+    <string name="text_break">跳过</string>
+    <string name="text_terms">创建账号既代表你同意\n使用条款和隐私条约</string>
+
+    <string name="splash_title">Gank</string>
+    <string name="splash_me">刘某人</string>
+
 </resources>

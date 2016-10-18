@@ -2,11 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
@@ -16,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
@@ -29,24 +32,25 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:hint="用户名"
-                android:maxLength="1"/>
+                android:maxLength="1"
+                android:textColor="@color/color_white"
+                android:textColorHint="@color/color_white"
+                android:textSize="@dimen/standard_textsize"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@drawable/ic_launcher"
+                android:id="@+id/imageView"/>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/color_white"/>
 
         <!--密码-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
@@ -60,7 +64,10 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:hint="密码"
-                android:maxLength="1"/>
+                android:maxLength="1"
+                android:textColor="@color/color_white"
+                android:textColorHint="@color/color_white"
+                android:textSize="@dimen/standard_textsize"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -70,33 +77,45 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登录"/>
+            android:text="登录"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/standard_textsize"/>
 
         <!--注册&忘记密码-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="20dp">
 
             <TextView
+                android:id="@+id/login_registered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="免费注册"/>
+                android:text="免费注册"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/standard_textsize"/>
 
             <TextView
+                android:id="@+id/login_forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="忘记密码"/>
+                android:text="忘记密码"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/standard_textsize"/>
 
         </RelativeLayout>
     </LinearLayout>
 
     <!--免责声明-->
     <TextView
+        android:id="@+id/login_terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -105,6 +124,7 @@
         android:gravity="center"
         android:lines="2"
         android:text="@string/text_terms"
+        android:textColor="@color/color_white"
         android:textSize="10sp"/>
 
 </RelativeLayout>

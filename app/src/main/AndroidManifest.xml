@@ -17,7 +17,7 @@
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!--读取Log-->
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_LOGS"/>
 
     <application
         android:name=".application.BaseApplication"
@@ -46,7 +46,8 @@
         <!--登录-->
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/text_login"/>
+            android:label="@string/text_login"
+            android:theme="@style/NoTitleFullscreen"/>
 
         <!--注册-->
         <activity
@@ -55,6 +56,16 @@
 
         <!--首页-->
         <activity android:name=".MainActivity"/>
+
+        <!--使用条款-->
+        <activity
+            android:name=".activity.TermsActivity"
+            android:label="@string/text_terms_title"/>
+
+        <!--忘记密码-->
+        <activity
+            android:name=".activity.ForgetActivity"
+            android:label="@string/text_forget"/>
 
         <!--开机广播-->
         <receiver android:name=".receiver.BootCompletedReceiver">
