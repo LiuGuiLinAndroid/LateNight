@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,4 +26,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+    //RxVolley
+    compile 'com.kymjs.rxvolley:rxvolley:1.1.0'
+    //下载模块
+    compile 'com.kymjs.rxvolley:okhttp:1.1.0'
+    //PhotoView
+    compile 'com.github.chrisbanes:PhotoView:1.3.0'
 }
