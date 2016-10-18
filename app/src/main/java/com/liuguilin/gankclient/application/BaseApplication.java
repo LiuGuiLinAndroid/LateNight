@@ -11,11 +11,20 @@ package com.liuguilin.gankclient.application;
 
 import android.app.Application;
 
-public class BaseApplication extends Application{
+import com.liuguilin.gankclient.entity.Constants;
+import com.tencent.bugly.crashreport.CrashReport;
+
+import cn.bmob.v3.Bmob;
+
+public class BaseApplication extends Application {
 
     //初始化
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化Bmob
+        Bmob.initialize(this, Constants.BMOB_KEY);
+        //初始化Bugly
+        CrashReport.initCrashReport(getApplicationContext(), Constants.BUGLY_KEY, true);
     }
 }

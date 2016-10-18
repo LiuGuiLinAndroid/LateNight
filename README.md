@@ -23,6 +23,14 @@
 
     https://github.com/RomainPiel/Shimmer-android
     
+- 4.Bmob
+
+    http://www.bmob.cn/
+
+- 5.Bugly
+    
+    https://bugly.qq.com/
+    
     
     
 ###Version1.0.0
@@ -47,4 +55,6 @@
 - 18.创建LoginActivity登录页
 - 19.创建RegisteredActivity注册页
 - 20.创建Constants常量类
+- 21.新增Bmob
+- 22.新增Bugly
 

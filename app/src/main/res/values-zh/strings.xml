@@ -13,5 +13,8 @@
     <string name="text_recommended">瞎推荐</string>
     <string name="text_app">App</string>
 
+    <string name="splash_title">Gank</string>
+    <string name="splash_me">刘某人</string>
+
 
 </resources>

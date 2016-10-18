@@ -11,6 +11,7 @@ package com.liuguilin.gankclient.entity;
 
 public class Constants {
 
+
     //搜索API
     //category 后面可接受参数 all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
     //count 最大 50
@@ -27,5 +28,25 @@ public class Constants {
     //支持提交干货到审核区API
     //POST
     public static final String GANK_POST_DATA = "https://gank.io/api/add2gank";
+
+    //Bmob key
+    public static  final  String BMOB_KEY = "4fe28fde75bfc96aad66a887a63592fd";
+    //Bugly key
+    public static  final  String BUGLY_KEY = "bd467eaf8d";
+
+
+
+    //延时启动
+    public static final int HANDLER_WHAT_IS_FIRST = 10001;
+
+
+
+
+    //第一次运行
+    public static final String SHARE_IS_FIRST = "isFirst";
+    //自动登录
+    public static final String SHARE_AUTO_LOGIN = "autoLogin";
+
+
 
 }
