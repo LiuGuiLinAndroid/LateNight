@@ -22,7 +22,7 @@ public class BaseActivity extends AppCompatActivity {
         //actionbar显示返回按钮
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //取消阴影
-        getSupportActionBar().setElevation(0);
+        //getSupportActionBar().setElevation(0);
     }
 
     //菜单操作

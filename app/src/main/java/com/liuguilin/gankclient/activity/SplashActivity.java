@@ -45,6 +45,7 @@ public class SplashActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(SplashActivity.this, GuideActivity.class));
                     }
+                    finish();
                     break;
             }
         }
