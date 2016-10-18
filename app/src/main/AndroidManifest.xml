@@ -2,6 +2,8 @@
 <manifest package="com.liuguilin.gankclient"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:theme="@style/AppTheme">
 
         <!--闪屏页-->
-        <activity android:name=".activity.SplashActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/NoTitleFullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,9 +23,24 @@
             </intent-filter>
         </activity>
 
+        <!--引导页-->
+        <activity
+            android:name=".activity.GuideActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--登录-->
+        <activity android:name=".activity.LoginActivity"/>
+        <!--注册-->
+
         <!--首页-->
         <activity android:name=".MainActivity"/>
 
+        <!--开机广播-->
+        <receiver android:name=".receiver.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 

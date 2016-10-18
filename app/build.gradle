@@ -32,4 +32,6 @@ dependencies {
     compile 'com.kymjs.rxvolley:okhttp:1.1.0'
     //PhotoView
     compile 'com.github.chrisbanes:PhotoView:1.3.0'
+    //Shimmer
+    compile 'com.romainpiel.shimmer:library:1.4.0@aar'
 }
