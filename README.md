@@ -66,6 +66,10 @@
 - 23.创建TermsActivity隐私条约
 - 24.创建ForgetActivity忘记密码
 - 25.调整登录UI
+- 26.新增icon
+- 27.新增密码正则表达式
+- 28.创建SettingActivity设置页
+- 29.新增MD5加密类
 
 
 

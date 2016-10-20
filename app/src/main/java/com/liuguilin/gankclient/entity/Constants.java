@@ -46,6 +46,8 @@ public class Constants {
     public static final String SHARE_IS_FIRST = "isFirst";
     //自动登录
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
+	//密码正则
+	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
 
 
     //设置下划线

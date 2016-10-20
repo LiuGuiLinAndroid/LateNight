@@ -78,7 +78,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_remove_red_eye_black_24dp"/>
+                android:src="@drawable/invisible_eye"/>
 
         </RelativeLayout>
 

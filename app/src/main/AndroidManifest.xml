@@ -67,6 +67,11 @@
             android:name=".activity.ForgetActivity"
             android:label="@string/text_forget"/>
 
+        <!--设置-->
+        <activity
+            android:name=".activity.SettingActivity"
+            android:label="@string/text_setting"/>
+
         <!--开机广播-->
         <receiver android:name=".receiver.BootCompletedReceiver">
             <intent-filter>
