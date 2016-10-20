@@ -40,14 +40,21 @@ public class Constants {
 
     //延时启动
     public static final int HANDLER_WHAT_IS_FIRST = 10001;
+    //倒计时
+    public static final int HANDLER_WHAT_TIME_DOWN = 10002;
 
 
     //第一次运行
     public static final String SHARE_IS_FIRST = "isFirst";
     //自动登录
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
+
+
+
 	//密码正则
 	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+    //手机号码正则
+    public static final String PHONE_KEY = "^((13[0-9])|(15[^4,\\\\D])|(18[0,5-9]))\\\\d{8}$";
 
 
     //设置下划线

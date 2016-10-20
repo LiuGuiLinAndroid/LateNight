@@ -19,11 +19,12 @@
             android:src="@drawable/ic_phone_black_24dp"/>
 
         <EditText
+            android:id="@+id/reg_et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:layout_toRightOf="@id/iv_phone_icon"
-            android:hint="电话号码"
+            android:hint="@string/reg_phone_number"
             android:maxLength="1"
             android:textSize="@dimen/standard_textsize"/>
 
@@ -50,26 +51,29 @@
             android:src="@drawable/ic_sms_black_24dp"/>
 
         <EditText
+            android:id="@+id/reg_et_sms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="验证码"
+            android:hint="@string/reg_sms"
             android:textSize="@dimen/standard_textsize"/>
 
         <Button
+            android:id="@+id/reg_btn_getsms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="获取"
+            android:text="@string/reg_getsms"
             android:textSize="@dimen/standard_textsize"/>
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/reg_btn_regisered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="注册"
+        android:text="@string/text_registered"
         android:textSize="@dimen/standard_textsize"/>
 
     <!--第三方登录-->

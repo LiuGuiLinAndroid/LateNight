@@ -20,7 +20,9 @@
 
     <string name="splash_title">Gank</string>
     <string name="splash_me">刘某人</string>
-
+    <string name="reg_phone_number">电话号码</string>
+    <string name="reg_sms">验证码</string>
+    <string name="reg_getsms">获取</string>
 
 
 </resources>
