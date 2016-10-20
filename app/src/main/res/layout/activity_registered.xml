@@ -7,21 +7,22 @@
     android:padding="10dp">
 
     <!--号码-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/iv_phone_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_phone_black_24dp"/>
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:layout_weight="1"
+            android:layout_toRightOf="@id/iv_phone_icon"
             android:hint="电话号码"
             android:maxLength="1"
             android:textSize="@dimen/standard_textsize"/>
@@ -29,9 +30,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_cancel_black_24dp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <!--验证码-->
     <LinearLayout
@@ -67,5 +71,38 @@
         android:layout_height="wrap_content"
         android:text="注册"
         android:textSize="@dimen/standard_textsize"/>
+
+    <!--第三方登录-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <!--QQ-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_perm_identity_black_24dp"/>
+
+        <!--微信-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_perm_identity_black_24dp"/>
+
+        <!--新浪-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_perm_identity_black_24dp"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

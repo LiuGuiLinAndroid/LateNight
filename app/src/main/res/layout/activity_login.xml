@@ -14,22 +14,22 @@
         android:orientation="vertical">
 
         <!--用户名-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_user_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_perm_identity_black_24dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:layout_weight="1"
+                android:layout_toRightOf="@id/iv_user_icon"
                 android:hint="用户名"
                 android:maxLength="1"
                 android:textColor="@color/color_white"
@@ -37,31 +37,35 @@
                 android:textSize="@dimen/standard_textsize"/>
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:id="@+id/imageView"/>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_cancel_black_24dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <!--密码-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_pass_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_lock_black_24dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_margin="1dp"
-                android:layout_weight="1"
+                android:layout_toRightOf="@id/iv_pass_icon"
                 android:hint="密码"
                 android:maxLength="1"
                 android:textColor="@color/color_white"
@@ -71,9 +75,12 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"/>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_remove_red_eye_black_24dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/login"
