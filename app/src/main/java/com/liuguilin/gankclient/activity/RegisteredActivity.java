@@ -9,22 +9,30 @@ package com.liuguilin.gankclient.activity;
  *  描述：    注册
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.gankclient.entity.Constants;
+import com.liuguilin.gankclient.entity.GankUser;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobSMS;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 
-public class RegisteredActivity extends BaseActivity implements View.OnClickListener{
+public class RegisteredActivity extends BaseActivity implements View.OnClickListener {
 
     //电话号码
     private EditText reg_et_phone;
@@ -34,20 +42,22 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
     private Button reg_btn_getsms;
     //注册
     private Button reg_btn_regisered;
+    //清除
+    private ImageView reg_iv_phone_clear;
     //标记
-    private int timer = 60 ;
+    private int timer = 60;
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case Constants.HANDLER_WHAT_TIME_DOWN:
-                    if(timer > 0){
+                    if (timer > 0) {
                         timer--;
                         reg_btn_getsms.setText(timer + "s");
-                        handler.sendEmptyMessageDelayed(Constants.HANDLER_WHAT_TIME_DOWN,1000);
-                    }else {
+                        handler.sendEmptyMessageDelayed(Constants.HANDLER_WHAT_TIME_DOWN, 1000);
+                    } else {
                         //倒计时完成
                         reg_btn_getsms.setEnabled(true);
                         reg_btn_getsms.setText("再次获取");
@@ -70,9 +80,34 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         reg_et_phone = (EditText) findViewById(R.id.reg_et_phone);
         reg_et_sms = (EditText) findViewById(R.id.reg_et_sms);
         reg_btn_getsms = (Button) findViewById(R.id.reg_btn_getsms);
+        reg_iv_phone_clear = (ImageView) findViewById(R.id.reg_iv_phone_clear);
+        reg_iv_phone_clear.setVisibility(View.GONE);
         reg_btn_getsms.setOnClickListener(this);
         reg_btn_regisered = (Button) findViewById(R.id.reg_btn_regisered);
         reg_btn_regisered.setOnClickListener(this);
+
+
+        //输入框的监听
+        reg_et_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    reg_iv_phone_clear.setVisibility(View.VISIBLE);
+                } else {
+                    reg_iv_phone_clear.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override
@@ -80,35 +115,71 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         //获取输入框的内容
         String phone = reg_et_phone.getText().toString().trim();
         String sms = reg_et_sms.getText().toString().trim();
-        switch (v.getId()){
+        switch (v.getId()) {
+            case R.id.reg_iv_phone_clear:
+                reg_et_phone.setText("");
+                reg_et_sms.setText("");
+                reg_iv_phone_clear.setVisibility(View.GONE);
+                break;
             case R.id.reg_btn_getsms:
                 //判断手机号码是否为空
-                if(!TextUtils.isEmpty(phone)){
+                if (!TextUtils.isEmpty(phone)) {
                     //判断是否是手机号码
-                    if(phone.matches(Constants.PHONE_KEY)){
+                    if (phone.matches(Constants.PHONE_KEY)) {
                         //获取验证码
                         BmobSMS.requestSMSCode(phone, "你的验证码，请及时查收", new QueryListener<Integer>() {
                             @Override
                             public void done(Integer integer, BmobException e) {
-                                if(e == null){//验证码发送成功
+                                if (e == null) {//验证码发送成功
+                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码已发送", TastyToast.LENGTH_LONG,
+                                            TastyToast.SUCCESS);
                                     //设置不可点击
                                     reg_btn_getsms.setEnabled(false);
                                     //倒计时
                                     handler.sendEmptyMessage(Constants.HANDLER_WHAT_TIME_DOWN);
-                                }else {
+                                } else {
                                     //
+                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码发送失败", TastyToast.LENGTH_LONG,
+                                            TastyToast.ERROR);
                                 }
                             }
                         });
-                    }else {
+                    } else {
                         //
+                        TastyToast.makeText(this, "请输入11位手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
                     }
-                }else {
+                } else {
                     //
+                    TastyToast.makeText(this, "输入框不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 }
                 break;
             case R.id.reg_btn_regisered:
-
+                if(!TextUtils.isEmpty(phone)){
+                    if(!TextUtils.isEmpty(sms)){
+                        if(phone.matches(Constants.PHONE_KEY)){
+                            //登录
+                            BmobUser.loginBySMSCode(phone, sms, new LogInListener<GankUser>() {
+                                @Override
+                                public void done(GankUser gankUser, BmobException e) {
+                                    if(gankUser!=null){
+                                        TastyToast.makeText(RegisteredActivity.this, "注册成功", TastyToast.LENGTH_LONG,
+                                                TastyToast.SUCCESS);
+                                        startActivity(new Intent(RegisteredActivity.this,SetPassWordActivity.class));
+                                    }else {
+                                        TastyToast.makeText(RegisteredActivity.this, "注册失败", TastyToast.LENGTH_LONG,
+                                                TastyToast.ERROR);
+                                    }
+                                }
+                            });
+                        }else {
+                            TastyToast.makeText(this, "请输入11位手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
+                        }
+                    }else {
+                        TastyToast.makeText(this, "验证码不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }
+                }else {
+                    TastyToast.makeText(this, "手机号码不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                }
                 break;
         }
     }

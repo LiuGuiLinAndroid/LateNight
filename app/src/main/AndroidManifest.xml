@@ -72,6 +72,10 @@
             android:name=".activity.SettingActivity"
             android:label="@string/text_setting"/>
 
+        <activity
+            android:name=".activity.SetPassWordActivity"
+            android:label="@string/text_set_password"/>
+
         <!--开机广播-->
         <receiver android:name=".receiver.BootCompletedReceiver">
             <intent-filter>

@@ -35,6 +35,10 @@
 - 5.Bugly
     
     https://bugly.qq.com/
+   
+- 6.TastyToast
+    
+    https://github.com/yadav-rahul/TastyToast
     
     
 ##四.更新日志
@@ -71,6 +75,10 @@
 - 28.创建SettingActivity设置页
 - 29.新增MD5加密类
 - 30.新增正则表达式
+- 31.新增TastyToast
+- 32.创建SetPassWordActivity设置密码页
+- 33.实现短信验证验证功能
+- 33.实现手机号注册功能
 
 
 ##五.联系方式
