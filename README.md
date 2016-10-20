@@ -16,29 +16,22 @@
 
 ##三.使用到的框架
 
-- 1.RxVolley
-
-    https://github.com/kymjs/RxVolley
+- 1.RxVolley:https://github.com/kymjs/RxVolley
     
-- 2.PhotoView
-
-    https://github.com/chrisbanes/PhotoView/
+- 2.PhotoView:https://github.com/chrisbanes/PhotoView/
     
-- 3.Shimmer 
-
-    https://github.com/RomainPiel/Shimmer-android
+- 3.Shimmer:https://github.com/RomainPiel/Shimmer-android
     
-- 4.Bmob
+- 4.Bmob:http://www.bmob.cn/
 
-    http://www.bmob.cn/
-
-- 5.Bugly
-    
-    https://bugly.qq.com/
+- 5.Bugly:https://bugly.qq.com/
    
-- 6.TastyToast
+- 6.TastyToast:https://github.com/yadav-rahul/TastyToast
     
-    https://github.com/yadav-rahul/TastyToast
+- 7.Glide:https://github.com/bumptech/glide
+    
+- 8.CircleViewPager:https://github.com/CodingForAndroid/CircleViewPager
+    
     
     
 ##四.更新日志
@@ -79,6 +72,9 @@
 - 32.创建SetPassWordActivity设置密码页
 - 33.实现短信验证验证功能
 - 33.实现手机号注册功能
+- 34.新增Glide
+- 35.新增CircleViewPager
+- 36.封装GlideUtils
 
 
 ##五.联系方式
