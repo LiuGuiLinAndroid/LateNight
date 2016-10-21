@@ -51,9 +51,9 @@
 
         <!--注册-->
         <activity
-            android:theme="@style/NoTitleFullscreen"
             android:name="com.liuguilin.latenight.activity.RegisteredActivity"
-            android:label="@string/text_registered"/>
+            android:label="@string/text_registered"
+            android:theme="@style/NoTitleFullscreen"/>
 
         <!--首页-->
         <activity android:name="com.liuguilin.latenight.MainActivity"/>
@@ -75,9 +75,34 @@
 
         <!--设置密码-->
         <activity
-            android:theme="@style/NoTitleFullscreen"
             android:name="com.liuguilin.latenight.activity.SetPassWordActivity"
-            android:label="@string/text_set_password"/>
+            android:label="@string/text_set_password"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--选择性别-->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectSexActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--选择年龄-->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectAgeActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--选择身高-->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectHeightActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--选择体重-->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectWeightActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
+        <!--选择星座-->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectConstellationActivity"
+            android:theme="@style/NoTitleFullscreen"/>
 
         <!--开机广播-->
         <receiver android:name="com.liuguilin.latenight.receiver.BootCompletedReceiver">

@@ -31,6 +31,8 @@
 - 8.CircleViewPager:https://github.com/CodingForAndroid/CircleViewPager
 
 - 9.CircleImageView:https://github.com/hdodenhof/CircleImageView
+
+- 10.ScaleScrollView:https://github.com/LichFaker/ScaleView
     
     
     
@@ -81,6 +83,12 @@
 - 40.更改注册逻辑
 - 41.新增CircleImageView
 - 42.登录功能完成
+- 43.创建SelectSexActivity选择性别
+- 44.创建SelectAgeActivity选择年龄
+- 45.新增ScaleScrollView
+- 46.创建SelectHeightActivity选择身高
+- 47.创建SelectWeightActivity选择体重
+- 48.创建SelectConstellationActivity选择星座
 
 
 ##五.联系方式

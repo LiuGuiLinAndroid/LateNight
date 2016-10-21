@@ -24,8 +24,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
+import com.liuguilin.latenight.select.SelectSexActivity;
+import com.liuguilin.latenight.util.SharePreUtils;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobUser;
@@ -144,7 +147,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (user != null) {
                                 TastyToast.makeText(LoginActivity.this, "登录成功", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
-
+                                if (isFirstLogin()) {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                } else {
+                                    //引导
+                                    startActivity(new Intent(LoginActivity.this, SelectSexActivity.class));
+                                }
+                                finish();
                             } else {
                                 TastyToast.makeText(LoginActivity.this, "登录失败" + e.toString(), TastyToast.LENGTH_LONG,
                                         TastyToast.ERROR);
@@ -174,6 +183,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     login_et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
                 break;
+        }
+    }
+
+    //判断是否是第一次登录
+    private boolean isFirstLogin() {
+        boolean isFirstLogin = SharePreUtils.getBoolean(this, Constants.SHARE_IS_FIRST_LOGIN, false);
+        if (isFirstLogin) {
+            return true;
+        } else {
+            SharePreUtils.putBoolean(this, Constants.SHARE_IS_FIRST_LOGIN, true);
+            return false;
         }
     }
 }

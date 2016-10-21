@@ -11,8 +11,10 @@ package com.liuguilin.latenight.entity;
 
 import cn.bmob.v3.BmobUser;
 
-public class GankUser extends BmobUser{
+public class GankUser extends BmobUser {
 
+    //昵称
+    private String nickname;
     //年龄
     private int age;
     //性别
@@ -27,6 +29,10 @@ public class GankUser extends BmobUser{
     private String occupation;
     //学校
     private String school;
+    //身高
+    private String height;
+    //体重
+    private String weight;
 
 
     public int getAge() {
@@ -83,5 +89,29 @@ public class GankUser extends BmobUser{
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

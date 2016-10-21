@@ -46,6 +46,8 @@ public class Constants {
 
     //第一次运行
     public static final String SHARE_IS_FIRST = "isFirst";
+    //第一次登录
+    public static final String SHARE_IS_FIRST_LOGIN = "isFirstLogin";
     //自动登录
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
 
