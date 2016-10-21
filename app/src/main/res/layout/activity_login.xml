@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:padding="10dp">
+
 
     <!--免责声明-->
     <TextView
@@ -21,6 +23,7 @@
         android:textSize="10sp"/>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -34,22 +37,22 @@
             android:background="@drawable/edit_bg">
 
             <ImageView
-                android:layout_marginLeft="5dp"
                 android:id="@+id/iv_user_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_perm_identity_black_24dp"/>
 
             <EditText
-                android:background="@null"
+                android:id="@+id/login_et_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="1dp"
                 android:layout_toRightOf="@id/iv_user_icon"
+                android:background="@null"
                 android:hint="用户名"
-                android:maxLength="1"
                 android:textColor="@color/color_white"
                 android:textColorHint="@color/color_white"
                 android:textSize="@dimen/standard_textsize"/>
@@ -74,27 +77,29 @@
             android:background="@drawable/edit_bg">
 
             <ImageView
-                android:layout_marginLeft="5dp"
                 android:id="@+id/iv_pass_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_lock_black_24dp"/>
 
             <EditText
-                android:background="@null"
+                android:inputType="textPassword"
+                android:id="@+id/login_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="1dp"
                 android:layout_toRightOf="@id/iv_pass_icon"
+                android:background="@null"
                 android:hint="密码"
-                android:maxLength="1"
                 android:textColor="@color/color_white"
                 android:textColorHint="@color/color_white"
                 android:textSize="@dimen/standard_textsize"/>
 
             <ImageView
+                android:id="@+id/eye_gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -104,34 +109,14 @@
 
         </RelativeLayout>
 
-        <!--密码操作-->
-        <RelativeLayout
-            android:visibility="invisible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="记住密码"/>
-
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="自动登陆"/>
-
-        </RelativeLayout>
-
-
         <Button
-            android:id="@+id/login"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edit_bg"
             android:text="登录"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
         <!--注册&忘记密码-->
@@ -162,5 +147,17 @@
 
         </RelativeLayout>
     </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/login_terms"
+        android:layout_alignStart="@+id/login_terms"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/liuguilin"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="2dp"/>
 
 </RelativeLayout>

@@ -6,15 +6,11 @@
 
 ##一.使用到的图标
 
-- Material icons
-
-    https://design.google.com/icons/
+- Material icons:https://design.google.com/icons/
 
 ##二.使用到的接口
 
-- 1.Gank
-
-    http://www.gank.io/api
+- 1.Gank:http://www.gank.io/api
 
 ##三.使用到的框架
 
@@ -33,6 +29,8 @@
 - 7.Glide:https://github.com/bumptech/glide
     
 - 8.CircleViewPager:https://github.com/CodingForAndroid/CircleViewPager
+
+- 9.CircleImageView:https://github.com/hdodenhof/CircleImageView
     
     
     
@@ -77,6 +75,12 @@
 - 34.新增Glide
 - 35.新增CircleViewPager
 - 36.封装GlideUtils
+- 37.创建PhoneFormatCheckUtils手机号码正则类
+- 38.注册功能完成
+- 39.完成設置密碼功能
+- 40.更改注册逻辑
+- 41.新增CircleImageView
+- 42.登录功能完成
 
 
 ##五.联系方式

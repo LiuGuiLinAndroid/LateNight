@@ -9,10 +9,10 @@ package com.liuguilin.latenight.activity;
  *  描述：    注册
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -24,15 +24,15 @@ import android.widget.ImageView;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
+import com.liuguilin.latenight.util.PhoneFormatCheckUtils;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobSMS;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SaveListener;
 
-public class RegisteredActivity extends BaseActivity implements View.OnClickListener {
+public class RegisteredActivity extends AppCompatActivity implements View.OnClickListener {
 
     //电话号码
     private EditText reg_et_phone;
@@ -46,6 +46,12 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
     private ImageView reg_iv_phone_clear;
     //标记
     private int timer = 60;
+    //返回
+    private ImageView icon_black;
+    //密码
+    private EditText et_pass;
+    //确认密码
+    private EditText et_password;
 
     private Handler handler = new Handler() {
         @Override
@@ -58,6 +64,7 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                         reg_btn_getsms.setText(timer + "s");
                         handler.sendEmptyMessageDelayed(Constants.HANDLER_WHAT_TIME_DOWN, 1000);
                     } else {
+                        timer = 60;
                         //倒计时完成
                         reg_btn_getsms.setEnabled(true);
                         reg_btn_getsms.setText("再次获取");
@@ -86,6 +93,10 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         reg_btn_getsms.setOnClickListener(this);
         reg_btn_regisered = (Button) findViewById(R.id.reg_btn_regisered);
         reg_btn_regisered.setOnClickListener(this);
+        icon_black = (ImageView) findViewById(R.id.icon_black);
+        icon_black.setOnClickListener(this);
+        et_pass = (EditText) findViewById(R.id.et_pass);
+        et_password = (EditText) findViewById(R.id.et_password);
 
 
         //输入框的监听
@@ -116,17 +127,24 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         //获取输入框的内容
         String phone = reg_et_phone.getText().toString().trim();
         String sms = reg_et_sms.getText().toString().trim();
+        String pass = et_pass.getText().toString().trim();
+        String password = et_password.getText().toString().trim();
         switch (v.getId()) {
+            case R.id.icon_black:
+                finish();
+                break;
             case R.id.reg_iv_phone_clear:
                 reg_et_phone.setText("");
                 reg_et_sms.setText("");
+                et_pass.setText("");
+                et_password.setText("");
                 reg_iv_phone_clear.setVisibility(View.GONE);
                 break;
             case R.id.reg_btn_getsms:
                 //判断手机号码是否为空
                 if (!TextUtils.isEmpty(phone)) {
                     //判断是否是手机号码
-                    if (phone.matches(Constants.PHONE_KEY)) {
+                    if (PhoneFormatCheckUtils.isChinaPhoneLegal(phone)) {
                         //获取验证码
                         BmobSMS.requestSMSCode(phone, "你的验证码，请及时查收", new QueryListener<Integer>() {
                             @Override
@@ -140,14 +158,14 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                                     handler.sendEmptyMessage(Constants.HANDLER_WHAT_TIME_DOWN);
                                 } else {
                                     //
-                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码发送失败", TastyToast.LENGTH_LONG,
+                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码发送失败" + e.toString(), TastyToast.LENGTH_LONG,
                                             TastyToast.ERROR);
                                 }
                             }
                         });
                     } else {
                         //
-                        TastyToast.makeText(this, "请输入11位手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
+                        TastyToast.makeText(this, "请输入正确的手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
                     }
                 } else {
                     //
@@ -155,30 +173,37 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                 }
                 break;
             case R.id.reg_btn_regisered:
-                if(!TextUtils.isEmpty(phone)){
-                    if(!TextUtils.isEmpty(sms)){
-                        if(phone.matches(Constants.PHONE_KEY)){
-                            //登录
-                            BmobUser.loginBySMSCode(phone, sms, new LogInListener<GankUser>() {
-                                @Override
-                                public void done(GankUser gankUser, BmobException e) {
-                                    if(gankUser!=null){
-                                        TastyToast.makeText(RegisteredActivity.this, "注册成功", TastyToast.LENGTH_LONG,
-                                                TastyToast.SUCCESS);
-                                        startActivity(new Intent(RegisteredActivity.this,SetPassWordActivity.class));
-                                    }else {
-                                        TastyToast.makeText(RegisteredActivity.this, "注册失败", TastyToast.LENGTH_LONG,
-                                                TastyToast.ERROR);
+                if (!TextUtils.isEmpty(phone) & !TextUtils.isEmpty(pass) & !TextUtils.isEmpty(password) ) {
+                    if (!TextUtils.isEmpty(sms)) {
+                        if (PhoneFormatCheckUtils.isChinaPhoneLegal(phone)) {
+                            if(pass.equals(password)) {
+                                //注册
+                                GankUser user = new GankUser();
+                                user.setPassword(password);
+                                user.setMobilePhoneNumber(phone);
+                                user.signOrLogin(sms, new SaveListener<GankUser>() {
+                                    @Override
+                                    public void done(GankUser gankUser, BmobException e) {
+                                        if (e == null) {
+                                            TastyToast.makeText(RegisteredActivity.this, "注冊成功", TastyToast.LENGTH_LONG,
+                                                    TastyToast.SUCCESS);
+                                            finish();
+                                        } else {
+                                            TastyToast.makeText(RegisteredActivity.this, "注冊失败" + e.toString(), TastyToast.LENGTH_LONG,
+                                                    TastyToast.ERROR);
+                                        }
                                     }
-                                }
-                            });
-                        }else {
+                                });
+                            }else {
+                                TastyToast.makeText(this, "两次输入的密码不不一致", TastyToast.LENGTH_LONG, TastyToast.INFO);
+                            }
+                        } else {
                             TastyToast.makeText(this, "请输入11位手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
                         }
-                    }else {
+                    } else {
                         TastyToast.makeText(this, "验证码不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     }
-                }else {
+                } else {
                     TastyToast.makeText(this, "手机号码不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 }
                 break;

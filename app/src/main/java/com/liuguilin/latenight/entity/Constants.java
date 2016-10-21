@@ -33,7 +33,7 @@ public class Constants {
     public static final String GANK_POST_DATA = "https://gank.io/api/add2gank";
 
     //Bmob key
-    public static final String BMOB_KEY = "4fe28fde75bfc96aad66a887a63592fd";
+    public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";
     //Bugly key
     public static final String BUGLY_KEY = "bd467eaf8d";
 
@@ -49,13 +49,8 @@ public class Constants {
     //自动登录
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
 
-
-
 	//密码正则
 	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
-    //手机号码正则
-    public static final String PHONE_KEY = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$";
-
 
     //设置下划线
     public static void setHtml(TextView textView) {

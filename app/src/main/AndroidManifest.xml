@@ -51,6 +51,7 @@
 
         <!--注册-->
         <activity
+            android:theme="@style/NoTitleFullscreen"
             android:name="com.liuguilin.latenight.activity.RegisteredActivity"
             android:label="@string/text_registered"/>
 
@@ -72,7 +73,9 @@
             android:name="com.liuguilin.latenight.activity.SettingActivity"
             android:label="@string/text_setting"/>
 
+        <!--设置密码-->
         <activity
+            android:theme="@style/NoTitleFullscreen"
             android:name="com.liuguilin.latenight.activity.SetPassWordActivity"
             android:label="@string/text_set_password"/>
 
