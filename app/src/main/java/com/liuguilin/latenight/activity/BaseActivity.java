@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.activity;
+package com.liuguilin.latenight.activity;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.activity
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.activity
  *  文件名:   BaseActivity
  *  创建者:   LGL
  *  创建时间:  2016/10/18 15:26

@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.util;
+package com.liuguilin.latenight.util;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.util
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.util
  *  文件名:   MD5Utils
  *  创建者:   LGL
  *  创建时间:  2016/10/20 12:26

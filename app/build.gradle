@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
-        applicationId "com.liuguilin.gankclient"
+        applicationId "com.liuguilin.latenight"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -57,5 +57,5 @@ dependencies {
     //TastyToast
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.0'
     //Glide
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
 }

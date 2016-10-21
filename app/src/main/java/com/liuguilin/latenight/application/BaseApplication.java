@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.application;
+package com.liuguilin.latenight.application;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.application
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.application
  *  文件名:   BaseApplication
  *  创建者:   LGL
  *  创建时间:  2016/10/18 15:24
@@ -11,7 +11,7 @@ package com.liuguilin.gankclient.application;
 
 import android.app.Application;
 
-import com.liuguilin.gankclient.entity.Constants;
+import com.liuguilin.latenight.entity.Constants;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;

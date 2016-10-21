@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="50dp"
-        android:background="@color/color_white">
+        android:background="@drawable/guide_circle_bg">
 
         <TextView
             android:id="@+id/guide_tv_break"

@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.entity;
+package com.liuguilin.latenight.entity;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.entity
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.entity
  *  文件名:   GankUser
  *  创建者:   LGL
  *  创建时间:  2016/10/18 22:48

@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.activity;
+package com.liuguilin.latenight.activity;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.activity
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.activity
  *  文件名:   LoginActivity
  *  创建者:   LGL
  *  创建时间:  2016/10/18 16:42
@@ -16,9 +16,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.liuguilin.gankclient.MainActivity;
+import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.gankclient.entity.Constants;
+import com.liuguilin.latenight.entity.Constants;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

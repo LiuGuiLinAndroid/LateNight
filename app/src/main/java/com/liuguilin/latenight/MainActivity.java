@@ -1,7 +1,9 @@
-package com.liuguilin.gankclient;
+package com.liuguilin.latenight;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.liuguilin.gankclient.R;
 
 public class MainActivity extends AppCompatActivity {
 

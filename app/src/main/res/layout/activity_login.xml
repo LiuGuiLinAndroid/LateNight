@@ -2,23 +2,39 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:padding="10dp">
+
+    <!--免责声明-->
+    <TextView
+        android:id="@+id/login_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:lines="2"
+        android:text="@string/text_terms"
+        android:textColor="@color/color_white"
+        android:textSize="10sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <!--用户名-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_bg">
 
             <ImageView
+                android:layout_marginLeft="5dp"
                 android:id="@+id/iv_user_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,8 +42,10 @@
                 android:src="@drawable/ic_perm_identity_black_24dp"/>
 
             <EditText
+                android:background="@null"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
                 android:layout_margin="1dp"
                 android:layout_toRightOf="@id/iv_user_icon"
                 android:hint="用户名"
@@ -51,9 +69,12 @@
         <!--密码-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edit_bg">
 
             <ImageView
+                android:layout_marginLeft="5dp"
                 android:id="@+id/iv_pass_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,8 +82,9 @@
                 android:src="@drawable/ic_lock_black_24dp"/>
 
             <EditText
+                android:background="@null"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="1dp"
                 android:layout_toRightOf="@id/iv_pass_icon"
@@ -78,14 +100,36 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/invisible_eye"/>
+                android:src="@drawable/eye_password_sele"/>
 
         </RelativeLayout>
+
+        <!--密码操作-->
+        <RelativeLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="记住密码"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="自动登陆"/>
+
+        </RelativeLayout>
+
 
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit_bg"
             android:text="登录"
             android:textColor="@color/color_black"
             android:textSize="@dimen/standard_textsize"/>
@@ -118,19 +162,5 @@
 
         </RelativeLayout>
     </LinearLayout>
-
-    <!--免责声明-->
-    <TextView
-        android:id="@+id/login_terms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:lines="2"
-        android:text="@string/text_terms"
-        android:textColor="@color/color_white"
-        android:textSize="10sp"/>
 
 </RelativeLayout>

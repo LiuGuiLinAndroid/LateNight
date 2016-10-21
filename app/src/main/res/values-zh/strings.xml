@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gank客户端</string>
+    <string name="app_name">深夜</string>
 
     <string name="text_login">登录</string>
     <string name="text_registered">注册</string>
@@ -18,7 +18,7 @@
     <string name="text_forget">忘记密码</string>
     <string name="text_setting">设置</string>
 
-    <string name="splash_title">Gank</string>
+    <string name="splash_title">深夜</string>
     <string name="splash_me">刘某人</string>
     <string name="reg_phone_number">电话号码</string>
     <string name="reg_sms">验证码</string>

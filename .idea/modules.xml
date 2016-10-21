@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GankClient.iml" filepath="$PROJECT_DIR$/GankClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LateNight.iml" filepath="$PROJECT_DIR$/LateNight.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

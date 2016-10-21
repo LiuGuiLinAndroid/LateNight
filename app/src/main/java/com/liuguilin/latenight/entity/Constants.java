@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.entity;
+package com.liuguilin.latenight.entity;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.entity
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.entity
  *  文件名:   Constants
  *  创建者:   LGL
  *  创建时间:  2016/10/18 16:28
@@ -54,7 +54,7 @@ public class Constants {
 	//密码正则
 	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
     //手机号码正则
-    public static final String PHONE_KEY = "^((13[0-9])|(15[^4,\\\\D])|(18[0,5-9]))\\\\d{8}$";
+    public static final String PHONE_KEY = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$";
 
 
     //设置下划线

@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.activity;
+package com.liuguilin.latenight.activity;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.activity
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.activity
  *  文件名:   RegisteredActivity
  *  创建者:   LGL
  *  创建时间:  2016/10/18 16:44
@@ -22,8 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.liuguilin.gankclient.R;
-import com.liuguilin.gankclient.entity.Constants;
-import com.liuguilin.gankclient.entity.GankUser;
+import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.entity.GankUser;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobSMS;
@@ -82,6 +82,7 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         reg_btn_getsms = (Button) findViewById(R.id.reg_btn_getsms);
         reg_iv_phone_clear = (ImageView) findViewById(R.id.reg_iv_phone_clear);
         reg_iv_phone_clear.setVisibility(View.GONE);
+        reg_iv_phone_clear.setOnClickListener(this);
         reg_btn_getsms.setOnClickListener(this);
         reg_btn_regisered = (Button) findViewById(R.id.reg_btn_regisered);
         reg_btn_regisered.setOnClickListener(this);

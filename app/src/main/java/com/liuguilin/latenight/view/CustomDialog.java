@@ -1,8 +1,8 @@
-package com.liuguilin.gankclient.view;
+package com.liuguilin.latenight.view;
 
 /*
- *  项目名：  GankClient 
- *  包名：    com.liuguilin.gankclient.view
+ *  项目名：  lateNight
+ *  包名：    com.liuguilin.latenight.view
  *  文件名:   CustomDialog
  *  创建者:   LGL
  *  创建时间:  2016/10/18 15:54

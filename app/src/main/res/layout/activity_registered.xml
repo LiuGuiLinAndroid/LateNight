@@ -3,29 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">
 
     <!--号码-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_bg">
 
         <ImageView
             android:id="@+id/iv_phone_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/ic_phone_black_24dp"/>
 
         <EditText
             android:id="@+id/reg_et_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_margin="1dp"
             android:layout_toRightOf="@id/iv_phone_icon"
+            android:background="@null"
             android:hint="@string/reg_phone_number"
-            android:maxLength="1"
             android:textSize="@dimen/standard_textsize"/>
 
         <ImageView
@@ -43,12 +46,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/ic_sms_black_24dp"/>
 
         <EditText
@@ -56,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@null"
             android:hint="@string/reg_sms"
             android:textSize="@dimen/standard_textsize"/>
 
@@ -64,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:background="@drawable/guide_circle_bg"
             android:gravity="center"
             android:text="@string/reg_getsms"
             android:textSize="@dimen/standard_textsize"/>
@@ -74,15 +82,16 @@
         android:id="@+id/reg_btn_regisered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_bg"
         android:text="@string/text_registered"
         android:textSize="@dimen/standard_textsize"/>
 
     <!--第三方登录-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
@@ -91,23 +100,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_perm_identity_black_24dp"/>
+            android:src="@drawable/login_qq_icon"/>
 
         <!--微信-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_perm_identity_black_24dp"/>
+            android:src="@drawable/login_wechat_icon"/>
 
         <!--新浪-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_perm_identity_black_24dp"/>
+            android:src="@drawable/login_sina_icon"/>
+
+        <!--Github-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/login_github_icon"/>
 
 
     </LinearLayout>
+
 
 </LinearLayout>
