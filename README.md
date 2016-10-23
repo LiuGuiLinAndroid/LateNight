@@ -1,6 +1,6 @@
 # 深夜
 
-**《深夜》，陪你度过每一个无聊的虚度时光  **
+**《深夜》，陪你度过每一个无聊的虚度时光**
 
 >免责声明：本软件所使用到的图片资源以及接口都来源于网络,有任何侵权行为请告知删除
 
@@ -34,7 +34,9 @@
 
 - 10.ScaleScrollView:https://github.com/LichFaker/ScaleView
     
-    
+- 11.Ticker:https://github.com/robinhood/ticker 
+
+- 12.InfiniteCycleViewPager:https://github.com/DevLight-Mobile-Agency/InfiniteCycleViewPager
     
 ##四.更新日志
   
@@ -89,6 +91,8 @@
 - 46.创建SelectHeightActivity选择身高
 - 47.创建SelectWeightActivity选择体重
 - 48.创建SelectConstellationActivity选择星座
+- 49.新增Ticker
+- 50.新增InfiniteCycleViewPager
 
 
 ##五.联系方式
