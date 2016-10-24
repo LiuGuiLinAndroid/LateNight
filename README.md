@@ -94,6 +94,10 @@
 - 49.新增Ticker
 - 50.新增InfiniteCycleViewPager
 - 51.新增天气接口
+- 52.主页完成
+- 53.完善开源库，新增主页点击接口setOnPagerItemClickListener
+- 54.完善选择性别
+- 55.增加尺子测量监听
 
 
 ##五.联系方式

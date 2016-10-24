@@ -24,6 +24,8 @@
     <string name="reg_sms">验证码</string>
     <string name="reg_getsms">获取</string>
     <string name="text_set_password">设置密码</string>
+    <string name="text_weather">天气</string>
+    <string name="text_user">个人</string>
 
 
 </resources>

@@ -40,10 +40,12 @@ public class SplashActivity extends AppCompatActivity {
                         if (autoLogin) {
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         } else {
-                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            //startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                         }
                     } else {
-                        startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+                        //startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     }
                     finish();
                     break;

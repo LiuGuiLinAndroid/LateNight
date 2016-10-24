@@ -40,6 +40,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
     //RxVolley
     //compile 'com.kymjs.rxvolley:rxvolley:1.1.0'
     //下载模块

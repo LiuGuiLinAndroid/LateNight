@@ -104,6 +104,15 @@
             android:name="com.liuguilin.latenight.select.SelectConstellationActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
+        <!--天气-->
+        <activity
+            android:name="com.liuguilin.latenight.activity.WeatherActivity"
+            android:label="@string/text_weather"/>
+
+        <!--个人-->
+        <activity android:name="com.liuguilin.latenight.activity.UserActivity"
+            android:label="@string/text_user"/>
+
         <!--开机广播-->
         <receiver android:name="com.liuguilin.latenight.receiver.BootCompletedReceiver">
             <intent-filter>
