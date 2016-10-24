@@ -7,16 +7,6 @@
     android:orientation="vertical">
 
     <!--launcher卡片-->
-    <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
-        android:id="@+id/hicvp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:icvp_center_page_scale_offset="30dp"
-        app:icvp_interpolator="..."
-        app:icvp_max_page_scale="0.8"
-        app:icvp_medium_scaled="true"
-        app:icvp_min_page_scale="0.5"
-        app:icvp_min_page_scale_offset="5dp"
-        app:icvp_scroll_duration="500"/>
+
 
 </LinearLayout>

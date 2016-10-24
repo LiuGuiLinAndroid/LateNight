@@ -93,6 +93,7 @@
 - 48.创建SelectConstellationActivity选择星座
 - 49.新增Ticker
 - 50.新增InfiniteCycleViewPager
+- 51.新增天气接口
 
 
 ##五.联系方式
