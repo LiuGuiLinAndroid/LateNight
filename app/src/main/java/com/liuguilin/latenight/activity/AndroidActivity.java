@@ -19,5 +19,11 @@ public class AndroidActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android);
 
+        initView();
+    }
+
+    //初始化View
+    private void initView() {
+
     }
 }

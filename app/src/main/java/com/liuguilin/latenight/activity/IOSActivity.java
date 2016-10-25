@@ -18,5 +18,12 @@ public class IOSActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ios);
+
+        initView();
+    }
+
+    //初始化View
+    private void initView() {
+
     }
 }

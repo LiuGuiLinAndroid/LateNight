@@ -18,5 +18,11 @@ public class MusicActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
+
+        initView();
+    }
+    //初始化View
+    private void initView() {
+
     }
 }
