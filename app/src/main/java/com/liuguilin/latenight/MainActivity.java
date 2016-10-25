@@ -9,7 +9,10 @@ import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.activity.WeatherActivity;
 import com.liuguilin.latenight.adapter.HorizontalPagerAdapter;
+import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.L;
+import com.liuguilin.latenight.util.SharePreUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        boolean isAutoLogin = SharePreUtils.getBoolean(this, Constants.SHARE_AUTO_LOGIN,false);
+        if(isAutoLogin){
+            //登录
+            String username = SharePreUtils.getString(this,Constants.SHARE_USER_NAME,"");
+            String password = SharePreUtils.getString(this,Constants.SHARE_USER_PASSWORD,"");
+            GankUser user = new GankUser();
+            //....自动登录的逻辑
+        }
+
     }
 
 }

@@ -7,6 +7,25 @@
     android:background="@drawable/login_bg"
     android:padding="10dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/check_kepp_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"/>
+
+        <CheckBox
+            android:id="@+id/check_auto_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动登录"/>
+    </LinearLayout>
+
 
     <!--免责声明-->
     <TextView
@@ -85,7 +104,6 @@
                 android:src="@drawable/ic_lock_black_24dp"/>
 
             <EditText
-                android:inputType="textPassword"
                 android:id="@+id/login_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -94,6 +112,7 @@
                 android:layout_toRightOf="@id/iv_pass_icon"
                 android:background="@null"
                 android:hint="密码"
+                android:inputType="textPassword"
                 android:textColor="@color/color_white"
                 android:textColorHint="@color/color_white"
                 android:textSize="@dimen/standard_textsize"/>

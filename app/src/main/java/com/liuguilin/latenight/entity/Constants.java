@@ -55,6 +55,12 @@ public class Constants {
     public static final String SHARE_IS_FIRST_LOGIN = "isFirstLogin";
     //自动登录
     public static final String SHARE_AUTO_LOGIN = "autoLogin";
+    //记住密码
+    public static final String SHARE_KEEP_PASSWORD = "keep_password";
+    //用户名
+    public static final String SHARE_USER_NAME = "share_name";
+    //密码
+    public static final String SHARE_USER_PASSWORD = "share_password";
 
 	//密码正则
 	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";

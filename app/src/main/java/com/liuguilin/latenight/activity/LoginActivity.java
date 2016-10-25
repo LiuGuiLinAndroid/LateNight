@@ -19,6 +19,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView imageView;
     //密码可见
     private ImageView eye_gone;
+    //记住密码
+    private CheckBox check_kepp_password;
+    //自动登录
+    private CheckBox check_auto_login;
 
 
     @Override
@@ -83,6 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         eye_gone = (ImageView) findViewById(R.id.eye_gone);
         eye_gone.setVisibility(View.GONE);
         eye_gone.setOnClickListener(this);
+        check_kepp_password = (CheckBox) findViewById(R.id.check_kepp_password);
+        check_auto_login = (CheckBox) findViewById(R.id.check_auto_login);
 
         //监听
         login_et_name.addTextChangedListener(new TextWatcher() {
@@ -127,6 +134,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        //如果选择记住密码
+        if (SharePreUtils.getBoolean(this, Constants.SHARE_KEEP_PASSWORD, false)) {
+            String username = SharePreUtils.getString(this, Constants.SHARE_USER_NAME, "");
+            String password = SharePreUtils.getString(this, Constants.SHARE_USER_PASSWORD, "");
+            login_et_name.setText(username);
+            login_et_password.setText(password);
+        }
+        check_auto_login.setChecked(SharePreUtils.getBoolean(this, Constants.SHARE_AUTO_LOGIN, false));
+        check_kepp_password.setChecked(SharePreUtils.getBoolean(this, Constants.SHARE_KEEP_PASSWORD, false));
     }
 
     @Override
@@ -147,6 +163,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (user != null) {
                                 TastyToast.makeText(LoginActivity.this, "登录成功", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
+
+                                //账号密码我们是一定要保存的，为自定登录做准备
+                                SharePreUtils.putString(LoginActivity.this, Constants.SHARE_USER_NAME, login_et_name.getText().toString());
+                                SharePreUtils.putString(LoginActivity.this, Constants.SHARE_USER_PASSWORD, login_et_password.getText().toString());
+
+                                //记住密码
+                                SharePreUtils.putBoolean(LoginActivity.this, Constants.SHARE_KEEP_PASSWORD, check_kepp_password.isChecked());
+                                //自动登录
+                                SharePreUtils.putBoolean(LoginActivity.this, Constants.SHARE_AUTO_LOGIN, check_auto_login.isChecked());
+
                                 if (isFirstLogin()) {
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 } else {
@@ -195,5 +221,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             SharePreUtils.putBoolean(this, Constants.SHARE_IS_FIRST_LOGIN, true);
             return false;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }
