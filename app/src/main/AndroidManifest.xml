@@ -113,6 +113,26 @@
         <activity android:name="com.liuguilin.latenight.activity.UserActivity"
             android:label="@string/text_user"/>
 
+        <!--Android-->
+        <activity android:name="com.liuguilin.latenight.activity.AndroidActivity"
+                  android:label="Android"/>
+
+        <!--IOS-->
+        <activity android:name="com.liuguilin.latenight.activity.IOSActivity"
+                  android:label="IOS"/>
+
+        <!--前端-->
+        <activity android:name="com.liuguilin.latenight.activity.WebActivity"
+                  android:label="@string/text_web"/>
+
+        <!--音乐-->
+        <activity android:name="com.liuguilin.latenight.activity.MusicActivity"
+                  android:label="@string/text_music"/>
+
+        <!--妹子-->
+        <activity android:name="com.liuguilin.latenight.activity.GirlActivity"
+                  android:label="@string/text_girl"/>
+
         <!--网页-->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 

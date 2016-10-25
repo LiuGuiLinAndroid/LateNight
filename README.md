@@ -105,6 +105,11 @@
 - 56.完善主页功能
 - 57.创建WebViewActivity网页界面
 - 58.新增uCrop
+- 59.创建AndroidActivity
+- 60.创建IOSActivity
+- 61.创建WebActivity前端
+- 62.创建MusicActivity音乐
+- 63.创建GirlActivity妹子
 
 
 ##五.联系方式
