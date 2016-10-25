@@ -15,12 +15,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.lichfaker.scaleview.BaseScaleView;
+import com.lichfaker.scaleview.HorizontalScaleScrollView;
 import com.liuguilin.gankclient.R;
 
 public class SelectHeightActivity extends AppCompatActivity implements View.OnClickListener{
 
     //下一步
     private Button btn_next;
+    private HorizontalScaleScrollView horizontalScale;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -33,6 +36,13 @@ public class SelectHeightActivity extends AppCompatActivity implements View.OnCl
     private void initView() {
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
+        horizontalScale = (HorizontalScaleScrollView) findViewById(R.id.horizontalScale);
+        horizontalScale.setOnScrollListener(new BaseScaleView.OnScrollListener() {
+            @Override
+            public void onScaleScroll(int scale) {
+                //select_tv_age.setText(scale + "岁");
+            }
+        });
     }
 
     @Override

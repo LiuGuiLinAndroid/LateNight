@@ -113,6 +113,9 @@
         <activity android:name="com.liuguilin.latenight.activity.UserActivity"
             android:label="@string/text_user"/>
 
+        <!--网页-->
+        <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
+
         <!--开机广播-->
         <receiver android:name="com.liuguilin.latenight.receiver.BootCompletedReceiver">
             <intent-filter>

@@ -11,6 +11,8 @@
 ##二.使用到的接口
 
 - 1.Gank:http://www.gank.io/api
+- 2.知乎日报:https://github.com/izzyleung/ZhihuDailyPurify/wiki/知乎日报-API-分析
+- 3.One一个:暂未公布
 
 ##三.使用到的框架
 
@@ -98,6 +100,10 @@
 - 53.完善开源库，新增主页点击接口setOnPagerItemClickListener
 - 54.完善选择性别
 - 55.增加尺子测量监听
+- 56.完善主页功能
+- 57.创建WebViewActivity网页界面
+
+
 
 
 ##五.联系方式

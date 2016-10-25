@@ -26,25 +26,75 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     private PagerItemClickListener onPagerItemClickListener;
 
     private final PagerUtils.LibraryObject[] LIBRARIES = new PagerUtils.LibraryObject[]{
+            //天气
             new PagerUtils.LibraryObject(
                     R.drawable.ic_strategy,
-                    "Weather"
+                    "天气"
             ),
+            //one的推荐
             new PagerUtils.LibraryObject(
                     R.drawable.ic_design,
-                    "One New"
+                    "美文"
             ),
+            //个人中心
             new PagerUtils.LibraryObject(
                     R.drawable.ic_design,
-                    "User"
+                    "用户"
             ),
+            //知乎日报每日最新（轮播图）
             new PagerUtils.LibraryObject(
                     R.drawable.ic_development,
-                    "Development"
+                    "日报"
             ),
+            //Android
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "Android"
+            ),
+            //IOS
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "IOS"
+            ),
+            //美女
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "妹纸"
+            ),
+            //小视频
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "小视频"
+            ),
+            //前端
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "前端"
+            ),
+            //音乐
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "音乐"
+            ),
+            //电影
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "电影"
+            ),
+            //小说
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "小说"
+            ),
+            //笑话
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "笑话"
+            ),
+            //设置
             new PagerUtils.LibraryObject(
                     R.drawable.ic_qa,
-                    "Setting"
+                    "设置"
             )
     };
 
@@ -84,8 +134,8 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onPagerItemClickListener != null){
-                        onPagerItemClickListener.onPagerItemClickListener(view,position);
+                    if (onPagerItemClickListener != null) {
+                        onPagerItemClickListener.onPagerItemClickListener(view, position);
                     }
                 }
             });
@@ -107,7 +157,7 @@ public class HorizontalPagerAdapter extends PagerAdapter {
     }
 
     public interface PagerItemClickListener {
-        public void onPagerItemClickListener(View view,int postion);
+        public void onPagerItemClickListener(View view, int postion);
     }
 
     //实现接口
