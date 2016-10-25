@@ -39,6 +39,8 @@
 - 11.Ticker:https://github.com/robinhood/ticker 
 
 - 12.InfiniteCycleViewPager:https://github.com/DevLight-Mobile-Agency/InfiniteCycleViewPager
+
+- 13.uCrop:https://github.com/Yalantis/uCrop
     
 ##四.更新日志
   
@@ -102,8 +104,7 @@
 - 55.增加尺子测量监听
 - 56.完善主页功能
 - 57.创建WebViewActivity网页界面
-
-
+- 58.新增uCrop
 
 
 ##五.联系方式
@@ -118,4 +119,6 @@
 
 ###[点击关注我的微博](http://weibo.com/Glorystys)
 
-##六.开源许可证
+##六.License
+  
+>开源协议[Apache-2.0](https://opensource.org/licenses/apache2.0.php)

@@ -67,4 +67,6 @@ dependencies {
     compile 'com.robinhood.ticker:ticker:1.1.0'
     //InfiniteCycleViewPager
     compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
+    //uCrop
+    compile 'com.yalantis:ucrop:2.2.0-native'
 }

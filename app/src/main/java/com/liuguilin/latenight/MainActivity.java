@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     //launcher卡片
     private HorizontalInfiniteCycleViewPager infiniteCycleViewPager;
-    //添加接口
-    private String weather_url = "http://op.juhe.cn/onebox/weather/query?cityname=北京&key=4ea58de8a7573377cec0046f5e2469d5";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
