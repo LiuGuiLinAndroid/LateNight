@@ -9,19 +9,21 @@ package com.liuguilin.latenight.application;
  *  描述：    Application
  */
 
-import android.app.Application;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.liuguilin.latenight.entity.Constants;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     //初始化
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(getApplicationContext());
         //初始化Bmob
         Bmob.initialize(this, Constants.BMOB_KEY);
         //初始化Bugly

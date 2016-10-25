@@ -50,7 +50,9 @@ dependencies {
     //Shimmer
     compile 'com.romainpiel.shimmer:library:1.4.0@aar'
     //Bmob
-    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile ('cn.bmob.android:bmob-sdk:3.5.0'){
+        exclude module: 'okhttp3/Address.class'
+    }
     //Bugly SDK
     compile 'com.tencent.bugly:crashreport:latest.release'
     //Bugly NDK
@@ -69,4 +71,7 @@ dependencies {
     compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
     //uCrop
     compile 'com.yalantis:ucrop:2.2.0-native'
+    //multidex
+    compile 'com.android.support:multidex:1.0.1'
+
 }
