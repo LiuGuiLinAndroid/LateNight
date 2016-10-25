@@ -111,6 +111,7 @@
 - 62.创建MusicActivity音乐
 - 63.创建GirlActivity妹子
 - 64.创建MusicService
+- 65.新增几个封装方法
 
 
 ##五.联系方式

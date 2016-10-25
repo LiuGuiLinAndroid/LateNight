@@ -9,7 +9,12 @@ package com.liuguilin.latenight.entity;
  *  描述：    常量&接口&方法&字段
  */
 
+import android.content.Context;
 import android.graphics.Paint;
+import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Environment;
 import android.widget.TextView;
 
 public class Constants {
@@ -60,6 +65,80 @@ public class Constants {
         textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         //抗锯齿
         textView.getPaint().setAntiAlias(true);
+    }
+
+    //判断网络是否有用
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null && info.isConnected()) {
+                // 当前网络是连接的
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+                    // 当前所连接的网络可用
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //判断内存卡是否存在
+    public static boolean isSdCardExist() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static int mStreamVolume = 0;
+
+    // 设置到某个音量值--vain
+    public static int setVolume(Context context, int volumeValue) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, volumeValue, 0);
+        // 返回当前媒体音量
+        return am.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
+    // 音量加减----vain
+    public static int RaiseOrLowerVolume(Context context, boolean isAdd, int volumeValue) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (isAdd) {
+            mStreamVolume += volumeValue;
+            if (mStreamVolume >= am.getStreamMaxVolume(AudioManager.STREAM_MUSIC)) {
+                mStreamVolume = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            }
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, 0);
+        } else {
+            mStreamVolume -= volumeValue;
+            if (mStreamVolume <= 0) {
+                mStreamVolume = 0;
+            }
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, 0);
+        }
+        // 返回当前媒体音量
+        return am.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
+    //设置静音
+    public static void setMute(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0) {
+            mStreamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        }
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+    }
+
+    //取消静音
+    public static void setUnMute(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        // 隐藏音乐进度条
+        audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (mStreamVolume != 0) {
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, 0);
+        } else {
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+        }
     }
 
 }
