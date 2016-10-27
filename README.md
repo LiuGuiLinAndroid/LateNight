@@ -124,35 +124,52 @@
 
 ###1.Jar冲突
 
+**OKHttp**
 ```java
 Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: okhttp3/Address.class
 ```
 
-
+**RxAndroid**
 ```java
 Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 > com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: rx/android/MainThreadSubscription$1.class
 ```
-
-
+**OKio**
+```java
+Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
+> com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: com/okio/AsyncTimeOut.class
+```
 
 >Jar包重复添加了，可以尝试下使用这篇Blog的方法: [安卓开发之引入第三方库导致jar包冲突解决办法](http://blog.csdn.net/cx1229/article/details/52786168)
 >我的解决办法:
 
 ```java
+ //RxVolley
+    compile ('com.kymjs.rxvolley:rxvolley:1.1.0'){
+       exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+       exclude group: 'com.squareup.okio'
+       exclude group: 'io.reactivex'
+    }
+ //下载模块
+    compile ('com.kymjs.rxvolley:okhttp:1.1.0'){
+        exclude group: 'com.squareup.okhttp3'
+        exclude group: 'com.squareup.okio'
+    }
  //Bmob
     compile ('cn.bmob.android:bmob-sdk:3.5.0'){
         exclude group: 'com.squareup.okhttp3',module: 'okhttp'
         exclude group: 'io.reactivex:rxandroid'
         exclude group: 'io.reactivex:rxjava'
+        exclude group: 'com.squareup.okio'
     }
- //uCrop  uCrop也有okHttp这是我万万没有想到的....
+//uCrop  竟然没有想到一个裁剪库也有okhttp，罪过，罪过...
     compile ('com.yalantis:ucrop:2.2.0-native'){
-         exclude group: 'com.squareup.okhttp3',module: 'okhttp'
-     }
-
+        exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+        exclude group: 'com.squareup.okio'
+    }
 ```
+
 
 
 
