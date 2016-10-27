@@ -114,9 +114,32 @@
 - 65.新增几个封装方法
 - 66.新增记住密码
 - 67.新增自动登录
+- 68.新增Multidex
 
 
-##五.联系方式
+
+
+## 五.常规性的bug
+
+###1.Jar冲突
+
+```java
+Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
+com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: okhttp3/Address.class
+```
+
+
+```java
+Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
+> com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: rx/android/MainThreadSubscription$1.class
+```
+
+
+
+>Jar包重复添加了，可以尝试下使用这篇Blog的方法: [安卓开发之引入第三方库导致jar包冲突解决办法](http://blog.csdn.net/cx1229/article/details/52786168)
+
+
+##六.联系方式
 
 ###QQ邮箱：748778890@qq.com
 ###Google邮箱：liuguilin74@gmail.com
@@ -128,6 +151,6 @@
 
 ###[点击关注我的微博](http://weibo.com/Glorystys)
 
-##六.License
+##七.License
   
 >开源协议[Apache-2.0](https://opensource.org/licenses/apache2.0.php)
