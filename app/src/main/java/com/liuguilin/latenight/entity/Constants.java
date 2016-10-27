@@ -47,6 +47,8 @@ public class Constants {
     public static final int HANDLER_WHAT_IS_FIRST = 10001;
     //倒计时
     public static final int HANDLER_WHAT_TIME_DOWN = 10002;
+    //延时加载天气
+    public static final int HANDLER_WHAT_INIT_WEATHER = 10003;
 
 
     //第一次运行

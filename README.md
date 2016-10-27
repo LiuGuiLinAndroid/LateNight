@@ -35,12 +35,10 @@
 - 9.CircleImageView:https://github.com/hdodenhof/CircleImageView
 
 - 10.ScaleScrollView:https://github.com/LichFaker/ScaleView
-    
-- 11.Ticker:https://github.com/robinhood/ticker 
 
-- 12.InfiniteCycleViewPager:https://github.com/DevLight-Mobile-Agency/InfiniteCycleViewPager
+- 11.InfiniteCycleViewPager:https://github.com/DevLight-Mobile-Agency/InfiniteCycleViewPager
 
-- 13.uCrop:https://github.com/Yalantis/uCrop
+- 12.uCrop:https://github.com/Yalantis/uCrop
     
 ##四.更新日志
   
@@ -120,6 +118,8 @@
 - 71.实现自动定位
 - 72.创建ChargingService充电服务
 - 73.创建ShortcutsProvider小组件
+- 74.去除Ticker
+- 75.自定义RiseNumberTextView自动滚动
 
 
 

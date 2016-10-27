@@ -75,8 +75,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //ScaleScrollView
     compile 'com.github.LichFaker:ScaleView:-SNAPSHOT'
-    //Ticker
-    compile 'com.robinhood.ticker:ticker:1.1.0'
     //InfiniteCycleViewPager
     compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
     //uCrop
