@@ -25,6 +25,13 @@ android {
     }
 }
 
+//添加本地仓库
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -35,13 +42,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     //RxVolley
-    compile ('com.kymjs.rxvolley:rxvolley:1.1.0'){
-        exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+    compile('com.kymjs.rxvolley:rxvolley:1.1.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         exclude group: 'com.squareup.okio'
         exclude group: 'io.reactivex'
     }
     //下载模块
-    compile ('com.kymjs.rxvolley:okhttp:1.1.0'){
+    compile('com.kymjs.rxvolley:okhttp:1.1.0') {
         exclude group: 'com.squareup.okhttp3'
         exclude group: 'com.squareup.okio'
     }
@@ -50,8 +57,8 @@ dependencies {
     //Shimmer
     compile 'com.romainpiel.shimmer:library:1.4.0@aar'
     //Bmob
-    compile ('cn.bmob.android:bmob-sdk:3.5.0'){
-        exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+    compile('cn.bmob.android:bmob-sdk:3.5.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         exclude group: 'io.reactivex:rxandroid'
         exclude group: 'io.reactivex:rxjava'
         exclude group: 'com.squareup.okio'
@@ -73,11 +80,12 @@ dependencies {
     //InfiniteCycleViewPager
     compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
     //uCrop
-    compile ('com.yalantis:ucrop:2.2.0-native'){
-        exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+    compile('com.yalantis:ucrop:2.2.0-native') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         exclude group: 'com.squareup.okio'
     }
     //multidex
     compile 'com.android.support:multidex:1.0.1'
-
+    //BaiDu Map
+    compile files('libs/BaiduLBS_Android.jar')
 }

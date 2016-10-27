@@ -18,6 +18,14 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!--读取Log-->
     <uses-permission android:name="android.permission.READ_LOGS"/>
+    <!-- 网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
         android:name="com.liuguilin.latenight.application.BaseApplication"
@@ -110,32 +118,37 @@
             android:label="@string/text_weather"/>
 
         <!--个人-->
-        <activity android:name="com.liuguilin.latenight.activity.UserActivity"
+        <activity
+            android:name="com.liuguilin.latenight.activity.UserActivity"
             android:label="@string/text_user"/>
 
         <!--Android-->
-        <activity android:name="com.liuguilin.latenight.activity.AndroidActivity"
-                  android:label="Android"/>
+        <activity
+            android:name="com.liuguilin.latenight.activity.AndroidActivity"
+            android:label="Android"/>
 
         <!--IOS-->
-        <activity android:name="com.liuguilin.latenight.activity.IOSActivity"
-                  android:label="IOS"/>
+        <activity
+            android:name="com.liuguilin.latenight.activity.IOSActivity"
+            android:label="IOS"/>
 
         <!--前端-->
-        <activity android:name="com.liuguilin.latenight.activity.WebActivity"
-                  android:label="@string/text_web"/>
+        <activity
+            android:name="com.liuguilin.latenight.activity.WebActivity"
+            android:label="@string/text_web"/>
 
         <!--音乐-->
-        <activity android:name="com.liuguilin.latenight.activity.MusicActivity"
-                  android:label="@string/text_music"/>
+        <activity
+            android:name="com.liuguilin.latenight.activity.MusicActivity"
+            android:label="@string/text_music"/>
 
         <!--妹子-->
-        <activity android:name="com.liuguilin.latenight.activity.GirlActivity"
-                  android:label="@string/text_girl"/>
+        <activity
+            android:name="com.liuguilin.latenight.activity.GirlActivity"
+            android:label="@string/text_girl"/>
 
         <!--网页-->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
-
 
         <!--歌曲服务-->
         <service android:name="com.liuguilin.latenight.service.MusicService"/>
@@ -146,6 +159,17 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <!--定位服务-->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="AK"/>
 
     </application>
 
