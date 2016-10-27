@@ -115,6 +115,7 @@
 - 66.新增记住密码
 - 67.新增自动登录
 - 68.新增Multidex
+- 69.解决Jar冲突的问题
 
 
 
@@ -137,6 +138,22 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 
 
 >Jar包重复添加了，可以尝试下使用这篇Blog的方法: [安卓开发之引入第三方库导致jar包冲突解决办法](http://blog.csdn.net/cx1229/article/details/52786168)
+>我的解决办法:
+
+```java
+ //Bmob
+    compile ('cn.bmob.android:bmob-sdk:3.5.0'){
+        exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+        exclude group: 'io.reactivex:rxandroid'
+        exclude group: 'io.reactivex:rxjava'
+    }
+ //uCrop  uCrop也有okHttp这是我万万没有想到的....
+    compile ('com.yalantis:ucrop:2.2.0-native'){
+         exclude group: 'com.squareup.okhttp3',module: 'okhttp'
+     }
+
+```
+
 
 
 ##六.联系方式
