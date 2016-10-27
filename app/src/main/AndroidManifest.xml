@@ -2,29 +2,29 @@
 <manifest package="com.liuguilin.gankclient"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--开机广播-->
+    <!-- 开机广播 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!--允许联网 -->
+    <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!--获取wifi网络状态的信息 -->
+    <!-- 获取wifi网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--允许读取手机状态 用于创建BmobInstallation-->
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!--读取Log-->
+    <!-- 读取Log -->
     <uses-permission android:name="android.permission.READ_LOGS"/>
-    <!-- 网络定位-->
+    <!-- 网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- GPS定位-->
+    <!-- GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
@@ -35,7 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--闪屏页-->
+        <!-- 闪屏页 -->
         <activity
             android:name="com.liuguilin.latenight.activity.SplashActivity"
             android:theme="@style/NoTitleFullscreen">
@@ -46,127 +46,131 @@
             </intent-filter>
         </activity>
 
-        <!--引导页-->
+        <!-- 引导页 -->
         <activity
             android:name="com.liuguilin.latenight.activity.GuideActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--登录-->
+        <!-- 登录 -->
         <activity
             android:name="com.liuguilin.latenight.activity.LoginActivity"
             android:label="@string/text_login"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--注册-->
+        <!-- 注册 -->
         <activity
             android:name="com.liuguilin.latenight.activity.RegisteredActivity"
             android:label="@string/text_registered"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--首页-->
+        <!-- 首页 -->
         <activity android:name="com.liuguilin.latenight.MainActivity"/>
 
-        <!--使用条款-->
+        <!-- 使用条款 -->
         <activity
             android:name="com.liuguilin.latenight.activity.TermsActivity"
             android:label="@string/text_terms_title"/>
 
-        <!--忘记密码-->
+        <!-- 忘记密码 -->
         <activity
             android:name="com.liuguilin.latenight.activity.ForgetActivity"
             android:label="@string/text_forget"/>
 
-        <!--设置-->
+        <!-- 设置 -->
         <activity
             android:name="com.liuguilin.latenight.activity.SettingActivity"
             android:label="@string/text_setting"/>
 
-        <!--设置密码-->
+        <!-- 设置密码 -->
         <activity
             android:name="com.liuguilin.latenight.activity.SetPassWordActivity"
             android:label="@string/text_set_password"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--选择性别-->
+        <!-- 选择性别 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectSexActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--选择年龄-->
+        <!-- 选择年龄 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectAgeActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--选择身高-->
+        <!-- 选择身高 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectHeightActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--选择体重-->
+        <!-- 选择体重 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectWeightActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--选择星座-->
+        <!-- 选择星座 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectConstellationActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
-        <!--天气-->
+        <!-- 天气 -->
         <activity
             android:name="com.liuguilin.latenight.activity.WeatherActivity"
             android:label="@string/text_weather"/>
 
-        <!--个人-->
+        <!-- 个人 -->
         <activity
             android:name="com.liuguilin.latenight.activity.UserActivity"
             android:label="@string/text_user"/>
 
-        <!--Android-->
+        <!-- Android -->
         <activity
             android:name="com.liuguilin.latenight.activity.AndroidActivity"
             android:label="Android"/>
 
-        <!--IOS-->
+        <!-- IOS -->
         <activity
             android:name="com.liuguilin.latenight.activity.IOSActivity"
             android:label="IOS"/>
 
-        <!--前端-->
+        <!-- 前端 -->
         <activity
             android:name="com.liuguilin.latenight.activity.WebActivity"
             android:label="@string/text_web"/>
 
-        <!--音乐-->
+        <!-- 音乐 -->
         <activity
             android:name="com.liuguilin.latenight.activity.MusicActivity"
             android:label="@string/text_music"/>
 
-        <!--妹子-->
+        <!-- 妹子 -->
         <activity
             android:name="com.liuguilin.latenight.activity.GirlActivity"
             android:label="@string/text_girl"/>
 
-        <!--网页-->
+        <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 
-        <!--歌曲服务-->
+        <!-- 歌曲服务 -->
         <service android:name="com.liuguilin.latenight.service.MusicService"/>
 
-        <!--开机广播-->
+        <!-- 充电服务 -->
+        <service android:name="com.liuguilin.latenight.service.ChargingService"/>
+
+        <!-- 开机广播 -->
         <receiver android:name="com.liuguilin.latenight.receiver.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
 
-        <!--定位服务-->
+        <!-- 定位服务 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
         </service>
 
+        <!-- 百度开发者Key -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="AK"/>

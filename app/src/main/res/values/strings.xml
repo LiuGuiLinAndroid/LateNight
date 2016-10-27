@@ -27,5 +27,7 @@
     <string name="text_weather">天气</string>
     <string name="text_user">个人</string>
     <string name="text_music">音乐</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

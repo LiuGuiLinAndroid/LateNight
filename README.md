@@ -118,6 +118,8 @@
 - 69.解决Jar冲突的问题
 - 70.新增百度地图Jar
 - 71.实现自动定位
+- 72.创建ChargingService充电服务
+- 73.创建ShortcutsProvider小组件
 
 
 
