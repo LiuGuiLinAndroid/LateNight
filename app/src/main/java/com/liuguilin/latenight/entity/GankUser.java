@@ -114,4 +114,20 @@ public class GankUser extends BmobUser {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    @Override
+    public String toString() {
+        return "GankUser{" +
+                "nickname='" + nickname + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", desc='" + desc + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", constellation='" + constellation + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", school='" + school + '\'' +
+                ", height='" + height + '\'' +
+                ", weight='" + weight + '\'' +
+                '}';
+    }
 }

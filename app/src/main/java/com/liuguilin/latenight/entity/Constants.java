@@ -90,6 +90,7 @@ public class Constants {
         }
         return false;
     }
+
     //判断内存卡是否存在
     public static boolean isSdCardExist() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

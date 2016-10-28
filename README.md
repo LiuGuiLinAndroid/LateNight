@@ -41,6 +41,14 @@
 - 12.uCrop:https://github.com/Yalantis/uCrop
     
 ##四.更新日志
+
+###Version1.0.1
+
+- 1.实现StandardAdapter
+- 2.更名StandardData数据类
+- 3.创建AboutActivity关于
+
+
   
 ###Version1.0.0
 
@@ -120,9 +128,11 @@
 - 73.创建ShortcutsProvider小组件
 - 74.去除Ticker
 - 75.自定义RiseNumberTextView自动滚动
-
-
-
+- 76.完善天气逻辑
+- 77.新增Android逻辑
+- 78.创建StandardAdapter标准的Adapter
+- 79.创建AndroidData实体类
+- 80.版本更新至1.0.1
 
 ## 五.常规性的bug
 
@@ -176,18 +186,17 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 
 
 
-
 ##六.联系方式
 
-###QQ邮箱：748778890@qq.com
-###Google邮箱：liuguilin74@gmail.com
-###博客地址：http://blog.csdn.net/qq_26787115
+####[点击关注我的微博](http://weibo.com/Glorystys)
+####QQ邮箱：748778890@qq.com
+####Google邮箱：liuguilin74@gmail.com
+###￥博客地址：http://blog.csdn.net/qq_26787115
 
-###**我的公众号，期待你的关注**
+####**我的公众号，期待你的关注**
 
 ![weixin](http://img.blog.csdn.net/20160108203741937)
 
-###[点击关注我的微博](http://weibo.com/Glorystys)
 
 ##七.License
   

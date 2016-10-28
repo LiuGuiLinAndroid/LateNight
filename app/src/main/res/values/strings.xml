@@ -29,5 +29,6 @@
     <string name="text_music">音乐</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="text_about">关于</string>
 
 </resources>

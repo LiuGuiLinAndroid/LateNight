@@ -40,4 +40,13 @@ public class GirlData {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "GirlData{" +
+                "title='" + title + '\'' +
+                ", time='" + time + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
+    }
 }

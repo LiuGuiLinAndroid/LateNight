@@ -147,6 +147,11 @@
             android:name="com.liuguilin.latenight.activity.GirlActivity"
             android:label="@string/text_girl"/>
 
+        <!-- 关于 -->
+        <activity
+            android:name="com.liuguilin.latenight.activity.AboutActivity"
+            android:label="@string/text_about"/>
+
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 
@@ -173,7 +178,7 @@
         <!-- 百度开发者Key -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="AK"/>
+            android:value="0W3xgHs3mEbgVa1qZUvrKeCX3IOzCUwT"/>
 
     </application>
 

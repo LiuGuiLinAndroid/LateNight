@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,7 +36,7 @@ import com.liuguilin.latenight.view.RiseNumberTextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherActivity extends BaseActivity {
+public class WeatherActivity extends BaseActivity implements View.OnClickListener{
 
     //提示框
     private CustomDialog autoDialog;
@@ -49,6 +51,8 @@ public class WeatherActivity extends BaseActivity {
     private TextView loading_location;
     //定位城市
     private String city = "深圳";
+    //刷新按钮
+    private Button btn_refresh;
 
     private Handler handler = new Handler() {
         @Override
@@ -79,6 +83,7 @@ public class WeatherActivity extends BaseActivity {
     //初始化View
     private void initView() {
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
+        btn_refresh  = (Button) findViewById(R.id.btn_refresh);
         //startNumberAutoUp(numberTextView, 55);
         getNewWeather(city);
     }
@@ -143,8 +148,51 @@ public class WeatherActivity extends BaseActivity {
     private void parsingJson(String t) {
         try {
             JSONObject jsonObject = new JSONObject(t);
+            JSONObject jsonObjectResult = jsonObject.getJSONObject("result");
+            JSONObject jsonObjectData = jsonObjectResult.getJSONObject("data");
+            JSONObject jsonObjectRealtime = jsonObjectData.getJSONObject("realtime");
+            //更新时间
+            jsonObjectRealtime.getString("time");
+            //农历
+            jsonObjectRealtime.getString("moon");
+            JSONObject jsonObjectWeather = jsonObjectRealtime.getJSONObject("weather");
+            //天气
+            jsonObjectWeather.getString("info");
+            //图片ID
+            jsonObjectWeather.getString("img");
+            JSONObject jsonObjectWind = jsonObjectRealtime.getJSONObject("wind");
+            //风向
+            jsonObjectWind.getString("direct");
+            //风力
+            jsonObjectWind.getString("power");
+            JSONObject jsonObjectInfo = jsonObjectData.getJSONObject("info");
+            //穿衣
+            jsonObjectInfo.getJSONArray("chuanyi");
+            //感冒
+            jsonObjectInfo.getJSONArray("ganmao");
+            //空调
+            jsonObjectInfo.getJSONArray("kongtiao");
+            //洗车
+            jsonObjectInfo.getJSONArray("xiche");
+            //运动
+            jsonObjectInfo.getJSONArray("yundong");
+            //紫外线
+            jsonObjectInfo.getJSONArray("ziwaixian");
+
+            //一周天气
+            jsonObjectData.getJSONArray("weather");
+
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_refresh:
+                initLocation();
+                break;
         }
     }
 
