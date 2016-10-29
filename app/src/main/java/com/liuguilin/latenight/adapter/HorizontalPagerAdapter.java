@@ -34,7 +34,12 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             //one的推荐
             new PagerUtils.LibraryObject(
                     R.drawable.ic_design,
-                    "美文"
+                    "ONE"
+            ),
+            //one的阅读
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_design,
+                    "阅读"
             ),
             //个人中心
             new PagerUtils.LibraryObject(

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.activity.ReadingActivity;
+import com.liuguilin.latenight.activity.ONEActivity;
 import com.liuguilin.latenight.adapter.HorizontalPagerAdapter;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 L.i("position:" + postion);
                 switch (postion){
                     case 0:
-                        startActivity(new Intent(MainActivity.this, ReadingActivity.class));
+                        startActivity(new Intent(MainActivity.this, ONEActivity.class));
                         break;
                 }
             }

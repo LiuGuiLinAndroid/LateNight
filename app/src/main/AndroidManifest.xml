@@ -160,6 +160,10 @@
             android:name="com.liuguilin.latenight.activity.ReadingActivity"
             android:label="@string/text_reading"/>
 
+        <!-- ONE -->
+        <activity
+            android:name="com.liuguilin.latenight.activity.ONEActivity"/>
+
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 
