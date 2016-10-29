@@ -125,7 +125,8 @@
         <!-- Android -->
         <activity
             android:name="com.liuguilin.latenight.activity.AndroidActivity"
-            android:label="Android"/>
+            android:label="Android"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- IOS -->
         <activity

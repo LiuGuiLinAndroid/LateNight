@@ -6,10 +6,7 @@
     <!--标准字体-->
     <dimen name="standard_textsize">12sp</dimen>
 
-    <!--
-Refer to App Widget Documentation for margin information
-http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
-    -->
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
 
 </resources>

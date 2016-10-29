@@ -47,6 +47,11 @@
 - 1.实现StandardAdapter
 - 2.更名StandardData数据类
 - 3.创建AboutActivity关于
+- 4.新增CoordinatorLayout
+- 5.新增AppBarLayout
+- 6.新增CollapsingToolbarLayout
+- 7.新增Toolbar
+- 8.实现Android界面
 
 
   
