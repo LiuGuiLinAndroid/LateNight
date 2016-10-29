@@ -155,6 +155,11 @@
             android:name="com.liuguilin.latenight.activity.AboutActivity"
             android:label="@string/text_about"/>
 
+        <!-- 美文 -->
+        <activity
+            android:name="com.liuguilin.latenight.activity.ReadingActivity"
+            android:label="@string/text_reading"/>
+
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 

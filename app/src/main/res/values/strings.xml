@@ -30,5 +30,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="text_about">关于</string>
+    <string name="text_reading">阅读</string>
 
 </resources>

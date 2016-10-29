@@ -36,6 +36,8 @@ public class Constants {
     //支持提交干货到审核区API
     //POST
     public static final String GANK_POST_DATA = "https://gank.io/api/add2gank";
+    //阅读页轮播图
+    public static final String ONE_READING_IMG = "http://v3.wufazhuce.com:8000/api/reading/carousel";
 
     //Bmob key
     public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";

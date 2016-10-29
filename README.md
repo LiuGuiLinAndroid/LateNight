@@ -53,6 +53,8 @@
 - 7.新增Toolbar
 - 8.实现Android界面
 - 9.实现IOS/前端
+- 10.创建ReadingActivity
+- 11.新增Android-Universal-Image-Loader
 
 
   
