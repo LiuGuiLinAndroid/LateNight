@@ -49,6 +49,7 @@ public class ReadingActivity extends BaseActivity {
     //初始化View
     private void initView() {
         imageCycleView = (ImageCycleView) findViewById(R.id.cycleView);
+		//三种Style切换
         imageCycleView.setCycle_T(ImageCycleView.CYCLE_T.CYCLE_VIEW_THREE_SCALE);
 
         RxVolley.get(Constants.ONE_READING_IMG, new HttpCallback() {

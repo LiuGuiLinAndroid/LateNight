@@ -54,7 +54,7 @@
 - 8.实现Android界面
 - 9.实现IOS/前端
 - 10.创建ReadingActivity
-- 11.新增Android-Universal-Image-Loader
+- 11.实现轮播
 
 
   
