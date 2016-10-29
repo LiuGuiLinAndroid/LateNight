@@ -130,11 +130,13 @@
 
         <!-- IOS -->
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name="com.liuguilin.latenight.activity.IOSActivity"
             android:label="IOS"/>
 
         <!-- 前端 -->
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name="com.liuguilin.latenight.activity.WebActivity"
             android:label="@string/text_web"/>
 
