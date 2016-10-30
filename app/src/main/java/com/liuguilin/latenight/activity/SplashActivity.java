@@ -46,6 +46,8 @@ public class SplashActivity extends AppCompatActivity {
                     } else {
                         //startActivity(new Intent(SplashActivity.this, GuideActivity.class));
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        //第一次进入创建快捷方式
+                        Constants.addShortcut(SplashActivity.this,new Intent(SplashActivity.this,MainActivity.class),getString(R.string.app_name),false,R.drawable.ic_launcher);
                     }
                     finish();
                     break;

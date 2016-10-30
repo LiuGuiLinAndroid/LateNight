@@ -73,6 +73,7 @@
 - 14.创建CoverFlow 3D画廊
 - 15.创建ZoomScrollView滑动下拉放大
 - 16.创建AppActivity
+- 17.新增快捷方式
 
   
 ###Version1.0.0

@@ -10,12 +10,15 @@ package com.liuguilin.latenight.entity;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 import android.widget.TextView;
+
+import com.sdsmdg.tastytoast.TastyToast;
 
 public class Constants {
 
@@ -39,7 +42,7 @@ public class Constants {
     //阅读页轮播图
     public static final String ONE_READING_IMG = "http://v3.wufazhuce.com:8000/api/reading/carousel";
     //首页
-    public static final  String ONE_FIORST_BOOK  = "http://v3.wufazhuce.com:8000/api/hp/more/0";
+    public static final String ONE_FIORST_BOOK = "http://v3.wufazhuce.com:8000/api/hp/more/0";
 
     //Bmob key
     public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";
@@ -67,9 +70,13 @@ public class Constants {
     public static final String SHARE_USER_NAME = "share_name";
     //密码
     public static final String SHARE_USER_PASSWORD = "share_password";
+    //删除快捷方式的action
+    public static final String ACTION_REMOVE_SHORTCUT = "com.android.launcher.action.UNINSTALL_SHORTCUT";
+    //添加快捷方式的action
+    public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
 
-	//密码正则
-	public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+    //密码正则
+    public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
 
     //设置下划线
     public static void setHtml(TextView textView) {
@@ -154,4 +161,27 @@ public class Constants {
         }
     }
 
+    //增加快捷方式
+    public static void addShortcut(Context context, Intent actionIntent, String name, boolean allowRepeat, int iconBitmap) {
+        Intent addShortcutIntent = new Intent(ACTION_ADD_SHORTCUT);
+        // 是否允许重复创建
+        addShortcutIntent.putExtra("duplicate", allowRepeat);
+        // 快捷方式的标题
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+        // 快捷方式的图标
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, iconBitmap);
+        // 快捷方式的动作
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, actionIntent);
+        context.sendBroadcast(addShortcutIntent);
+        TastyToast.makeText(context, "快捷方式创建成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+    }
+
+    //删除快捷方式
+    public static void removeShortcut(Context context, Intent actionIntent, String name) {
+        Intent intent = new Intent(ACTION_REMOVE_SHORTCUT);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+        intent.putExtra("duplicate", false);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, actionIntent);
+        context.sendBroadcast(intent);
+    }
 }
