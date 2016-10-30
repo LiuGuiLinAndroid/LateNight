@@ -1,9 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
+    <com.liuguilin.latenight.view.ZoomScrollView
+        android:id="@+id/mZoomScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:maxZoom="150dp"
+        app:zoomId="@+id/iv_zoom">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--根布局要更改-->
+                <ImageView
+                    android:id="@+id/iv_zoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_title_bg"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/liuguilin"
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="编辑资料"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+            </RelativeLayout>
+
+            <!--详细信息-->
+            <ListView
+                android:id="@+id/mListView"
+                android:layout_width="match_parent"
+                android:layout_height="3000dp"/>
+
+        </LinearLayout>
+    </com.liuguilin.latenight.view.ZoomScrollView>
+</RelativeLayout>

@@ -130,15 +130,15 @@
 
         <!-- IOS -->
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
             android:name="com.liuguilin.latenight.activity.IOSActivity"
-            android:label="IOS"/>
+            android:label="IOS"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- 前端 -->
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
             android:name="com.liuguilin.latenight.activity.WebActivity"
-            android:label="@string/text_web"/>
+            android:label="@string/text_web"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- 音乐 -->
         <activity
@@ -159,6 +159,12 @@
         <activity
             android:name="com.liuguilin.latenight.activity.ReadingActivity"
             android:label="@string/text_reading"/>
+
+        <!-- App -->
+        <activity
+            android:name="com.liuguilin.latenight.activity.AppActivity"
+            android:label="App"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- ONE -->
         <activity

@@ -7,7 +7,10 @@ import android.view.View;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.activity.ONEActivity;
+import com.liuguilin.latenight.activity.AndroidActivity;
+import com.liuguilin.latenight.activity.AppActivity;
+import com.liuguilin.latenight.activity.IOSActivity;
+import com.liuguilin.latenight.activity.WebActivity;
 import com.liuguilin.latenight.adapter.HorizontalPagerAdapter;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
@@ -38,7 +41,16 @@ public class MainActivity extends AppCompatActivity {
                 L.i("position:" + postion);
                 switch (postion){
                     case 0:
-                        startActivity(new Intent(MainActivity.this, ONEActivity.class));
+                        startActivity(new Intent(MainActivity.this, AppActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(MainActivity.this, WebActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(MainActivity.this, AndroidActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this, IOSActivity.class));
                         break;
                 }
             }
@@ -53,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             GankUser user = new GankUser();
             //....自动登录的逻辑
         }
-
     }
 
 }

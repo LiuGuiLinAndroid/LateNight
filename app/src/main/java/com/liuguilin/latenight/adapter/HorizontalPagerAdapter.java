@@ -96,6 +96,16 @@ public class HorizontalPagerAdapter extends PagerAdapter {
                     R.drawable.ic_development,
                     "笑话"
             ),
+            //App
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "App"
+            ),
+            //瞎推荐
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_development,
+                    "瞎推荐"
+            ),
             //设置
             new PagerUtils.LibraryObject(
                     R.drawable.ic_qa,
