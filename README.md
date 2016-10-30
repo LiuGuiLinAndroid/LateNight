@@ -4,17 +4,27 @@
 
 >免责声明：本软件所使用到的图片资源以及接口都来源于网络,有任何侵权行为请告知删除
 
-##一.使用到的图标
+##一.截图
+>截图分每一个阶段截图，也可以分版本截图
+
+- Version1.0.0
+
+![这里写图片描述](http://img.blog.csdn.net/20161030100318539)
+
+
+
+##二.使用到的图标
 
 - Material icons:https://design.google.com/icons/
+- iconfont:http://www.iconfont.cn/
 
-##二.使用到的接口
+##三.使用到的接口
 
 - 1.Gank:http://www.gank.io/api
 - 2.知乎日报:https://github.com/izzyleung/ZhihuDailyPurify/wiki/知乎日报-API-分析
 - 3.One一个:暂未公布
 
-##三.使用到的框架
+##四.使用到的框架
 
 - 1.RxVolley:https://github.com/kymjs/RxVolley
     
@@ -40,7 +50,7 @@
 
 - 12.uCrop:https://github.com/Yalantis/uCrop
     
-##四.更新日志
+##五.更新日志
 
 ###Version1.0.1
 
@@ -55,6 +65,7 @@
 - 9.实现IOS/前端
 - 10.创建ReadingActivity
 - 11.实现轮播
+- 12.完善资料选择
 
 
   
@@ -142,7 +153,7 @@
 - 79.创建AndroidData实体类
 - 80.版本更新至1.0.1
 
-## 五.常规性的bug
+## 六.常规性的bug
 
 ###1.Jar冲突
 
@@ -194,7 +205,7 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 
 
 
-##六.联系方式
+##七.联系方式
 
 ####[点击关注我的微博](http://weibo.com/Glorystys)
 ####QQ邮箱：748778890@qq.com
@@ -206,6 +217,6 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 ![weixin](http://img.blog.csdn.net/20160108203741937)
 
 
-##七.License
+##八.License
   
 >开源协议[Apache-2.0](https://opensource.org/licenses/apache2.0.php)

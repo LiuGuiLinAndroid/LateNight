@@ -14,18 +14,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lichfaker.scaleview.BaseScaleView;
-import com.lichfaker.scaleview.HorizontalScaleScrollView;
+import com.lichfaker.scaleview.VerticalScaleScrollView;
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.util.SharePreUtils;
 
 public class SelectHeightActivity extends AppCompatActivity implements View.OnClickListener {
 
     //下一步
     private Button btn_next;
-    private HorizontalScaleScrollView horizontalScale;
+    private VerticalScaleScrollView horizontalScale;
     private TextView select_tv_height;
+    private ImageView height_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,20 @@ public class SelectHeightActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initView() {
+        height_logo = (ImageView) findViewById(R.id.height_logo);
         select_tv_height = (TextView) findViewById(R.id.select_tv_height);
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
-        horizontalScale = (HorizontalScaleScrollView) findViewById(R.id.horizontalScale);
+
+        String sex = SharePreUtils.getString(this,"sex","男");
+        if(sex.equals("男")){
+            height_logo.setBackgroundResource(R.drawable.boy_off);
+        }else {
+            height_logo.setBackgroundResource(R.drawable.girl_off);
+        }
+
+
+        horizontalScale = (VerticalScaleScrollView) findViewById(R.id.horizontalScale);
         horizontalScale.setOnScrollListener(new BaseScaleView.OnScrollListener() {
             @Override
             public void onScaleScroll(int scale) {
@@ -58,6 +71,7 @@ public class SelectHeightActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.btn_next:
                 startActivity(new Intent(this, SelectWeightActivity.class));
+                finish();
                 break;
         }
     }

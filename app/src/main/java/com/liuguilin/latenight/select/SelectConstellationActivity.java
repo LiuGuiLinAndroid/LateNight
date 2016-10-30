@@ -45,6 +45,7 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
         switch (v.getId()){
             case R.id.btn_next:
                 startActivity(new Intent(this,MainActivity.class));
+                finish();
                 break;
         }
     }

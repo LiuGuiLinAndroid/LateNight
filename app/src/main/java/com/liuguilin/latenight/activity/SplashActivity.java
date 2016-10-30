@@ -15,9 +15,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
-import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.select.SelectSexActivity;
 import com.liuguilin.latenight.util.SharePreUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
@@ -38,14 +38,14 @@ public class SplashActivity extends AppCompatActivity {
                         //判断是否自动登录
                         boolean autoLogin = SharePreUtils.getBoolean(SplashActivity.this, Constants.SHARE_AUTO_LOGIN, false);
                         if (autoLogin) {
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            startActivity(new Intent(SplashActivity.this, SelectSexActivity.class));
                         } else {
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            startActivity(new Intent(SplashActivity.this, SelectSexActivity.class));
                             //startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                         }
                     } else {
                         //startActivity(new Intent(SplashActivity.this, GuideActivity.class));
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        startActivity(new Intent(SplashActivity.this, SelectSexActivity.class));
                     }
                     finish();
                     break;

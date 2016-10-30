@@ -14,11 +14,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lichfaker.scaleview.BaseScaleView;
 import com.lichfaker.scaleview.HorizontalScaleScrollView;
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.util.SharePreUtils;
 
 public class SelectAgeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,6 +28,7 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
     private Button btn_next;
     private TextView select_tv_age;
     private HorizontalScaleScrollView horizontalScale;
+    private ImageView age_logo;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -36,9 +39,18 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initView() {
+        age_logo = (ImageView) findViewById(R.id.age_logo);
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
         select_tv_age = (TextView) findViewById(R.id.select_tv_age);
+
+        String sex = SharePreUtils.getString(this,"sex","男");
+        if(sex.equals("男")){
+            age_logo.setBackgroundResource(R.drawable.boy_off);
+        }else {
+            age_logo.setBackgroundResource(R.drawable.girl_off);
+        }
+
         horizontalScale = (HorizontalScaleScrollView) findViewById(R.id.horizontalScale);
         horizontalScale.setOnScrollListener(new BaseScaleView.OnScrollListener() {
             @Override
@@ -58,6 +70,7 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.btn_next:
                 startActivity(new Intent(this,SelectHeightActivity.class));
+                finish();
                 break;
         }
     }

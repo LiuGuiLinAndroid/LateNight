@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.util.SharePreUtils;
 
 public class SelectSexActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +44,8 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
         iv_boy.setOnClickListener(this);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
         iv_girl.setOnClickListener(this);
+        iv_boy.setSelected(true);
+        iv_girl.setSelected(false);
     }
 
     @Override
@@ -55,12 +58,18 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.btn_next:
                 startActivity(new Intent(this,SelectAgeActivity.class));
+                SharePreUtils.putString(this,"sex",select_tv_sex.getText().toString());
+                finish();
                 break;
             case R.id.iv_boy:
                 select_tv_sex.setText("男");
+                iv_boy.setSelected(true);
+                iv_girl.setSelected(false);
                 break;
             case R.id.iv_girl:
                 select_tv_sex.setText("女");
+                iv_boy.setSelected(false);
+                iv_girl.setSelected(true);
                 break;
         }
     }

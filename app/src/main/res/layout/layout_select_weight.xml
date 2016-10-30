@@ -14,6 +14,16 @@
         android:textColor="@color/color_black"
         android:textSize="60sp"/>
 
+    <TextView
+        android:id="@+id/select_tv_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="60KG"
+        android:textColor="@color/color_black"
+        android:textSize="20sp"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,9 +32,9 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/weight_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/login_qq_icon"/>
+            android:layout_height="wrap_content"/>
 
         <com.lichfaker.scaleview.HorizontalScaleScrollView
             android:id="@+id/horizontalScale"

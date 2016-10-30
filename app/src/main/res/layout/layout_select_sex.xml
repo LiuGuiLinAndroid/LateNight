@@ -14,11 +14,11 @@
         android:textSize="60sp"/>
 
     <TextView
-        android:text="男"
         android:id="@+id/select_tv_sex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:text="男"
         android:textColor="@color/color_black"
         android:textSize="20sp"/>
 
@@ -31,17 +31,17 @@
 
         <ImageView
             android:id="@+id/iv_boy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/login_qq_icon"/>
+            android:background="@drawable/boy_sele"/>
 
         <ImageView
             android:id="@+id/iv_girl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/login_qq_icon"/>
+            android:src="@drawable/girl_sele"/>
 
     </LinearLayout>
 
