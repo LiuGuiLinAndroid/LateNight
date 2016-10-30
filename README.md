@@ -12,7 +12,6 @@
 ![这里写图片描述](http://img.blog.csdn.net/20161030100318539)
 
 
-
 ##二.使用到的图标
 
 - Material icons:https://design.google.com/icons/
@@ -66,6 +65,7 @@
 - 10.创建ReadingActivity
 - 11.实现轮播
 - 12.完善资料选择
+- 13.完成星座页面
 
 
   
