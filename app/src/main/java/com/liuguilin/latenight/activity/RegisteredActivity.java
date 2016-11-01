@@ -149,7 +149,8 @@ public class RegisteredActivity extends AppCompatActivity implements View.OnClic
                         BmobSMS.requestSMSCode(phone, "你的验证码，请及时查收", new QueryListener<Integer>() {
                             @Override
                             public void done(Integer integer, BmobException e) {
-                                if (e == null) {//验证码发送成功
+                                if (e == null) {
+                                    //验证码发送成功
                                     TastyToast.makeText(RegisteredActivity.this, "短信验证码已发送", TastyToast.LENGTH_LONG,
                                             TastyToast.SUCCESS);
                                     //设置不可点击
@@ -157,18 +158,14 @@ public class RegisteredActivity extends AppCompatActivity implements View.OnClic
                                     //倒计时
                                     handler.sendEmptyMessage(Constants.HANDLER_WHAT_TIME_DOWN);
                                 } else {
-                                    //
-                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码发送失败" + e.toString(), TastyToast.LENGTH_LONG,
-                                            TastyToast.ERROR);
+                                    TastyToast.makeText(RegisteredActivity.this, "短信验证码发送失败" + e.toString(), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                                 }
                             }
                         });
                     } else {
-                        //
                         TastyToast.makeText(this, "请输入正确的手机号码", TastyToast.LENGTH_LONG, TastyToast.INFO);
                     }
                 } else {
-                    //
                     TastyToast.makeText(this, "输入框不能为空", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 }
                 break;

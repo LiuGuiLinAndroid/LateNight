@@ -227,5 +227,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onDestroy() {
         super.onDestroy();
 
+//        SharePreUtils.putBoolean(this,Constants.SHARE_AUTO_LOGIN,check_auto_login.isChecked());
+//        SharePreUtils.putBoolean(this,Constants.SHARE_KEEP_PASSWORD,check_kepp_password.isChecked());
     }
 }

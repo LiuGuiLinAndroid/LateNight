@@ -9,10 +9,12 @@ package com.liuguilin.latenight.activity;
  *  描述：    个人中心
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -25,12 +27,13 @@ import java.util.List;
 
 import cn.bmob.v3.BmobUser;
 
-public class UserActivity extends BaseActivity {
+public class UserActivity extends BaseActivity implements View.OnClickListener {
 
     private ListView mListView;
     private List<String> mList = new ArrayList<>();
     private ArrayAdapter<String> mAdapter;
     private ScrollView mZoomScrollView;
+    private Button btn_exit_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class UserActivity extends BaseActivity {
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mList);
         mListView.setAdapter(mAdapter);
         setListViewHeightBasedOnChildren(mListView);
+        btn_exit_user = (Button) findViewById(R.id.btn_exit_user);
+        btn_exit_user.setOnClickListener(this);
     }
 
     //获取到User属性
@@ -88,5 +93,17 @@ public class UserActivity extends BaseActivity {
         // listView.getDividerHeight()获取子项间分隔符占用的高度
         // params.height最后得到整个ListView完整显示需要的高度
         listView.setLayoutParams(params);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_exit_user:
+                GankUser.logOut();
+                BmobUser currentUser = GankUser.getCurrentUser();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+        }
     }
 }
