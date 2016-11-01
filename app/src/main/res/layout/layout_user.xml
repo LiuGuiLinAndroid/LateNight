@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.liuguilin.latenight.view.ZoomScrollView
+    <ScrollView
         android:id="@+id/mZoomScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:maxZoom="150dp"
-        app:zoomId="@+id/iv_zoom">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,12 +50,27 @@
 
             </RelativeLayout>
 
-            <!--详细信息-->
-            <ListView
-                android:id="@+id/mListView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--详细信息-->
+                <ListView
+                    android:id="@+id/mListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edit_bg"
+                    android:text="退出登录"
+                    android:textColor="@color/color_white"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-    </com.liuguilin.latenight.view.ZoomScrollView>
+    </ScrollView>
 </RelativeLayout>

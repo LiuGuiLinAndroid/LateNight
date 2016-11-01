@@ -98,6 +98,11 @@
             android:name="com.liuguilin.latenight.select.SelectSexActivity"
             android:theme="@style/NoTitleFullscreen"/>
 
+        <!-- 选择头像 -->
+        <activity
+            android:name="com.liuguilin.latenight.select.SelectPhotoActivity"
+            android:theme="@style/NoTitleFullscreen"/>
+
         <!-- 选择年龄 -->
         <activity
             android:name="com.liuguilin.latenight.select.SelectAgeActivity"

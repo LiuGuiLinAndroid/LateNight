@@ -13,6 +13,8 @@ import cn.bmob.v3.BmobUser;
 
 public class GankUser extends BmobUser {
 
+    //投降
+    private String photo;
     //昵称
     private String nickname;
     //年龄
@@ -129,5 +131,13 @@ public class GankUser extends BmobUser {
                 ", height='" + height + '\'' +
                 ", weight='" + weight + '\'' +
                 '}';
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
