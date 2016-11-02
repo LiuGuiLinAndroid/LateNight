@@ -83,6 +83,8 @@
 - 22.创建SmallVideoActivity小视频
 - 23.新增JieCaoVideoPlayer
 - 24.完成小视频界面
+- 25.创建MovieActivity电影
+- 26.新增电影列表
 
   
 ###Version1.0.0

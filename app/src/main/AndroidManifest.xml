@@ -166,6 +166,7 @@
             android:name="com.liuguilin.latenight.activity.AboutActivity"
             android:label="@string/text_about"/>
 
+
         <!-- 美文 -->
         <activity
             android:name="com.liuguilin.latenight.activity.ReadingActivity"
@@ -185,6 +186,10 @@
         <activity
             android:name="com.liuguilin.latenight.activity.SmallVideoActivity"
             android:label="@string/text_small_video"/>
+
+        <!--电影-->
+        <activity android:name="com.liuguilin.latenight.activity.MovieActivity"
+            android:label="@string/text_movie"/>
 
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>

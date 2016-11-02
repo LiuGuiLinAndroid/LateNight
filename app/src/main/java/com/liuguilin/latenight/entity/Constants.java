@@ -43,6 +43,8 @@ public class Constants {
     public static final String ONE_READING_IMG = "http://v3.wufazhuce.com:8000/api/reading/carousel";
     //首页
     public static final String ONE_FIORST_BOOK = "http://v3.wufazhuce.com:8000/api/hp/more/0";
+    //电影接口
+    public static final String ONE_MOIVE = "http://v3.wufazhuce.com:8000/api/movie/list/0";
 
     //Bmob key
     public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";

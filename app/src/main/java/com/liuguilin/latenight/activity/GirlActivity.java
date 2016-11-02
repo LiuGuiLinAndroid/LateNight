@@ -23,13 +23,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GirlActivity extends BaseActivity {
 
     private GridView girlGridView;
     private GirlGridAdapter girlAdapter;
-    private List<GirlData> mList;
+    private List<GirlData> mList = new ArrayList<>();
     private int count = 1;
 
     @Override

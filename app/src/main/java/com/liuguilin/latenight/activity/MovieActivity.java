@@ -2,10 +2,10 @@ package com.liuguilin.latenight.activity;
 /*
  *  项目名：  LateNight 
  *  包名：    com.liuguilin.latenight.activity
- *  文件名:   SmallVideoActivity
+ *  文件名:   MovieActivity
  *  创建者:   LGL
- *  创建时间:  2016/11/2 11:42
- *  描述：    小视频
+ *  创建时间:  2016/11/2 15:05
+ *  描述：    电影
  */
 
 import android.os.Bundle;
@@ -16,8 +16,9 @@ import android.widget.ProgressBar;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.adapter.SmallVideoAdapter;
-import com.liuguilin.latenight.entity.SmallVideoData;
+import com.liuguilin.latenight.adapter.MovieAdapter;
+import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.entity.MovieData;
 import com.liuguilin.latenight.util.L;
 
 import org.json.JSONArray;
@@ -27,18 +28,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SmallVideoActivity extends BaseActivity {
+public class MovieActivity extends BaseActivity {
 
     private ListView mListView;
+    private List<MovieData> mList = new ArrayList<>();
+    private MovieAdapter adapter;
     private ProgressBar progressBar;
-    private int count = 1;
-    private List<SmallVideoData> mList = new ArrayList<>();
-    private SmallVideoAdapter adapter;
+
+    private List<String> mListTitle = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_small_video);
+        setContentView(R.layout.activity_movie);
 
         initView();
     }
@@ -46,42 +48,37 @@ public class SmallVideoActivity extends BaseActivity {
     private void initView() {
         mListView = (ListView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-        getSmallVideo();
+        getMovie();
     }
 
-    //获取视频
-    private void getSmallVideo() {
-        String url = "http://gank.io/api/search/query/listview/category/休闲视频/count/50/page/" + count;
-        RxVolley.get(url, new HttpCallback() {
+    private void getMovie() {
+        RxVolley.get(Constants.ONE_MOIVE, new HttpCallback() {
             @Override
             public void onSuccess(String t) {
-                L.i("small video:" + t.toString());
+                L.i("movie:" + t.toString());
                 parsingJson(t);
             }
         });
     }
 
-    //解析Json
+    //解析
     private void parsingJson(String t) {
         try {
             JSONObject jsonObject = new JSONObject(t);
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject json = (JSONObject) jsonArray.get(i);
-                String title = json.getString("desc");
-                String url = json.getString("url");
-
-                SmallVideoData data = new SmallVideoData();
-                data.setUrl(url);
-                data.setTitle(title);
+                String url = json.getString("cover");
+                MovieData data = new MovieData();
+                data.setImgUrl(url);
                 mList.add(data);
             }
-            adapter = new SmallVideoAdapter(this, mList);
+            adapter = new MovieAdapter(this, mList);
             mListView.setAdapter(adapter);
             progressBar.setVisibility(View.GONE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
 }
