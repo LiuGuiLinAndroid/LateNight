@@ -8,10 +8,12 @@ package com.liuguilin.latenight.activity;
  *  描述：    IOS
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.ClipboardManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +25,7 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.StandardAdapter;
 import com.liuguilin.latenight.entity.StandardData;
 import com.liuguilin.latenight.util.L;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +45,7 @@ public class IOSActivity extends AppCompatActivity {
 
     private List<String> mListTitle = new ArrayList<>();
     private List<String> mListContent = new ArrayList<>();
+    private List<String>mListUrl = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +82,15 @@ public class IOSActivity extends AppCompatActivity {
             }
         });
 
-        mListView.setOnLongClickListener(new View.OnLongClickListener() {
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //长按复制链接
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                // 将文本内容放到系统剪贴板里。
+                cm.setText(mListUrl.get(position));
+                TastyToast.makeText(IOSActivity.this, "链接已经复制到剪贴板", TastyToast.LENGTH_LONG,
+                        TastyToast.SUCCESS);
                 return false;
             }
         });
@@ -107,14 +116,20 @@ public class IOSActivity extends AppCompatActivity {
             for (int i = 0; i < jsonArrayResults.length(); i++) {
                 JSONObject json = (JSONObject) jsonArrayResults.get(i);
                 StandardData data = new StandardData();
-                data.setTitle(json.getString("desc"));
-                data.setContent(json.getString("readability"));
-                data.setTime(json.getString("publishedAt"));
-                data.setUrl(json.getString("url"));
+                String desc = json.getString("desc");
+                String readability = json.getString("readability");
+                String publishedAt = json.getString("publishedAt");
+                String url = json.getString("url");
+
+                data.setTitle(desc);
+                data.setContent(readability);
+                data.setTime(publishedAt);
+                data.setUrl(url);
                 mList.add(data);
 
-                mListTitle.add(json.getString("desc"));
-                mListContent.add(json.getString("readability"));
+                mListTitle.add(desc);
+                mListContent.add(readability);
+                mListUrl.add(url);
             }
             mAdapter = new StandardAdapter(this, mList);
             mListView.setAdapter(mAdapter);

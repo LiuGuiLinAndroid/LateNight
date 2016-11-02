@@ -88,4 +88,6 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     //BaiDu Map
     compile files('libs/BaiduLBS_Android.jar')
+    //JieCaoVideoPlayer
+    compile 'fm.jiecao:jiecaovideoplayer:4.8.1'
 }

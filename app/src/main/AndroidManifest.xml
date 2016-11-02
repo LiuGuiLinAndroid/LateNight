@@ -181,6 +181,11 @@
         <activity
             android:name="com.liuguilin.latenight.activity.ONEActivity"/>
 
+        <!--小视频-->
+        <activity
+            android:name="com.liuguilin.latenight.activity.SmallVideoActivity"
+            android:label="@string/text_small_video"/>
+
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 

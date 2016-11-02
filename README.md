@@ -52,6 +52,8 @@
 - 11.InfiniteCycleViewPager:https://github.com/DevLight-Mobile-Agency/InfiniteCycleViewPager
 
 - 12.uCrop:https://github.com/Yalantis/uCrop
+
+- 13.JieCaoVideoPlayer:https://github.com/lipangit/JieCaoVideoPlayer
     
 ##五.更新日志
 
@@ -77,6 +79,9 @@
 - 18.完善用户信息
 - 19.开始逻辑整合
 - 20.完成重置密码功能
+- 21.新增复制到剪贴板
+- 22.创建SmallVideoActivity小视频
+- 23.新增JieCaoVideoPlayer
 
   
 ###Version1.0.0
@@ -217,8 +222,8 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 >出现的现象时ListView只有一个item，我的解决办法是重新计算高度，但是我发现我的ZoomScrollView嵌套的话ListView就滑动不了了，而ScrollView是可以的
 >还是先用原生的，后面再去优化吧，重新计算高度的方法在这，只需要在设置适配器后面调用就好了
 
-```
-//重新计算ListView的高度
+```java
+    //重新计算ListView的高度
     public void setListViewHeightBasedOnChildren(ListView listView) {
         // 获取ListView对应的Adapter
         ListAdapter listAdapter = listView.getAdapter();

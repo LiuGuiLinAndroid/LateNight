@@ -45,15 +45,12 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
 
     //初始化View
     private void initView() {
+        btn_exit_user = (Button) findViewById(R.id.btn_exit_user);
+        btn_exit_user.setOnClickListener(this);
         mZoomScrollView = (ScrollView) findViewById(R.id.mZoomScrollView);
         mZoomScrollView.smoothScrollTo(0, 0);
         mListView = (ListView) findViewById(R.id.mListView);
         getUser();
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mList);
-        mListView.setAdapter(mAdapter);
-        setListViewHeightBasedOnChildren(mListView);
-        btn_exit_user = (Button) findViewById(R.id.btn_exit_user);
-        btn_exit_user.setOnClickListener(this);
     }
 
     //获取到User属性
@@ -70,6 +67,10 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         mList.add("学校：" + user.getSchool());
         mList.add("职业：" + user.getOccupation());
         mList.add("简介：" + user.getDesc());
+        //这里可以尝试着重写layout
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mList);
+        mListView.setAdapter(mAdapter);
+        setListViewHeightBasedOnChildren(mListView);
     }
 
     //重新计算ListView的高度
