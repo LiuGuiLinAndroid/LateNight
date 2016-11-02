@@ -13,10 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.SmallVideoData;
 
 import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 public class SmallVideoAdapter extends BaseAdapter {
 
@@ -50,10 +54,24 @@ public class SmallVideoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        ViewHolder viewHolder = null;
+        if(convertView == null){
+           viewHolder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.small_video_item,null);
+            viewHolder.jc = (JCVideoPlayerStandard) convertView.findViewById(R.id.custom_videoplayer_standard);
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        data = mList.get(position);
+        viewHolder.jc.setUp(data.getUrl(),JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, data.getTitle());
+        //设置预览
+        return convertView;
     }
 
     class ViewHolder {
-
+        private TextView tv_title;
+        private TextView tv_time;
+        private JCVideoPlayerStandard jc;
     }
 }

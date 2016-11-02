@@ -82,6 +82,7 @@
 - 21.新增复制到剪贴板
 - 22.创建SmallVideoActivity小视频
 - 23.新增JieCaoVideoPlayer
+- 24.完成小视频界面
 
   
 ###Version1.0.0

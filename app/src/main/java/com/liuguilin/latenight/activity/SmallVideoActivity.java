@@ -15,13 +15,24 @@ import android.widget.ProgressBar;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.adapter.SmallVideoAdapter;
+import com.liuguilin.latenight.entity.SmallVideoData;
 import com.liuguilin.latenight.util.L;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SmallVideoActivity extends BaseActivity {
 
     private ListView mListView;
     private ProgressBar progressBar;
     private int count = 1;
+    private List<SmallVideoData> mList = new ArrayList<>();
+    private SmallVideoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,23 @@ public class SmallVideoActivity extends BaseActivity {
 
     //解析Json
     private void parsingJson(String t) {
+        try {
+            JSONObject jsonObject = new JSONObject(t);
+            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject json = (JSONObject) jsonArray.get(i);
+                String title = json.getString("desc");
+                String url = json.getString("url");
 
+                SmallVideoData data = new SmallVideoData();
+                data.setUrl(url);
+                data.setTitle(title);
+                mList.add(data);
+            }
+            adapter = new SmallVideoAdapter(this, mList);
+            mListView.setAdapter(adapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
