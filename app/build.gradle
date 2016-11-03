@@ -90,4 +90,6 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     //JieCaoVideoPlayer
     compile 'fm.jiecao:jiecaovideoplayer:4.8.1'
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

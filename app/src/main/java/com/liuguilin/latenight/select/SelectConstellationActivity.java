@@ -20,7 +20,13 @@ import android.widget.TextView;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.latenight.adapter.ConstellationAdapter;
+import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.view.CoverFlow;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class SelectConstellationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +34,8 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
     private Button btn_next;
     private CoverFlow mCoverFlow;
     private TextView select_tv_constellation;
-    private String[] mStr = {"白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天平", "天蝎", "射手", "摩羯", "水瓶", "双鱼"};
+    private String[] mStr = {"白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯", "水瓶", "双鱼"};
+    private int flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,7 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             select_tv_constellation.setText(mStr[position] + "座");
+            flag = position;
         }
 
         @Override
@@ -72,9 +80,25 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next:
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
+                updateConstellation();
                 break;
         }
+    }
+
+    private void updateConstellation() {
+        GankUser user = new GankUser();
+        user.setConstellation(mStr[flag] + "座");
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        user.update(bmobUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    startActivity(new Intent(SelectConstellationActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    TastyToast.makeText(SelectConstellationActivity.this, "更新信息失敗", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                }
+            }
+        });
     }
 }

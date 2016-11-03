@@ -15,6 +15,10 @@
 
 ![这里写图片描述](http://img.blog.csdn.net/20161030141612648)
 
+- Version1.0.1
+
+![这里写图片描述](http://img.blog.csdn.net/20161103220540681)
+
 
 ##二.使用到的图标
 
@@ -54,6 +58,8 @@
 - 12.uCrop:https://github.com/Yalantis/uCrop
 
 - 13.JieCaoVideoPlayer:https://github.com/lipangit/JieCaoVideoPlayer
+
+- 14.Picasso:https://github.com/square/picasso
     
 ##五.更新日志
 
@@ -89,6 +95,10 @@
 - 28.创建JokeActivity笑话
 - 29.天气功能完成
 - 30.天气增加刷新
+- 31.完善用户数据更新
+- 32.完成自动登录逻辑
+- 33.新增Picasso
+- 34.美化妹纸
 
   
 ###Version1.0.0

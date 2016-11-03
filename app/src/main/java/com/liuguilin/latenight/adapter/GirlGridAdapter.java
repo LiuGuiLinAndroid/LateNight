@@ -15,11 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.GirlData;
-import com.liuguilin.latenight.util.GlideUtils;
+import com.liuguilin.latenight.util.PicassoUtils;
 
 import java.util.List;
 
@@ -29,11 +28,14 @@ public class GirlGridAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<GirlData> mList;
     private GirlData data;
+    private int w, h;
 
     public GirlGridAdapter(Context mContext, List<GirlData> mList) {
         this.mContext = mContext;
         this.mList = mList;
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        w = mContext.getResources().getDisplayMetrics().widthPixels;
+        h = mContext.getResources().getDisplayMetrics().heightPixels;
     }
 
     @Override
@@ -57,20 +59,15 @@ public class GirlGridAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = inflater.inflate(R.layout.girl_grid_item, null);
-            viewHolder.tv_title = (TextView) convertView.findViewById(R.id.tv_title);
-            viewHolder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
             viewHolder.iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
         data = mList.get(position);
-        viewHolder.tv_title.setText(data.getTitle());
-        viewHolder.tv_time.setText(data.getTime());
-
         if (!TextUtils.isEmpty(data.getImgUrl())) {
-            GlideUtils.loadImageViewSize(mContext, data.getImgUrl(), 500, 500, viewHolder.iv_img);
+            //GlideUtils.loadImageViewSize(mContext, data.getImgUrl(), w / 2, h / 4 - 20, viewHolder.iv_img);
+            PicassoUtils.loadImageViewSize(mContext, data.getImgUrl(), w/2, h/4-20, viewHolder.iv_img);
         } else {
             viewHolder.iv_img.setBackgroundResource(R.drawable.ic_development);
         }
@@ -78,8 +75,6 @@ public class GirlGridAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        private TextView tv_title;
-        private TextView tv_time;
         private ImageView iv_img;
     }
 }

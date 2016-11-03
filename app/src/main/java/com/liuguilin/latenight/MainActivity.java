@@ -12,6 +12,7 @@ import com.liuguilin.latenight.activity.AppActivity;
 import com.liuguilin.latenight.activity.GirlActivity;
 import com.liuguilin.latenight.activity.IOSActivity;
 import com.liuguilin.latenight.activity.JokeActivity;
+import com.liuguilin.latenight.activity.LoginActivity;
 import com.liuguilin.latenight.activity.MovieActivity;
 import com.liuguilin.latenight.activity.MusicActivity;
 import com.liuguilin.latenight.activity.NovelActivity;
@@ -27,6 +28,10 @@ import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.SharePreUtils;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -125,6 +130,18 @@ public class MainActivity extends AppCompatActivity {
             String password = SharePreUtils.getString(this, Constants.SHARE_USER_PASSWORD, "");
             GankUser user = new GankUser();
             //....自动登录的逻辑
+            user.setUsername(username);
+            user.setPassword(password);
+            user.login(new SaveListener<GankUser>() {
+                @Override
+                public void done(GankUser gankUser, BmobException e) {
+                    if(e != null){
+                        TastyToast.makeText(MainActivity.this, "自动登录失败", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+            });
         }
     }
 
