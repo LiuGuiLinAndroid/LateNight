@@ -33,5 +33,7 @@
     <string name="text_reading">阅读</string>
     <string name="text_small_video">小视频</string>
     <string name="text_movie">电影</string>
+    <string name="text_novel">小说</string>
+    <string name="text_joke">笑话</string>
 
 </resources>

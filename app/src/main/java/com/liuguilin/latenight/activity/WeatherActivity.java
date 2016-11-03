@@ -10,14 +10,8 @@ package com.liuguilin.latenight.activity;
  */
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -27,76 +21,43 @@ import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.http.VolleyError;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.util.L;
-import com.liuguilin.latenight.util.SharePreUtils;
-import com.liuguilin.latenight.view.CustomDialog;
 import com.liuguilin.latenight.view.RiseNumberTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherActivity extends BaseActivity implements View.OnClickListener{
+public class WeatherActivity extends BaseActivity implements View.OnClickListener {
 
-    //提示框
-    private CustomDialog autoDialog;
     //定位
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     //滚动文本
     private RiseNumberTextView numberTextView;
-    //定位进度
-    private ProgressBar progressBar;
-    //定位结果
-    private TextView loading_location;
-    //定位城市
-    private String city = "深圳";
     //刷新按钮
     private Button btn_refresh;
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case Constants.HANDLER_WHAT_INIT_WEATHER:
-                    autoDialog.dismiss();
-                    initView();
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_weather);
 
-        //有城市
-        if (!TextUtils.isEmpty(SharePreUtils.getString(this, "auto_city", ""))) {
-            initView();
-        } else {
-            initLocation();
-        }
+        initLocation();
+        initView();
+
     }
 
     //初始化View
     private void initView() {
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
-        btn_refresh  = (Button) findViewById(R.id.btn_refresh);
+        btn_refresh = (Button) findViewById(R.id.btn_refresh);
         //startNumberAutoUp(numberTextView, 55);
-        getNewWeather(city);
+        //开启定位
+        mLocationClient.start();
     }
 
     //初始化定位函数
     private void initLocation() {
-        //进度加载
-        autoDialog = new CustomDialog(this, 80, 80, R.layout.dialog_location, R.style.pop_anim_style, Gravity.CENTER);
-        progressBar = (ProgressBar) autoDialog.findViewById(R.id.progressBar);
-        loading_location = (TextView) autoDialog.findViewById(R.id.loading_location);
-        autoDialog.setCancelable(false);
-        autoDialog.show();
-
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
@@ -113,9 +74,6 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         option.SetIgnoreCacheException(false);
         option.setEnableSimulateGps(false);
         mLocationClient.setLocOption(option);
-        //开启定位
-        mLocationClient.start();
-        L.i("开启定位");
     }
 
     //开始执行
@@ -189,7 +147,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_refresh:
                 initLocation();
                 break;
@@ -205,16 +163,13 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                 case BDLocation.TypeGpsLocation:
                 case BDLocation.TypeNetWorkLocation:
                 case BDLocation.TypeOffLineLocation:
-                    city = location.getCity();
-                    loading_location.setText("定位成功：" + city);
-                    SharePreUtils.putString(WeatherActivity.this, "auto_city", city);
-                    handler.sendEmptyMessageDelayed(Constants.HANDLER_WHAT_INIT_WEATHER, 1500);
+                    getNewWeather(location.getCity());
                     break;
                 //错误
                 case BDLocation.TypeServerError:
                 case BDLocation.TypeNetWorkException:
                 case BDLocation.TypeCriteriaException:
-                    loading_location.setText("定位失败");
+                    getNewWeather("深圳");
                     break;
             }
         }

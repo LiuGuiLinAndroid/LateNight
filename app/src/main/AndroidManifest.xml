@@ -180,7 +180,18 @@
 
         <!-- ONE -->
         <activity
-            android:name="com.liuguilin.latenight.activity.ONEActivity"/>
+            android:name="com.liuguilin.latenight.activity.ONEActivity"
+            android:label="ONE"/>
+
+        <!--小说-->
+        <activity
+            android:name="com.liuguilin.latenight.activity.NovelActivity"
+            android:label="@string/text_novel"/>
+
+        <!--笑话-->
+        <activity
+            android:name="com.liuguilin.latenight.activity.JokeActivity"
+            android:label="@string/text_joke"/>
 
         <!--小视频-->
         <activity
@@ -188,7 +199,8 @@
             android:label="@string/text_small_video"/>
 
         <!--电影-->
-        <activity android:name="com.liuguilin.latenight.activity.MovieActivity"
+        <activity
+            android:name="com.liuguilin.latenight.activity.MovieActivity"
             android:label="@string/text_movie"/>
 
         <!-- 网页 -->

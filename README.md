@@ -85,6 +85,8 @@
 - 24.完成小视频界面
 - 25.创建MovieActivity电影
 - 26.新增电影列表
+- 27.创建NovelActivity小说
+- 28.创建JokeActivity笑话
 
   
 ###Version1.0.0

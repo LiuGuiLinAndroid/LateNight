@@ -31,6 +31,11 @@ public class HorizontalPagerAdapter extends PagerAdapter {
                     R.drawable.ic_strategy,
                     "天气"
             ),
+            //个人中心
+            new PagerUtils.LibraryObject(
+                    R.drawable.ic_design,
+                    "用户"
+            ),
             //one的推荐
             new PagerUtils.LibraryObject(
                     R.drawable.ic_design,
@@ -40,16 +45,6 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             new PagerUtils.LibraryObject(
                     R.drawable.ic_design,
                     "阅读"
-            ),
-            //个人中心
-            new PagerUtils.LibraryObject(
-                    R.drawable.ic_design,
-                    "用户"
-            ),
-            //知乎日报每日最新（轮播图）
-            new PagerUtils.LibraryObject(
-                    R.drawable.ic_development,
-                    "日报"
             ),
             //Android
             new PagerUtils.LibraryObject(
@@ -100,11 +95,6 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             new PagerUtils.LibraryObject(
                     R.drawable.ic_development,
                     "App"
-            ),
-            //瞎推荐
-            new PagerUtils.LibraryObject(
-                    R.drawable.ic_development,
-                    "瞎推荐"
             ),
             //设置
             new PagerUtils.LibraryObject(
