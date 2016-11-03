@@ -17,7 +17,7 @@
 
 - Version1.0.1
 
-![这里写图片描述](http://img.blog.csdn.net/20161103220540681)
+![这里写图片描述](http://img.blog.csdn.net/20161103221245736)
 
 
 ##二.使用到的图标
@@ -270,7 +270,7 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
 ####[点击关注我的微博](http://weibo.com/Glorystys)
 ####QQ邮箱：748778890@qq.com
 ####Google邮箱：liuguilin74@gmail.com
-###￥博客地址：http://blog.csdn.net/qq_26787115
+###博客地址：http://blog.csdn.net/qq_26787115
 
 ####**我的公众号，期待你的关注**
 
