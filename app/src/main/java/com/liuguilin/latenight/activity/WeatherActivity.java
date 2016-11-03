@@ -30,6 +30,7 @@ import com.liuguilin.latenight.entity.WeatherData;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.ListViewUtils;
 import com.liuguilin.latenight.view.RiseNumberTextView;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,6 +87,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
         iv_refresh = (ImageView) findViewById(R.id.iv_refresh);
+        iv_refresh.setOnClickListener(this);
         //开启定位
         mLocationClient.start();
     }
@@ -215,7 +217,9 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_refresh:
-
+                progressBar.setVisibility(View.VISIBLE);
+                mLocationClient.start();
+                TastyToast.makeText(this,"正在刷新数据",TastyToast.LENGTH_LONG,TastyToast.WARNING);
                 break;
         }
     }
