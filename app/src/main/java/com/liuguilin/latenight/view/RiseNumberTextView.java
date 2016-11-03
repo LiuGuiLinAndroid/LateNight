@@ -50,8 +50,8 @@ public class RiseNumberTextView extends TextView implements IRiseNumber {
     //使用xml布局文件默认的被调用的构造方法
     public RiseNumberTextView(Context context, AttributeSet attr) {
         super(context, attr);
-        setTextColor(context.getResources().getColor(R.color.color_black));
-        setTextSize(50);
+        setTextColor(context.getResources().getColor(R.color.color_white));
+        setTextSize(80);
     }
 
     public RiseNumberTextView(Context context, AttributeSet attr, int defStyle) {

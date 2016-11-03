@@ -11,7 +11,11 @@ package com.liuguilin.latenight.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -21,11 +25,18 @@ import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.http.VolleyError;
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.adapter.WeatherAdapter;
+import com.liuguilin.latenight.entity.WeatherData;
 import com.liuguilin.latenight.util.L;
+import com.liuguilin.latenight.util.ListViewUtils;
 import com.liuguilin.latenight.view.RiseNumberTextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherActivity extends BaseActivity implements View.OnClickListener {
 
@@ -35,7 +46,20 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     //滚动文本
     private RiseNumberTextView numberTextView;
     //刷新按钮
-    private Button btn_refresh;
+    private ImageView iv_refresh;
+
+    private LinearLayout ll_group;
+    private TextView tv_update_time;
+    private TextView tvRealtime;
+    private ImageView iv_weather_img;
+    private TextView tv_weather;
+    private TextView tv_direct;
+    private TextView tv_power;
+    private ListView mListView;
+    private ProgressBar progressBar;
+
+    private List<WeatherData> mList = new ArrayList<>();
+    private WeatherAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +73,19 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
     //初始化View
     private void initView() {
+
+        ll_group = (LinearLayout) findViewById(R.id.ll_group);
+        tv_update_time = (TextView) findViewById(R.id.tv_update_time);
+        tvRealtime = (TextView) findViewById(R.id.tvRealtime);
+        iv_weather_img = (ImageView) findViewById(R.id.iv_weather_img);
+        tv_weather = (TextView) findViewById(R.id.tv_weather);
+        tv_direct = (TextView) findViewById(R.id.tv_direct);
+        tv_power = (TextView) findViewById(R.id.tv_power);
+        mListView = (ListView) findViewById(R.id.mListView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
-        btn_refresh = (Button) findViewById(R.id.btn_refresh);
-        //startNumberAutoUp(numberTextView, 55);
+        iv_refresh = (ImageView) findViewById(R.id.iv_refresh);
         //开启定位
         mLocationClient.start();
     }
@@ -110,32 +144,56 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
             JSONObject jsonObjectData = jsonObjectResult.getJSONObject("data");
             JSONObject jsonObjectRealtime = jsonObjectData.getJSONObject("realtime");
             //更新时间
-            jsonObjectRealtime.getString("time");
+            String time = jsonObjectRealtime.getString("time");
+            tv_update_time.setText("上次更新:" + time);
             //农历
-            jsonObjectRealtime.getString("moon");
+            String moon = jsonObjectRealtime.getString("moon");
+            tvRealtime.setText(moon);
             JSONObject jsonObjectWeather = jsonObjectRealtime.getJSONObject("weather");
+
+            //温度
+            String temperature = jsonObjectWeather.getString("temperature");
+            startNumberAutoUp(numberTextView, Integer.parseInt(temperature));
+
             //天气
-            jsonObjectWeather.getString("info");
+            String info = jsonObjectWeather.getString("info");
+            tv_weather.setText(info);
             //图片ID
             jsonObjectWeather.getString("img");
             JSONObject jsonObjectWind = jsonObjectRealtime.getJSONObject("wind");
             //风向
-            jsonObjectWind.getString("direct");
+            String direct = jsonObjectWind.getString("direct");
+            tv_direct.setText("风向:" + direct);
             //风力
-            jsonObjectWind.getString("power");
-            JSONObject jsonObjectInfo = jsonObjectData.getJSONObject("info");
+            String power = jsonObjectWind.getString("power");
+            tv_power.setText("风力:" + power);
+
+
+            JSONObject jsonObjectLife = jsonObjectData.getJSONObject("life");
+            JSONObject jsonObjectInfo = jsonObjectLife.getJSONObject("info");
             //穿衣
-            jsonObjectInfo.getJSONArray("chuanyi");
+            JSONArray jsonArray1 = jsonObjectInfo.getJSONArray("chuanyi");
+            addData("穿衣指数:", jsonArray1);
             //感冒
-            jsonObjectInfo.getJSONArray("ganmao");
+            JSONArray jsonArray2 = jsonObjectInfo.getJSONArray("ganmao");
+            addData("感冒指数:", jsonArray2);
             //空调
-            jsonObjectInfo.getJSONArray("kongtiao");
+            JSONArray jsonArray3 = jsonObjectInfo.getJSONArray("kongtiao");
+            addData("空调指数:", jsonArray3);
             //洗车
-            jsonObjectInfo.getJSONArray("xiche");
+            JSONArray jsonArray4 = jsonObjectInfo.getJSONArray("xiche");
+            addData("洗车指数:", jsonArray4);
             //运动
-            jsonObjectInfo.getJSONArray("yundong");
+            JSONArray jsonArray5 = jsonObjectInfo.getJSONArray("yundong");
+            addData("运动指数:", jsonArray5);
             //紫外线
-            jsonObjectInfo.getJSONArray("ziwaixian");
+            JSONArray jsonArray6 = jsonObjectInfo.getJSONArray("ziwaixian");
+            addData("紫外线指数:", jsonArray6);
+
+            mAdapter = new WeatherAdapter(this, mList);
+            mListView.setAdapter(mAdapter);
+            ListViewUtils.setListViewHeightBasedOnChildren(mListView);
+            progressBar.setVisibility(View.GONE);
 
             //一周天气
             jsonObjectData.getJSONArray("weather");
@@ -145,11 +203,19 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    //添加数据
+    private void addData(String text, JSONArray jsonArray) throws JSONException {
+        WeatherData data = new WeatherData();
+        data.setText(text + ":" + jsonArray.getString(0) + "\n" + jsonArray.get(1));
+        L.i("指数：" + jsonArray.getString(0) + "," + jsonArray.get(1));
+        mList.add(data);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_refresh:
-                initLocation();
+            case R.id.iv_refresh:
+
                 break;
         }
     }
