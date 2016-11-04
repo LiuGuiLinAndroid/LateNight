@@ -89,8 +89,6 @@ public class GirlActivity extends BaseActivity {
                 JSONObject json = (JSONObject) jsonArrayResults.get(i);
                 GirlData data = new GirlData();
                 data.setImgUrl(json.getString("url"));
-                data.setTime(json.getString("type"));
-                data.setTime(json.getString("desc"));
                 mList.add(data);
             }
         } catch (JSONException e) {

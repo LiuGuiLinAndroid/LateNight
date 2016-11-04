@@ -18,7 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.SharePreUtils;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class SelectSexActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,9 +63,8 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_next:
-                startActivity(new Intent(this,SelectAgeActivity.class));
                 SharePreUtils.putString(this,"sex",select_tv_sex.getText().toString());
-                finish();
+                updateSex();
                 break;
             case R.id.iv_boy:
                 select_tv_sex.setText("男");
@@ -72,5 +77,26 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
                 iv_girl.setSelected(true);
                 break;
         }
+    }
+
+    private void updateSex(){
+        GankUser user = new GankUser();
+        if(select_tv_sex.getText().toString().equals("男")){
+            user.setSex(true);
+        }else {
+            user.setSex(false);
+        }
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        user.update(bmobUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    startActivity(new Intent(SelectSexActivity.this, SelectAgeActivity.class));
+                    finish();
+                } else {
+                    TastyToast.makeText(SelectSexActivity.this,"更新信息失敗",TastyToast.LENGTH_LONG,TastyToast.ERROR);
+                }
+            }
+        });
     }
 }

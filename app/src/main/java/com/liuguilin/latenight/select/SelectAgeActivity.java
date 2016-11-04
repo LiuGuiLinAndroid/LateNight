@@ -20,7 +20,13 @@ import android.widget.TextView;
 import com.lichfaker.scaleview.BaseScaleView;
 import com.lichfaker.scaleview.HorizontalScaleScrollView;
 import com.liuguilin.gankclient.R;
+import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.SharePreUtils;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class SelectAgeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,6 +35,7 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
     private TextView select_tv_age;
     private HorizontalScaleScrollView horizontalScale;
     private ImageView age_logo;
+    private int age;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onScaleScroll(int scale) {
                 select_tv_age.setText(scale + "岁");
+                age = scale;
             }
         });
     }
@@ -69,9 +77,25 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_next:
-                startActivity(new Intent(this,SelectHeightActivity.class));
-                finish();
+                updateAge();
                 break;
         }
+    }
+
+    private void updateAge(){
+        GankUser user = new GankUser();
+        user.setAge(age);
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        user.update(bmobUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    startActivity(new Intent(SelectAgeActivity.this,SelectHeightActivity.class));
+                    finish();
+                } else {
+                    TastyToast.makeText(SelectAgeActivity.this,"更新信息失敗",TastyToast.LENGTH_LONG,TastyToast.ERROR);
+                }
+            }
+        });
     }
 }
