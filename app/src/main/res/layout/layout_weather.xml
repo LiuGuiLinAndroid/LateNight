@@ -128,6 +128,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"/>
 
+    <com.liuguilin.latenight.view.GraphView
+        android:visibility="gone"
+        android:background="@color/color_black"
+        android:id="@+id/mGraphView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
     <!--相关参数-->
     <ListView
         android:id="@+id/mListView"

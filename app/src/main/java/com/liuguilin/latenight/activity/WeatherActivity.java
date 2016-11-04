@@ -26,9 +26,11 @@ import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.http.VolleyError;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.WeatherAdapter;
+import com.liuguilin.latenight.entity.GraphData;
 import com.liuguilin.latenight.entity.WeatherData;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.ListViewUtils;
+import com.liuguilin.latenight.view.GraphView;
 import com.liuguilin.latenight.view.RiseNumberTextView;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -62,6 +64,9 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     private List<WeatherData> mList = new ArrayList<>();
     private WeatherAdapter mAdapter;
 
+    private GraphView mGraphView;
+    private ArrayList<GraphData> items = new ArrayList<GraphData>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +89,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         tv_power = (TextView) findViewById(R.id.tv_power);
         mListView = (ListView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mGraphView = (GraphView) findViewById(R.id.mGraphView);
 
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
         iv_refresh = (ImageView) findViewById(R.id.iv_refresh);
@@ -195,11 +201,36 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
             mAdapter = new WeatherAdapter(this, mList);
             mListView.setAdapter(mAdapter);
             ListViewUtils.setListViewHeightBasedOnChildren(mListView);
-            progressBar.setVisibility(View.GONE);
 
             //一周天气
-            jsonObjectData.getJSONArray("weather");
+            JSONArray jsonArrayWeather = jsonObjectData.getJSONArray("weather");
+            for (int i = 0; i < jsonArrayWeather.length(); i++) {
+                JSONObject json = (JSONObject) jsonArrayWeather.get(i);
+                JSONObject jsonInfo = json.getJSONObject("info");
+                JSONArray jsonArray = jsonInfo.getJSONArray("day");
 
+                switch (i){
+                    case 0:
+                        GraphData data = new GraphData("今天", jsonArray.getInt(2));
+                        items.add(data);
+                        break;
+                    case 1:
+                        GraphData data1 = new GraphData("明天", jsonArray.getInt(2));
+                        items.add(data1);
+                        break;
+                    case 2:
+                        GraphData data2 = new GraphData("后天", jsonArray.getInt(2));
+                        items.add(data2);
+                        break;
+                    default:
+                        GraphData data3 = new GraphData(json.getString("date"), jsonArray.getInt(2));
+                        items.add(data3);
+                        break;
+                }
+            }
+            //装载数据
+            mGraphView.setItems(items);
+            progressBar.setVisibility(View.GONE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -219,7 +250,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
             case R.id.iv_refresh:
                 progressBar.setVisibility(View.VISIBLE);
                 mLocationClient.start();
-                TastyToast.makeText(this,"正在刷新数据",TastyToast.LENGTH_LONG,TastyToast.WARNING);
+                TastyToast.makeText(this, "正在刷新数据", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 break;
         }
     }
@@ -229,7 +260,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         @Override
         public void onReceiveLocation(BDLocation location) {
             switch (location.getLocType()) {
-                //GPS
+                //成功
                 case BDLocation.TypeGpsLocation:
                 case BDLocation.TypeNetWorkLocation:
                 case BDLocation.TypeOffLineLocation:
