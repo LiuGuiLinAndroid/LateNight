@@ -11,14 +11,23 @@ package com.liuguilin.latenight.entity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+import android.util.Base64;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liuguilin.latenight.util.SharePreUtils;
 import com.sdsmdg.tastytoast.TastyToast;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 public class Constants {
 
@@ -58,6 +67,11 @@ public class Constants {
     public static final int HANDLER_WHAT_TIME_DOWN = 10002;
     //延时加载天气
     public static final int HANDLER_WHAT_INIT_WEATHER = 10003;
+
+    //选择投降
+    public static final int IMAGE_REQUEST_CODE = 10004;
+    public static final int CAMERA_REQUEST_CODE = 10005;
+    public static final int RESULT_REQUEST_CODE = 10006;
 
 
     //第一次运行
@@ -185,5 +199,27 @@ public class Constants {
         intent.putExtra("duplicate", false);
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, actionIntent);
         context.sendBroadcast(intent);
+    }
+
+    //share保存图片
+    public static void putImgToShare(Context mContext, ImageView imageView) {
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        String imageString = new String(Base64.encodeToString(byteArray, Base64.DEFAULT));
+        SharePreUtils.putString(mContext, "image_title", imageString);
+    }
+
+    //读取share保存图片
+    public static void getImgToShare(Context mContext, ImageView imageView) {
+        String imageString = SharePreUtils.getString(mContext, "image_title", "");
+        if (!imageString.equals("")) {
+            byte[] byteArray = Base64.decode(imageString, Base64.DEFAULT);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
+            Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
+            imageView.setImageBitmap(bitmap);
+        }
     }
 }
