@@ -30,8 +30,10 @@ import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.SharePreUtils;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             user.login(new SaveListener<GankUser>() {
                 @Override
                 public void done(GankUser gankUser, BmobException e) {
-                    if(e != null){
+                    if (e != null) {
                         TastyToast.makeText(MainActivity.this, "自动登录失败", TastyToast.LENGTH_LONG, TastyToast.ERROR);
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         finish();
@@ -143,7 +145,45 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //更新数据
+        if (!isFirst()) {
+            updateUser();
+        }
+
     }
 
+    private void updateUser() {
+        //获取到学生的信息
+        int age = SharePreUtils.getInt(this, Constants.SHARE_USER_AGE, 18);
+        String birthday = SharePreUtils.getString(this, Constants.SHARE_USER_BIRTHDAY, "1995-10-5");
+        String connstellation = SharePreUtils.getString(this, Constants.SHARE_USER_CONSTELLATION, "天秤座");
+        String desc = SharePreUtils.getString(this, Constants.SHARE_USER_DESC, "这个人很懒，什么都没有留下");
+        String height = SharePreUtils.getString(this, Constants.SHARE_USER_HEIGHT, "180CM");
+        String occupation = SharePreUtils.getString(this, Constants.SHARE_USER_OCCUPATION, "Android软件工程师");
+        String school = SharePreUtils.getString(this, Constants.SHARE_USER_SCHOOL, "北京大学");
+        String sex = SharePreUtils.getString(this, Constants.SHARE_USER_SEX, "男");
+        String weight = SharePreUtils.getString(this, Constants.SHARE_USER_WEIGHT, "60KG");
+        GankUser user = new GankUser();
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        user.update(bmobUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e != null) {
+                    TastyToast.makeText(MainActivity.this, "更新信息失敗", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                }
+            }
+        });
+    }
 
+    //判断应用程序是否第一次运行
+    private boolean isFirst() {
+        boolean isFirst = SharePreUtils.getBoolean(this, "is_login_main", false);
+        if (isFirst) {
+            return true;
+        } else {
+            SharePreUtils.putBoolean(this, "is_login_main", true);
+            return false;
+        }
+    }
 }

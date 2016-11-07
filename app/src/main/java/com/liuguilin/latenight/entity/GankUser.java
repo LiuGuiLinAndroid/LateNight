@@ -13,7 +13,7 @@ import cn.bmob.v3.BmobUser;
 
 public class GankUser extends BmobUser {
 
-    //投降
+    //头像
     private String photo;
     //昵称
     private String nickname;

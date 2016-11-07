@@ -91,6 +91,18 @@ public class Constants {
     //添加快捷方式的action
     public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
 
+    //用户信息
+    public static final String SHARE_USER_AGE= "user_age";
+    public static final String SHARE_USER_BIRTHDAY= "user_birthday";
+    public static final String SHARE_USER_CONSTELLATION= "user_constellation";
+    public static final String SHARE_USER_DESC= "user_desc";
+    public static final String SHARE_USER_HEIGHT= "user_height";
+    public static final String SHARE_USER_OCCUPATION= "user_occupation";
+    public static final String SHARE_USER_PHOTO= "user_photo";
+    public static final String SHARE_USER_SCHOOL= "user_school";
+    public static final String SHARE_USER_SEX= "user_sex";
+    public static final String SHARE_USER_WEIGHT= "user_weight";
+
     //密码正则
     public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
 

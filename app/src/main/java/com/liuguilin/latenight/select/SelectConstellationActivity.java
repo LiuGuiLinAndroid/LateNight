@@ -20,13 +20,9 @@ import android.widget.TextView;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.latenight.adapter.ConstellationAdapter;
-import com.liuguilin.latenight.entity.GankUser;
+import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.util.SharePreUtils;
 import com.liuguilin.latenight.view.CoverFlow;
-import com.sdsmdg.tastytoast.TastyToast;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UpdateListener;
 
 public class SelectConstellationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -80,25 +76,10 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next:
-                updateConstellation();
+                SharePreUtils.putString(this, Constants.SHARE_USER_CONSTELLATION,mStr[flag] + "座");
+                startActivity(new Intent(SelectConstellationActivity.this, MainActivity.class));
+                finish();
                 break;
         }
-    }
-
-    private void updateConstellation() {
-        GankUser user = new GankUser();
-        user.setConstellation(mStr[flag] + "座");
-        BmobUser bmobUser = BmobUser.getCurrentUser();
-        user.update(bmobUser.getObjectId(), new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null) {
-                    startActivity(new Intent(SelectConstellationActivity.this, MainActivity.class));
-                    finish();
-                } else {
-                    TastyToast.makeText(SelectConstellationActivity.this, "更新信息失敗", TastyToast.LENGTH_LONG, TastyToast.ERROR);
-                }
-            }
-        });
     }
 }

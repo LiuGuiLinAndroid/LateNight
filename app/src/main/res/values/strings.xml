@@ -35,5 +35,6 @@
     <string name="text_movie">电影</string>
     <string name="text_novel">小说</string>
     <string name="text_joke">笑话</string>
+    <string name="text_editor_user">编辑用户</string>
 
 </resources>

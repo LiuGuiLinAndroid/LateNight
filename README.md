@@ -99,7 +99,11 @@
 - 32.完成自动登录逻辑
 - 33.新增Picasso
 - 34.美化妹纸
-- 35.完善选择图片
+- 35.完善选择头像
+- 36.创建SelectBirthdayActivity选择生日
+- 37.创建SelectDescActivity简介
+- 38.创建SelectOccupationActivity职业
+- 39.创建SelectSchoolActivity学校
 
   
 ###Version1.0.0

@@ -20,13 +20,8 @@ import android.widget.TextView;
 import com.lichfaker.scaleview.BaseScaleView;
 import com.lichfaker.scaleview.HorizontalScaleScrollView;
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.entity.GankUser;
+import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.util.SharePreUtils;
-import com.sdsmdg.tastytoast.TastyToast;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UpdateListener;
 
 public class SelectWeightActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,7 +47,7 @@ public class SelectWeightActivity extends AppCompatActivity implements View.OnCl
         btn_next.setOnClickListener(this);
         select_tv_weight = (TextView) findViewById(R.id.select_tv_weight);
 
-        String sex = SharePreUtils.getString(this,"sex","男");
+        String sex = SharePreUtils.getString(this, Constants.SHARE_USER_SEX,"男");
         if(sex.equals("男")){
             weight_logo.setBackgroundResource(R.drawable.boy_off);
         }else {
@@ -78,25 +73,10 @@ public class SelectWeightActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next:
-                updateWeight();
+                SharePreUtils.putString(this,Constants.SHARE_USER_WEIGHT,weight + "KG");
+                startActivity(new Intent(SelectWeightActivity.this, SelectConstellationActivity.class));
+                finish();
                 break;
         }
-    }
-
-    private void updateWeight(){
-        GankUser user = new GankUser();
-        user.setWeight(weight + "KG");
-        BmobUser bmobUser = BmobUser.getCurrentUser();
-        user.update(bmobUser.getObjectId(), new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null) {
-                    startActivity(new Intent(SelectWeightActivity.this, SelectConstellationActivity.class));
-                    finish();
-                } else {
-                    TastyToast.makeText(SelectWeightActivity.this,"更新信息失敗",TastyToast.LENGTH_LONG,TastyToast.ERROR);
-                }
-            }
-        });
     }
 }
