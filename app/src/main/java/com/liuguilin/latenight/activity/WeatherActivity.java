@@ -181,22 +181,22 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
             JSONObject jsonObjectInfo = jsonObjectLife.getJSONObject("info");
             //穿衣
             JSONArray jsonArray1 = jsonObjectInfo.getJSONArray("chuanyi");
-            addData("穿衣指数:", jsonArray1);
+            addData("穿衣指数", jsonArray1);
             //感冒
             JSONArray jsonArray2 = jsonObjectInfo.getJSONArray("ganmao");
-            addData("感冒指数:", jsonArray2);
+            addData("感冒指数", jsonArray2);
             //空调
             JSONArray jsonArray3 = jsonObjectInfo.getJSONArray("kongtiao");
-            addData("空调指数:", jsonArray3);
+            addData("空调指数", jsonArray3);
             //洗车
             JSONArray jsonArray4 = jsonObjectInfo.getJSONArray("xiche");
-            addData("洗车指数:", jsonArray4);
+            addData("洗车指数", jsonArray4);
             //运动
             JSONArray jsonArray5 = jsonObjectInfo.getJSONArray("yundong");
-            addData("运动指数:", jsonArray5);
+            addData("运动指数", jsonArray5);
             //紫外线
             JSONArray jsonArray6 = jsonObjectInfo.getJSONArray("ziwaixian");
-            addData("紫外线指数:", jsonArray6);
+            addData("紫外线指数", jsonArray6);
 
             mAdapter = new WeatherAdapter(this, mList);
             mListView.setAdapter(mAdapter);

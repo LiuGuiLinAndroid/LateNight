@@ -9,7 +9,7 @@
     <RelativeLayout
         android:background="@drawable/weather_bg"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="250dp">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -13,7 +13,6 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.liuguilin.latenight.entity.Constants;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;
 
@@ -27,6 +26,6 @@ public class BaseApplication extends MultiDexApplication {
         //初始化Bmob
         Bmob.initialize(this, Constants.BMOB_KEY);
         //初始化Bugly
-        CrashReport.initCrashReport(getApplicationContext(), Constants.BUGLY_KEY, true);
+        //CrashReport.initCrashReport(getApplicationContext(), Constants.BUGLY_KEY, true);
     }
 }

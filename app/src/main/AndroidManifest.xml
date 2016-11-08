@@ -43,6 +43,7 @@
 
         <!-- 闪屏页 -->
         <activity
+            android:exported="true"
             android:name="com.liuguilin.latenight.activity.SplashActivity"
             android:theme="@style/NoTitleFullscreen">
             <intent-filter>

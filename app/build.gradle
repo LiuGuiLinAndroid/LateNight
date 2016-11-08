@@ -66,9 +66,9 @@ dependencies {
         exclude group: 'com.squareup.okio'
     }
     //Bugly SDK
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    //compile 'com.tencent.bugly:crashreport:latest.release'
     //Bugly NDK
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //compile 'com.tencent.bugly:nativecrashreport:latest.release'
     //TastyToast
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.0'
     //Glide
