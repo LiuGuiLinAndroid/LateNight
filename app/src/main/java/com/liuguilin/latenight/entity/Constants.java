@@ -55,6 +55,11 @@ public class Constants {
     //电影接口
     public static final String ONE_MOIVE = "http://v3.wufazhuce.com:8000/api/movie/list/0";
 
+    //城市
+    public static final String PROVINCE_URL = "http://www.hisihi.com/app.php?s=/school/province";
+    //学校
+    public static final String SCHOOL_URL = "http://www.hisihi.com/app.php?s=/school/school/provinceid/";
+
     //Bmob key
     public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";
     //Bugly key
@@ -105,6 +110,12 @@ public class Constants {
 
     //密码正则
     public static final String PASSWORD_KEY = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+
+
+    //创建快捷方式开关
+    public static final boolean SWITCH_SHORECUT = false;
+
+
 
     //设置下划线
     public static void setHtml(TextView textView) {

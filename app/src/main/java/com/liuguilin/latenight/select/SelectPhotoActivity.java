@@ -43,6 +43,8 @@ public class SelectPhotoActivity extends AppCompatActivity implements View.OnCli
     private Button btn_gallery;
     private Button btn_cancel;
 
+    private Button btn_next;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,8 @@ public class SelectPhotoActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         profile_image = (CircleImageView) findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
+        btn_next = (Button) findViewById(R.id.btn_next);
+        btn_next.setOnClickListener(this);
 
         dialog = new CustomDialog(this, 0, 0, R.layout.dialog_select_photo, R.style.pop_anim_style, Gravity.BOTTOM, 0);
 
@@ -85,6 +89,11 @@ public class SelectPhotoActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.btn_gallery:
                 toGallery();
+                break;
+            case R.id.btn_next:
+                Constants.putImgToShare(this,profile_image);
+                startActivity(new Intent(this,SelectSexActivity.class));
+                finish();
                 break;
         }
     }

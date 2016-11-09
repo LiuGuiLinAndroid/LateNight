@@ -92,4 +92,6 @@ dependencies {
     compile 'fm.jiecao:jiecaovideoplayer:4.8.1'
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //NumberPickerView
+    compile 'cn.carbswang.android:NumberPickerView:1.1.1'
 }

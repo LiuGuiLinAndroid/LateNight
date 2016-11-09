@@ -12,7 +12,7 @@
         android:id="@+id/btn_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_bg"
+        android:background="@drawable/button_bg"
         android:text="拍照"
         android:textColor="@color/color_white"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edit_bg"
+        android:background="@drawable/button_bg"
         android:text="图库"
         android:textColor="@color/color_white"/>
 
@@ -30,7 +30,7 @@
         android:id="@+id/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_bg"
+        android:background="@drawable/button_bg"
         android:text="返回"
         android:textColor="@color/color_white"/>
 

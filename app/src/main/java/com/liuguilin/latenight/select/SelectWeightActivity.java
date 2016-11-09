@@ -74,7 +74,7 @@ public class SelectWeightActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.btn_next:
                 SharePreUtils.putString(this,Constants.SHARE_USER_WEIGHT,weight + "KG");
-                startActivity(new Intent(SelectWeightActivity.this, SelectConstellationActivity.class));
+                startActivity(new Intent(SelectWeightActivity.this, SelectBirthdayActivity.class));
                 finish();
                 break;
         }

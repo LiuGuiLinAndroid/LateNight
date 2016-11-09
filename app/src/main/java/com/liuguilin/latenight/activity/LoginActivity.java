@@ -28,7 +28,7 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
-import com.liuguilin.latenight.select.SelectSexActivity;
+import com.liuguilin.latenight.select.SelectPhotoActivity;
 import com.liuguilin.latenight.util.SharePreUtils;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 } else {
                                     //引导
-                                    startActivity(new Intent(LoginActivity.this, SelectSexActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, SelectPhotoActivity.class));
                                 }
                                 finish();
                             } else {

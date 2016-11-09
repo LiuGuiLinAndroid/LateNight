@@ -60,7 +60,9 @@
 - 13.JieCaoVideoPlayer:https://github.com/lipangit/JieCaoVideoPlayer
 
 - 14.Picasso:https://github.com/square/picasso
-    
+
+- 15.FlowLayout-master:https://github.com/qiushi123/FlowLayout-master
+
 ##五.更新日志
 
 ###Version1.0.1
@@ -104,7 +106,11 @@
 - 37.创建SelectDescActivity简介
 - 38.创建SelectOccupationActivity职业
 - 39.创建SelectSchoolActivity学校
-
+- 40.完善选择头像
+- 41.完善选择生日
+- 42.完善选择职业
+- 43.完善简介的填写
+- 44.完善更新信息的逻辑
   
 ###Version1.0.0
 
