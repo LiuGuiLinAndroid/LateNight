@@ -54,6 +54,11 @@ public class Constants {
     public static final String ONE_FIORST_BOOK = "http://v3.wufazhuce.com:8000/api/hp/more/0";
     //电影接口
     public static final String ONE_MOIVE = "http://v3.wufazhuce.com:8000/api/movie/list/0";
+    //电影详情
+    public static final String ONE_MOIVE_MORE = "http://v3.wufazhuce.com:8000/api/movie/detail/";
+    //电影故事
+    public static final String ONE_MOIVE_STORY = "http://v3.wufazhuce.com:8000/api/movie/";
+    public static final String ONE_MOIVE_STORY_RE = "/story/1/0";
 
     //城市
     public static final String PROVINCE_URL = "http://www.hisihi.com/app.php?s=/school/province";

@@ -8,8 +8,10 @@ package com.liuguilin.latenight.activity;
  *  描述：    电影
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -35,6 +37,7 @@ public class MovieActivity extends BaseActivity {
     private MovieAdapter adapter;
     private ProgressBar progressBar;
 
+    private List<String> mListId = new ArrayList<>();
     private List<String> mListTitle = new ArrayList<>();
 
     @Override
@@ -49,6 +52,16 @@ public class MovieActivity extends BaseActivity {
         mListView = (ListView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         getMovie();
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MovieActivity.this, MovieDetailsActivity.class);
+                intent.putExtra("id", mListId.get(position));
+                intent.putExtra("title", mListTitle.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     private void getMovie() {
@@ -69,6 +82,10 @@ public class MovieActivity extends BaseActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject json = (JSONObject) jsonArray.get(i);
                 String url = json.getString("cover");
+                String id = json.getString("id");
+                String title = json.getString("title");
+                mListTitle.add(title);
+                mListId.add(id);
                 MovieData data = new MovieData();
                 data.setImgUrl(url);
                 mList.add(data);

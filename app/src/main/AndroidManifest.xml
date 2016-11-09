@@ -232,6 +232,9 @@
         <!-- 网页 -->
         <activity android:name="com.liuguilin.latenight.activity.WebViewActivity"/>
 
+        <!-- 电影详情 -->
+        <activity android:name="com.liuguilin.latenight.activity.MovieDetailsActivity"/>
+
         <!-- 歌曲服务 -->
         <service android:name="com.liuguilin.latenight.service.MusicService"/>
 
