@@ -30,7 +30,7 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_girl;
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_select_sex);
 
@@ -56,9 +56,14 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_next:
-                SharePreUtils.putString(this,Constants.SHARE_USER_SEX,select_tv_sex.getText().toString());
+                String sex = select_tv_sex.getText().toString();
+                if (sex.equals("男")) {
+                    SharePreUtils.putBoolean(this, Constants.SHARE_USER_SEX, true);
+                } else {
+                    SharePreUtils.putBoolean(this, Constants.SHARE_USER_SEX, false);
+                }
                 startActivity(new Intent(SelectSexActivity.this, SelectAgeActivity.class));
                 finish();
                 break;

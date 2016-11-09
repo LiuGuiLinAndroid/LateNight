@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
-import com.liuguilin.latenight.MainActivity;
 import com.liuguilin.latenight.adapter.ConstellationAdapter;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.util.SharePreUtils;
@@ -77,7 +76,7 @@ public class SelectConstellationActivity extends AppCompatActivity implements Vi
         switch (v.getId()) {
             case R.id.btn_next:
                 SharePreUtils.putString(this, Constants.SHARE_USER_CONSTELLATION,mStr[flag] + "座");
-                startActivity(new Intent(SelectConstellationActivity.this, MainActivity.class));
+                startActivity(new Intent(SelectConstellationActivity.this, SelectDescActivity.class));
                 finish();
                 break;
         }

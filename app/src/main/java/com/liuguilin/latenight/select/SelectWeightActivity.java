@@ -47,8 +47,8 @@ public class SelectWeightActivity extends AppCompatActivity implements View.OnCl
         btn_next.setOnClickListener(this);
         select_tv_weight = (TextView) findViewById(R.id.select_tv_weight);
 
-        String sex = SharePreUtils.getString(this, Constants.SHARE_USER_SEX,"男");
-        if(sex.equals("男")){
+        boolean sex = SharePreUtils.getBoolean(this,Constants.SHARE_USER_SEX,true);
+        if(sex){
             weight_logo.setBackgroundResource(R.drawable.boy_off);
         }else {
             weight_logo.setBackgroundResource(R.drawable.girl_off);

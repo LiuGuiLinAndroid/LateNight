@@ -58,6 +58,7 @@ public class SelectSchoolActivity extends AppCompatActivity implements View.OnCl
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
         select_tv_school = (TextView) findViewById(R.id.select_tv_school);
+        select_tv_school.setText("清华大学");
         mListViewCity = (ListView) findViewById(R.id.mListCity);
         mListViewSchool = (ListView) findViewById(R.id.mListSchool);
 

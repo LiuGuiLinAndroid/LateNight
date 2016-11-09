@@ -46,8 +46,8 @@ public class SelectHeightActivity extends AppCompatActivity implements View.OnCl
         btn_next = (Button) findViewById(R.id.btn_next);
         btn_next.setOnClickListener(this);
 
-        String sex = SharePreUtils.getString(this,Constants.SHARE_USER_SEX,"男");
-        if(sex.equals("男")){
+        boolean sex = SharePreUtils.getBoolean(this,Constants.SHARE_USER_SEX,true);
+        if(sex){
             height_logo.setBackgroundResource(R.drawable.boy_off);
         }else {
             height_logo.setBackgroundResource(R.drawable.girl_off);

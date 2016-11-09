@@ -46,8 +46,8 @@ public class SelectAgeActivity extends AppCompatActivity implements View.OnClick
         btn_next.setOnClickListener(this);
         select_tv_age = (TextView) findViewById(R.id.select_tv_age);
 
-        String sex = SharePreUtils.getString(this,Constants.SHARE_USER_SEX,"男");
-        if(sex.equals("男")){
+        boolean sex = SharePreUtils.getBoolean(this,Constants.SHARE_USER_SEX,true);
+        if(sex){
             age_logo.setBackgroundResource(R.drawable.boy_off);
         }else {
             age_logo.setBackgroundResource(R.drawable.girl_off);

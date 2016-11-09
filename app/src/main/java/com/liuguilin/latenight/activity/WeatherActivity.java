@@ -248,7 +248,6 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_refresh:
-                progressBar.setVisibility(View.VISIBLE);
                 mLocationClient.start();
                 TastyToast.makeText(this, "正在刷新数据", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 break;

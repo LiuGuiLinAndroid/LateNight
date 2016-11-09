@@ -146,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        //更新数据
+        //更新数据  有可能需要去掉！
         if (!isFirst()) {
+            L.i("更新用户数据");
             updateUser();
         }
 
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUser() {
         //获取到学生的信息
+        String imagePhoto = SharePreUtils.getString(this, "image_title", "");
         int age = SharePreUtils.getInt(this, Constants.SHARE_USER_AGE, 18);
         String birthday = SharePreUtils.getString(this, Constants.SHARE_USER_BIRTHDAY, "1995-10-5");
         String connstellation = SharePreUtils.getString(this, Constants.SHARE_USER_CONSTELLATION, "天秤座");
@@ -162,9 +164,19 @@ public class MainActivity extends AppCompatActivity {
         String height = SharePreUtils.getString(this, Constants.SHARE_USER_HEIGHT, "180CM");
         String occupation = SharePreUtils.getString(this, Constants.SHARE_USER_OCCUPATION, "Android软件工程师");
         String school = SharePreUtils.getString(this, Constants.SHARE_USER_SCHOOL, "北京大学");
-        String sex = SharePreUtils.getString(this, Constants.SHARE_USER_SEX, "男");
+        boolean sex = SharePreUtils.getBoolean(this, Constants.SHARE_USER_SEX, true);
         String weight = SharePreUtils.getString(this, Constants.SHARE_USER_WEIGHT, "60KG");
         GankUser user = new GankUser();
+        user.setPhoto(imagePhoto);
+        user.setAge(age);
+        user.setBirthday(birthday);
+        user.setConstellation(connstellation);
+        user.setDesc(desc);
+        user.setHeight(height);
+        user.setOccupation(occupation);
+        user.setSchool(school);
+        user.setSex(sex);
+        user.setWeight(weight);
         BmobUser bmobUser = BmobUser.getCurrentUser();
         user.update(bmobUser.getObjectId(), new UpdateListener() {
             @Override
