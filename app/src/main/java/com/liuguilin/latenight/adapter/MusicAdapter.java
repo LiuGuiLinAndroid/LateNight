@@ -74,7 +74,7 @@ public class MusicAdapter extends BaseAdapter {
         }
 
         data = mList.get(position);
-        GlideUtils.loadImageView(mContext,data.getImgBgUrl(),viewHolder.ll_bg);
+        GlideUtils.loadImageView(mContext, data.getImgBgUrl(), viewHolder.ll_bg);
         GlideUtils.loadImageView(mContext, data.getImgPhotoUrl(), viewHolder.profile_image);
         viewHolder.tv_name.setText(data.getName());
         viewHolder.tv_time.setText(data.getTime());
