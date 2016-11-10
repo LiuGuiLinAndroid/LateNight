@@ -60,6 +60,16 @@ public class Constants {
     public static final String ONE_MOIVE_STORY = "http://v3.wufazhuce.com:8000/api/movie/";
     public static final String ONE_MOIVE_STORY_RE = "/story/1/0";
 
+    //音乐列表
+    public static final String ONE_MUSIC_LIST = "http://v3.wufazhuce.com:8000/api/music/idlist/0";
+    //歌曲详情
+    public static final String ONE_MUSIC_MORE = "http://v3.wufazhuce.com:8000/api/music/detail/";
+    //相似歌曲
+    public static final String ONE_MUSIC_MORE_SE = "http://v3.wufazhuce.com:8000/api/related/music/";
+    //歌曲评论
+    public static final String ONE_MUSIC_SPECK_LIST = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/468/";
+
+
     //城市
     public static final String PROVINCE_URL = "http://www.hisihi.com/app.php?s=/school/province";
     //学校
@@ -78,10 +88,13 @@ public class Constants {
     //延时加载天气
     public static final int HANDLER_WHAT_INIT_WEATHER = 10003;
 
-    //选择投降
+    //选择头像
     public static final int IMAGE_REQUEST_CODE = 10004;
     public static final int CAMERA_REQUEST_CODE = 10005;
     public static final int RESULT_REQUEST_CODE = 10006;
+
+    //加载音乐列表
+    public static  final  int HANDLER_LOFING_MUSIC_LIST = 10007;
 
 
     //第一次运行

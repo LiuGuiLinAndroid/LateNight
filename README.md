@@ -116,6 +116,9 @@
 - 47.完善引导页
 - 48.小视频暂时替换成本地文件
 - 49.完善电影详情
+- 50.完善音乐功能
+- 51.实现音乐列表
+- 52.开启硬件加速
   
 ###Version1.0.0
 
@@ -279,6 +282,10 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
         listView.setLayoutParams(params);
     }
 ```
+
+###2.ListView嵌套ScrollView冲突
+>音乐的列表里面内容比较多，会嵌套ScrollView。所有这里就造成了ScrollView无法滑动的情况，我的解决办法是
+
 
 
 ##七.联系方式
