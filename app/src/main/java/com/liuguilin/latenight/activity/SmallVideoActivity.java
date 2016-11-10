@@ -17,6 +17,7 @@ import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.SmallVideoAdapter;
+import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.SmallVideoData;
 import com.liuguilin.latenight.util.L;
 
@@ -46,8 +47,19 @@ public class SmallVideoActivity extends BaseActivity {
     private void initView() {
         mListView = (ListView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        //暂时没有网络接口
+        //getSmallVideo();
 
-        getSmallVideo();
+        for (int i = 0; i < Constants.videoUrls.length; i++) {
+            SmallVideoData data = new SmallVideoData();
+            data.setUrl(Constants.videoUrls[i]);
+            data.setTitle(Constants.videoTitles[i]);
+            data.setImgUrl(Constants.videoThumbs[i]);
+            mList.add(data);
+        }
+        adapter = new SmallVideoAdapter(this, mList);
+        mListView.setAdapter(adapter);
+        progressBar.setVisibility(View.GONE);
     }
 
     //获取视频

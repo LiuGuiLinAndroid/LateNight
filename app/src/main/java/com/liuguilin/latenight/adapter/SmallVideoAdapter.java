@@ -12,11 +12,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.SmallVideoData;
+import com.liuguilin.latenight.util.GlideUtils;
 
 import java.util.List;
 
@@ -29,11 +31,17 @@ public class SmallVideoAdapter extends BaseAdapter {
     private SmallVideoData data;
     private List<SmallVideoData> mList;
 
+    private int widht, height;
+    private WindowManager wm;
+
     public SmallVideoAdapter(Context mContext, List<SmallVideoData> mList) {
         this.mContext = mContext;
         this.mList = mList;
 
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        widht = wm.getDefaultDisplay().getWidth();
+        height = wm.getDefaultDisplay().getHeight();
     }
 
 
@@ -55,16 +63,17 @@ public class SmallVideoAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
-        if(convertView == null){
-           viewHolder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.small_video_item,null);
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.small_video_item, null);
             viewHolder.jc = (JCVideoPlayerStandard) convertView.findViewById(R.id.custom_videoplayer_standard);
             convertView.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         data = mList.get(position);
-        viewHolder.jc.setUp(data.getUrl(),JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, data.getTitle());
+        viewHolder.jc.setUp(data.getUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, data.getTitle());
+        GlideUtils.loadImageView(mContext, data.getImgUrl(), viewHolder.jc.thumbImageView);
         //设置预览
         return convertView;
     }

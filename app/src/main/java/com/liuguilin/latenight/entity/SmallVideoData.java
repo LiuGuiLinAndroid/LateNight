@@ -10,20 +10,13 @@ package com.liuguilin.latenight.entity;
 
 public class SmallVideoData {
 
-    //时间
-    private String time;
     //标题
     private String title;
     //地址
     private String url;
+    //图片地址
+    private String imgUrl;
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     public String getTitle() {
         return title;
@@ -39,5 +32,13 @@ public class SmallVideoData {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

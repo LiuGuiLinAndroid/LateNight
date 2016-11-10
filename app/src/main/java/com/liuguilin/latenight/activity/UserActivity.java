@@ -10,7 +10,11 @@ package com.liuguilin.latenight.activity;
  */
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,10 +25,12 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.ListViewUtils;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserActivity extends BaseActivity implements View.OnClickListener {
 
@@ -33,6 +39,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
     private ArrayAdapter<String> mAdapter;
     private ScrollView mZoomScrollView;
     private Button btn_exit_user;
+    private CircleImageView profile_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         mZoomScrollView = (ScrollView) findViewById(R.id.mZoomScrollView);
         mZoomScrollView.smoothScrollTo(0, 0);
         mListView = (ListView) findViewById(R.id.mListView);
+        profile_image = (CircleImageView) findViewById(R.id.profile_image);
         getUser();
     }
 
@@ -66,13 +74,19 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         mList.add("学校：" + user.getSchool());
         mList.add("职业：" + user.getOccupation());
         mList.add("简介：" + user.getDesc());
+
+        if (!TextUtils.isEmpty(user.getPhoto())) {
+            byte[] byteArray = Base64.decode(user.getPhoto(), Base64.DEFAULT);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
+            Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
+            profile_image.setImageBitmap(bitmap);
+        }
+
         //这里可以尝试着重写layout
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mList);
         mListView.setAdapter(mAdapter);
         ListViewUtils.setListViewHeightBasedOnChildren(mListView);
     }
-
-
 
     @Override
     public void onClick(View v) {
