@@ -198,4 +198,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //判断是否在运行
+        if (Constants.isServiceRunning(this, "com.liuguilin.latenight.MusicService")) {
+            //显示歌曲
+        }
+    }
 }

@@ -9,6 +9,7 @@ package com.liuguilin.latenight.entity;
  *  描述：    常量&接口&方法&字段
  */
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import com.sdsmdg.tastytoast.TastyToast;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 public class Constants {
 
@@ -60,6 +62,12 @@ public class Constants {
     public static final String ONE_MOIVE_STORY = "http://v3.wufazhuce.com:8000/api/movie/";
     public static final String ONE_MOIVE_STORY_RE = "/story/1/0";
 
+    //笑话接口
+    public static final String JOKE_TEXT_URL = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text?page=";
+    //图片笑话接口
+    public static final String JOKE_PIC_URL = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_pic?page=";
+
+
     //音乐列表
     public static final String ONE_MUSIC_LIST = "http://v3.wufazhuce.com:8000/api/music/idlist/0";
     //歌曲详情
@@ -79,6 +87,8 @@ public class Constants {
     public static final String BMOB_KEY = "c478860d32aa382ad179d59eec6049fc";
     //Bugly key
     public static final String BUGLY_KEY = "bd467eaf8d";
+    //BaiDu key
+    public static  final String BAIDU_KEY = "ae937efd91e4d4e9f648978183523903";
 
 
     //延时启动
@@ -297,5 +307,21 @@ public class Constants {
             Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
             imageView.setImageBitmap(bitmap);
         }
+    }
+
+    //判断服务是否运行
+    public static boolean isServiceRunning(Context mContext, String serviceName) {
+        // 活动管理器
+        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        // 获取运行的服务,参数表示最多返回的数量
+        List<ActivityManager.RunningServiceInfo> runningServices = am.getRunningServices(100);
+        for (ActivityManager.RunningServiceInfo runningServiceInfo : runningServices) {
+            String className = runningServiceInfo.service.getClassName();
+            if (className.equals(serviceName)) {
+                // 判断服务是否运行
+                return true;
+            }
+        }
+        return false;
     }
 }

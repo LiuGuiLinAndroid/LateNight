@@ -34,6 +34,7 @@
 - 1.Gank:http://www.gank.io/api
 - 2.知乎日报:https://github.com/izzyleung/ZhihuDailyPurify/wiki/知乎日报-API-分析
 - 3.One一个:暂未公布
+- 4.百度apistore:http://apistore.baidu.com/
 
 ##四.使用到的框架
 
@@ -123,6 +124,8 @@
 - 50.完善音乐功能
 - 51.实现音乐列表
 - 52.开启硬件加速
+- 53.实现笑话列表
+- 54.实现段子列表
   
 ###Version1.0.0
 

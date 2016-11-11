@@ -9,6 +9,8 @@ package com.liuguilin.latenight.adapter;
  */
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.MusicData;
+import com.liuguilin.latenight.service.MusicService;
 import com.liuguilin.latenight.util.GlideUtils;
 
 import java.util.List;
@@ -82,6 +85,18 @@ public class MusicAdapter extends BaseAdapter {
         viewHolder.tv_message.setText(data.getTvMessage());
         viewHolder.story_title.setText(data.getStory_title());
         viewHolder.tv_context.setText(data.getTvContent());
+
+        //设置点击事件
+        viewHolder.iv_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MusicService.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", data.getMusicUrl());
+                intent.putExtras(bundle);
+                mContext.startService(intent);
+            }
+        });
         return convertView;
     }
 
