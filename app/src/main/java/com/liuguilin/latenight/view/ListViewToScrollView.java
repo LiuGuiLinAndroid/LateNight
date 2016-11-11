@@ -10,7 +10,6 @@ package com.liuguilin.latenight.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -30,28 +29,4 @@ public class ListViewToScrollView extends ListView {
         super(context, attrs);
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean intercept = false;
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                intercept = false;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (mScrollView.getParent() != null) {
-                    intercept = true;
-                } else {
-                    intercept = false;
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                intercept = false;
-                break;
-        }
-        return intercept;
-    }
-
-    public void setScrollView(ScrollView mScrollView) {
-        this.mScrollView = mScrollView;
-    }
 }
