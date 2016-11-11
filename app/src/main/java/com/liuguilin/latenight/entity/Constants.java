@@ -12,6 +12,8 @@ package com.liuguilin.latenight.entity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
@@ -30,6 +32,26 @@ import com.sdsmdg.tastytoast.TastyToast;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+
+/*
+ * 接口
+ * Handler
+ * ONE
+ * KEY
+ * SHARE
+ * 设置下划线
+ * 判断网络是否可用
+ * 判断内存卡是否存在
+ * 设置某个音量
+ * 设置静音
+ * 取消静音
+ * 添加快捷方式
+ * 删除快捷方式
+ * share保存图片
+ * share读取图片
+ * 判断服务是否运行
+ * 获取版本号
+ */
 
 public class Constants {
 
@@ -88,7 +110,7 @@ public class Constants {
     //Bugly key
     public static final String BUGLY_KEY = "bd467eaf8d";
     //BaiDu key
-    public static  final String BAIDU_KEY = "ae937efd91e4d4e9f648978183523903";
+    public static final String BAIDU_KEY = "ae937efd91e4d4e9f648978183523903";
 
 
     //延时启动
@@ -104,7 +126,7 @@ public class Constants {
     public static final int RESULT_REQUEST_CODE = 10006;
 
     //加载音乐列表
-    public static  final  int HANDLER_LOFING_MUSIC_LIST = 10007;
+    public static final int HANDLER_LOFING_MUSIC_LIST = 10007;
 
 
     //第一次运行
@@ -323,5 +345,17 @@ public class Constants {
             }
         }
         return false;
+    }
+
+    //获取版本号
+    public static String getVersion(Context mContext) {
+        try {
+            PackageManager manager = mContext.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(mContext.getPackageName(), 0);
+            String version = info.versionName;
+            return "版本号：" + version;
+        } catch (Exception e) {
+            return "无法获取版本号";
+        }
     }
 }
