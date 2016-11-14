@@ -353,7 +353,7 @@ public class Constants {
             PackageManager manager = mContext.getPackageManager();
             PackageInfo info = manager.getPackageInfo(mContext.getPackageName(), 0);
             String version = info.versionName;
-            return "版本号：" + version;
+            return "版本:" + version;
         } catch (Exception e) {
             return "无法获取版本号";
         }

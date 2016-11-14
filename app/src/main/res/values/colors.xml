@@ -6,7 +6,7 @@
 
     <!--淡-->
     <color name="color_blue">#66EFFF</color>
-    <color name="color_black">#3E3E3E</color>
+    <color name="color_black">#000000</color>
     <color name="color_white">#ffffff</color>
     <color name="color_white_defa">#f2f2f2</color>
     <color name="color_red">#FF5F6E</color>

@@ -12,7 +12,7 @@ import android.os.Bundle;
 
 import com.liuguilin.gankclient.R;
 
-public class AboutActivity extends BaseActivity{
+public class AboutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
