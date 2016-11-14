@@ -9,8 +9,12 @@ package com.liuguilin.latenight.activity;
  */
 
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
@@ -18,6 +22,8 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.GirlGridAdapter;
 import com.liuguilin.latenight.entity.GirlData;
 import com.liuguilin.latenight.util.L;
+import com.liuguilin.latenight.view.CustomDialog;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +32,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class GirlActivity extends BaseActivity {
 
     private GridView girlGridView;
     private GirlGridAdapter girlAdapter;
     private List<GirlData> mList = new ArrayList<>();
     private int count = 1;
+
+    private CustomDialog dialog;
+    private List<String> mListImg = new ArrayList<>();
+    private ImageView iv_picture;
+    //支持缩放
+    private PhotoViewAttacher mAttacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,10 @@ public class GirlActivity extends BaseActivity {
 
     //初始化View
     private void initView() {
+
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_picture, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        iv_picture = (ImageView) dialog.findViewById(R.id.iv_picture);
+
         girlGridView = (GridView) findViewById(R.id.girlGridView);
         //获取数据
         getGirl();
@@ -66,6 +84,19 @@ public class GirlActivity extends BaseActivity {
                 }
             }
         });
+
+        //item点击事件
+        girlGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                L.i("img:" + mListImg.get(position));
+                //GlideUtils.loadImageView(getActivity(), mListImg.get(postion), iv_picture);
+                Picasso.with(GirlActivity.this).load(mListImg.get(position)).into(iv_picture);
+                mAttacher = new PhotoViewAttacher(iv_picture);
+                mAttacher.update();
+                dialog.show();
+            }
+        });
     }
 
     //获取美女
@@ -87,8 +118,10 @@ public class GirlActivity extends BaseActivity {
             JSONArray jsonArrayResults = jsonObject.getJSONArray("results");
             for (int i = 0; i < jsonArrayResults.length(); i++) {
                 JSONObject json = (JSONObject) jsonArrayResults.get(i);
+                String url = json.getString("url");
                 GirlData data = new GirlData();
-                data.setImgUrl(json.getString("url"));
+                data.setImgUrl(url);
+                mListImg.add(url);
                 mList.add(data);
             }
         } catch (JSONException e) {

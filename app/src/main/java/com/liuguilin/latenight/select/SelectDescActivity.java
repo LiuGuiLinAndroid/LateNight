@@ -52,7 +52,9 @@ public class SelectDescActivity extends AppCompatActivity implements View.OnClic
                 }else {
                     SharePreUtils.putString(this, Constants.SHARE_USER_DESC,"这个人很懒，什么都没有留下！");
                 }
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("first_update_user","update");
+                startActivity(intent);
                 finish();
                 break;
         }

@@ -3,6 +3,7 @@ package com.liuguilin.latenight;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
@@ -147,16 +148,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //更新数据  有可能需要去掉！
-        if (!isFirst()) {
-            L.i("更新用户数据");
-            updateUser();
+        Intent intent = getIntent();
+        String first = intent.getStringExtra("first_update_user");
+        if (!TextUtils.isEmpty(first)) {
+            if (first.equals("update")) {
+                updateUser();
+            }
         }
 
     }
 
     private void updateUser() {
         //获取到学生的信息
-        String imagePhoto = SharePreUtils.getString(this, "image_title", "");
+        String imagePhoto = SharePreUtils.getString(this, Constants.SHARE_USER_PHOTO, "");
         int age = SharePreUtils.getInt(this, Constants.SHARE_USER_AGE, 18);
         String birthday = SharePreUtils.getString(this, Constants.SHARE_USER_BIRTHDAY, "1995-10-5");
         String connstellation = SharePreUtils.getString(this, Constants.SHARE_USER_CONSTELLATION, "天秤座");
@@ -166,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
         String school = SharePreUtils.getString(this, Constants.SHARE_USER_SCHOOL, "北京大学");
         boolean sex = SharePreUtils.getBoolean(this, Constants.SHARE_USER_SEX, true);
         String weight = SharePreUtils.getString(this, Constants.SHARE_USER_WEIGHT, "60KG");
+        L.i("age:" + age + "birthday:" + birthday + "connstellation:" + connstellation
+                + "desc:" + desc + "height:" + height + "occupation:" + occupation + "school:" + school
+                + "sex:" + sex + "weight:" + weight);
         GankUser user = new GankUser();
         user.setPhoto(imagePhoto);
         user.setAge(age);
@@ -188,16 +195,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //判断应用程序是否第一次运行
-    private boolean isFirst() {
-        boolean isFirst = SharePreUtils.getBoolean(this, "is_login_main", false);
-        if (isFirst) {
-            return true;
-        } else {
-            SharePreUtils.putBoolean(this, "is_login_main", true);
-            return false;
-        }
-    }
 
     @Override
     protected void onResume() {

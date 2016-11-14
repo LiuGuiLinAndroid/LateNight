@@ -3,26 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@color/color_white"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="left|top">
-
-        <ImageView
-            android:id="@+id/icon_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/icon_back_white"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="每个账号都无比珍贵"/>
 
     <!--号码-->
     <RelativeLayout
@@ -48,8 +38,6 @@
             android:hint="@string/reg_phone_number"
             android:inputType="number"
             android:paddingLeft="5dp"
-            android:textColor="@color/color_white"
-            android:textColorHint="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
         <ImageView
@@ -87,8 +75,6 @@
             android:hint="@string/reg_sms"
             android:inputType="number"
             android:paddingLeft="5dp"
-            android:textColor="@color/color_white"
-            android:textColorHint="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
         <Button
@@ -96,9 +82,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@drawable/guide_circle_bg"
+            android:background="@drawable/button_bg"
             android:gravity="center"
             android:text="@string/reg_getsms"
+            android:textColor="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
     </LinearLayout>
@@ -113,8 +100,6 @@
         android:hint="密码"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        android:textColor="@color/color_white"
-        android:textColorHint="@color/color_white"
         android:textSize="@dimen/standard_textsize"/>
 
     <EditText
@@ -126,8 +111,6 @@
         android:hint="确认密码"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        android:textColor="@color/color_white"
-        android:textColorHint="@color/color_white"
         android:textSize="@dimen/standard_textsize"/>
 
     <Button
@@ -142,13 +125,13 @@
 
     <!--第三方登录-->
     <LinearLayout
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <!--QQ-->
         <ImageView

@@ -12,7 +12,6 @@ package com.liuguilin.latenight.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -32,7 +31,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
-public class RegisteredActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisteredActivity extends BaseActivity implements View.OnClickListener {
 
     //电话号码
     private EditText reg_et_phone;
@@ -46,8 +45,6 @@ public class RegisteredActivity extends AppCompatActivity implements View.OnClic
     private ImageView reg_iv_phone_clear;
     //标记
     private int timer = 60;
-    //返回
-    private ImageView icon_black;
     //密码
     private EditText et_pass;
     //确认密码
@@ -93,8 +90,6 @@ public class RegisteredActivity extends AppCompatActivity implements View.OnClic
         reg_btn_getsms.setOnClickListener(this);
         reg_btn_regisered = (Button) findViewById(R.id.reg_btn_regisered);
         reg_btn_regisered.setOnClickListener(this);
-        icon_black = (ImageView) findViewById(R.id.icon_black);
-        icon_black.setOnClickListener(this);
         et_pass = (EditText) findViewById(R.id.et_pass);
         et_password = (EditText) findViewById(R.id.et_password);
 
@@ -130,9 +125,6 @@ public class RegisteredActivity extends AppCompatActivity implements View.OnClic
         String pass = et_pass.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         switch (v.getId()) {
-            case R.id.icon_black:
-                finish();
-                break;
             case R.id.reg_iv_phone_clear:
                 reg_et_phone.setText("");
                 reg_et_sms.setText("");

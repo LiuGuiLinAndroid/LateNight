@@ -317,7 +317,7 @@ public class Constants {
         bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         String imageString = new String(Base64.encodeToString(byteArray, Base64.DEFAULT));
-        SharePreUtils.putString(mContext, "image_title", imageString);
+        SharePreUtils.putString(mContext, Constants.SHARE_USER_PHOTO, imageString);
     }
 
     //读取share保存图片

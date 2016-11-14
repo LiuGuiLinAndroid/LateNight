@@ -37,8 +37,6 @@
             android:hint="@string/reg_phone_number"
             android:inputType="number"
             android:paddingLeft="5dp"
-            android:textColor="@color/color_white"
-            android:textColorHint="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
         <ImageView
@@ -76,8 +74,6 @@
             android:hint="@string/reg_sms"
             android:inputType="number"
             android:paddingLeft="5dp"
-            android:textColor="@color/color_white"
-            android:textColorHint="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
         <Button
@@ -85,9 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@drawable/guide_circle_bg"
+            android:background="@drawable/button_bg"
             android:gravity="center"
             android:text="@string/reg_getsms"
+            android:textColor="@color/color_white"
             android:textSize="@dimen/standard_textsize"/>
 
     </LinearLayout>
@@ -101,8 +98,6 @@
         android:hint="密码"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        android:textColor="@color/color_white"
-        android:textColorHint="@color/color_white"
         android:textSize="@dimen/standard_textsize"/>
 
     <EditText
@@ -114,8 +109,6 @@
         android:hint="确认密码"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        android:textColor="@color/color_white"
-        android:textColorHint="@color/color_white"
         android:textSize="@dimen/standard_textsize"/>
 
     <Button
@@ -123,7 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edit_bg"
+        android:background="@drawable/button_bg"
         android:text="确定"
         android:textColor="@color/color_white"/>
 
