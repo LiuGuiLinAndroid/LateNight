@@ -11,6 +11,7 @@ package com.liuguilin.latenight.activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -22,8 +23,8 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.GirlGridAdapter;
 import com.liuguilin.latenight.entity.GirlData;
 import com.liuguilin.latenight.util.L;
+import com.liuguilin.latenight.util.PicassoUtils;
 import com.liuguilin.latenight.view.CustomDialog;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +47,9 @@ public class GirlActivity extends BaseActivity {
     private ImageView iv_picture;
     //支持缩放
     private PhotoViewAttacher mAttacher;
+    //屏幕宽高
+    private int width, height;
+    private WindowManager wm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,10 @@ public class GirlActivity extends BaseActivity {
 
     //初始化View
     private void initView() {
-
+        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        width = wm.getDefaultDisplay().getWidth();
+        height = wm.getDefaultDisplay().getHeight();
+        L.i("width:" + width + "height:" + height);
         dialog = new CustomDialog(this, 0, 0, R.layout.dialog_picture, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
         iv_picture = (ImageView) dialog.findViewById(R.id.iv_picture);
 
@@ -90,8 +97,8 @@ public class GirlActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 L.i("img:" + mListImg.get(position));
-                //GlideUtils.loadImageView(getActivity(), mListImg.get(postion), iv_picture);
-                Picasso.with(GirlActivity.this).load(mListImg.get(position)).into(iv_picture);
+                //Picasso.with(GirlActivity.this).load(mListImg.get(position)).into(iv_picture);
+                PicassoUtils.loadImageViewSize(GirlActivity.this, mListImg.get(position), width, height, iv_picture);
                 mAttacher = new PhotoViewAttacher(iv_picture);
                 mAttacher.update();
                 dialog.show();

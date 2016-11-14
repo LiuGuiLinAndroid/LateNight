@@ -12,6 +12,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,11 +31,16 @@ public class PictureAdapter extends BaseAdapter {
     private PictureData data;
 
     private onPClickListener onClickListener;
+    private WindowManager windowManager;
+    private int width, height;
 
     public PictureAdapter(Context mContext, List<PictureData> mList) {
         this.mContext = mContext;
         this.mList = mList;
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        width = windowManager.getDefaultDisplay().getWidth();
+        height = windowManager.getDefaultDisplay().getHeight();
     }
 
     @Override
@@ -69,7 +75,7 @@ public class PictureAdapter extends BaseAdapter {
         data = mList.get(position);
         viewHolder.tv_title.setText(data.getTitle());
         //viewHolder.tv_content.setText(data.getImg());
-        PicassoUtils.loadImageViewSize(mContext, data.getImg(), 1800, 800, viewHolder.tv_content);
+        PicassoUtils.loadImageViewSize(mContext, data.getImg(), width, height / 2, viewHolder.tv_content);
 
         final View finalConvertView = convertView;
         viewHolder.tv_content.setOnClickListener(new View.OnClickListener() {

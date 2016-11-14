@@ -29,8 +29,6 @@ import com.liuguilin.latenight.adapter.WeatherAdapter;
 import com.liuguilin.latenight.entity.GraphData;
 import com.liuguilin.latenight.entity.WeatherData;
 import com.liuguilin.latenight.util.L;
-import com.liuguilin.latenight.util.ListViewUtils;
-import com.liuguilin.latenight.view.GraphView;
 import com.liuguilin.latenight.view.RiseNumberTextView;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -61,10 +59,11 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     private ListView mListView;
     private ProgressBar progressBar;
 
+    //城市
+    private TextView tv_city;
     private List<WeatherData> mList = new ArrayList<>();
     private WeatherAdapter mAdapter;
 
-    private GraphView mGraphView;
     private ArrayList<GraphData> items = new ArrayList<GraphData>();
 
     @Override
@@ -89,7 +88,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         tv_power = (TextView) findViewById(R.id.tv_power);
         mListView = (ListView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mGraphView = (GraphView) findViewById(R.id.mGraphView);
+        tv_city = (TextView) findViewById(R.id.tv_city);
 
         numberTextView = (RiseNumberTextView) findViewById(R.id.mRiseNumberTextView);
         iv_refresh = (ImageView) findViewById(R.id.iv_refresh);
@@ -129,6 +128,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
     //获取天气
     private void getNewWeather(String city) {
+        tv_city.setText(city);
         String weather_url = "http://op.juhe.cn/onebox/weather/query?cityname=" + city + "&key=4ea58de8a7573377cec0046f5e2469d5";
         RxVolley.get(weather_url, new HttpCallback() {
             @Override
@@ -200,7 +200,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
             mAdapter = new WeatherAdapter(this, mList);
             mListView.setAdapter(mAdapter);
-            ListViewUtils.setListViewHeightBasedOnChildren(mListView);
+            //ListViewUtils.setListViewHeightBasedOnChildren(mListView);
 
             //一周天气
             JSONArray jsonArrayWeather = jsonObjectData.getJSONArray("weather");
@@ -209,7 +209,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                 JSONObject jsonInfo = json.getJSONObject("info");
                 JSONArray jsonArray = jsonInfo.getJSONArray("day");
 
-                switch (i){
+                switch (i) {
                     case 0:
                         GraphData data = new GraphData("今天", jsonArray.getInt(2));
                         items.add(data);
@@ -228,8 +228,6 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                         break;
                 }
             }
-            //装载数据
-            mGraphView.setItems(items);
             progressBar.setVisibility(View.GONE);
         } catch (JSONException e) {
             e.printStackTrace();

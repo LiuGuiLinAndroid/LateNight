@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@drawable/weather_bg"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:background="@color/color_main">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,11 +52,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/iv_weather_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@drawable/ic_launcher"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -81,21 +81,44 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_weather"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="多云"
-                android:textColor="@color/color_white"
-                android:textSize="20dp"/>
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="深圳"
+                    android:textColor="@color/color_white"
+                    android:textSize="20dp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/color_white"/>
+
+                <TextView
+                    android:id="@+id/tv_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="多云"
+                    android:textColor="@color/color_white"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -123,25 +146,19 @@
     </RelativeLayout>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"/>
+        android:layout_height="wrap_content"/>
 
-    <com.liuguilin.latenight.view.GraphView
-        android:visibility="gone"
-        android:background="@color/color_black"
-        android:id="@+id/mGraphView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+    <!--一周天气折线图-->
 
     <!--相关参数-->
     <ListView
         android:id="@+id/mListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"/>
 
-    <!--一周天气-->
 
 </LinearLayout>
+

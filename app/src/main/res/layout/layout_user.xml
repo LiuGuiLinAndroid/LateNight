@@ -15,24 +15,16 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:background="@color/color_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:orientation="vertical">
-
-                <!--根布局要更改-->
-                <ImageView
-                    android:id="@+id/iv_zoom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/user_title_bg"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
+                    android:layout_centerInParent="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/liuguilin"
                     app:civ_border_color="@color/colorAccent"

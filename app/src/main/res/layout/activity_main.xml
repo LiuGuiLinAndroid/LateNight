@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
 
     <!--launcher卡片-->
     <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
         android:id="@+id/hicvp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
-        app:icvp_scroll_duration="250"
         app:icvp_center_page_scale_offset="30dp"
-        app:icvp_min_page_scale_offset="5dp"
+        app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
         app:icvp_max_page_scale="0.8"
+        app:icvp_medium_scaled="false"
         app:icvp_min_page_scale="0.55"
-        app:icvp_medium_scaled="false"/>
+        app:icvp_min_page_scale_offset="5dp"
+        app:icvp_scroll_duration="250"/>
 
 
-</LinearLayout>
+    <com.liuguilin.latenight.view.BubbleLayout
+        android:id="@+id/mBubbleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</RelativeLayout>
