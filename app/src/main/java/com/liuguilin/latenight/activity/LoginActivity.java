@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,6 +31,7 @@ import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.select.SelectPhotoActivity;
 import com.liuguilin.latenight.util.SharePreUtils;
+import com.liuguilin.latenight.view.CustomDialog;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobUser;
@@ -58,7 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox check_kepp_password;
     //自动登录
     private CheckBox check_auto_login;
-
+    //进度加载
+    private CustomDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         eye_gone.setOnClickListener(this);
         check_kepp_password = (CheckBox) findViewById(R.id.check_kepp_password);
         check_auto_login = (CheckBox) findViewById(R.id.check_auto_login);
+
+        //初始化提示框
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        //屏幕外点击无效
+        dialog.setCancelable(false);
 
         //监听
         login_et_name.addTextChangedListener(new TextWatcher() {
@@ -152,6 +160,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this, TermsActivity.class));
                 break;
             case R.id.btn_login:
+                dialog.show();
                 String name = login_et_name.getText().toString().trim();
                 String password = login_et_password.getText().toString();
                 //判断是否为空
@@ -160,6 +169,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     BmobUser.loginByAccount(name, password, new LogInListener<GankUser>() {
                         @Override
                         public void done(GankUser user, BmobException e) {
+                            dialog.dismiss();
                             if (user != null) {
                                 TastyToast.makeText(LoginActivity.this, "登录成功", TastyToast.LENGTH_LONG,
                                         TastyToast.SUCCESS);
