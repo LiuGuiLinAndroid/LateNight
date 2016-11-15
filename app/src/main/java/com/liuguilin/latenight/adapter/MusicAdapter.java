@@ -113,5 +113,7 @@ public class MusicAdapter extends BaseAdapter {
         private TextView tv_message;
         private TextView story_title;
         private TextView tv_context;
+        //查看封面
+        private TextView look_canvas;
     }
 }

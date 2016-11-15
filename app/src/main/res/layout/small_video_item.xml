@@ -4,29 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/small_video_bg"
-        android:padding="8dp"
-        android:text="2016-11-11:18:56:99"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Title"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"/>
-
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
         android:id="@+id/custom_videoplayer_standard"
         android:layout_width="match_parent"

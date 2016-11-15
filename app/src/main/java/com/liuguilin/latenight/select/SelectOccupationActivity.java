@@ -44,22 +44,10 @@ public class SelectOccupationActivity extends AppCompatActivity implements View.
 
     //初始化数据
     private void initData() {
-        dataSource.add("Android工程师");
-        dataSource.add("JAVA工程师");
-        dataSource.add("C/C++工程师");
-        dataSource.add("IOS工程师");
-        dataSource.add("Python工程师");
-        dataSource.add("BSP工程师工程师");
-        dataSource.add("PHP工程师");
-        dataSource.add("C#工程师");
-        dataSource.add("UI设计师");
-        dataSource.add("产品经理");
-        dataSource.add("研发助理");
-        dataSource.add("CEO");
-        dataSource.add("CTO");
-        dataSource.add("财务");
-        dataSource.add("会计");
-        dataSource.add("司机");
+        String[] res = getResources().getStringArray(R.array.array_0ccupation);
+        for (int i = 0; i < res.length; i++) {
+            dataSource.add(res[i]);
+        }
         mSizeTagAdapter.onlyAddAll(dataSource);
     }
 

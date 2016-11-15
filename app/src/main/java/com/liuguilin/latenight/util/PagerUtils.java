@@ -6,7 +6,7 @@ package com.liuguilin.latenight.util;
  *  文件名:   PagerUtils
  *  创建者:   LGL
  *  创建时间:  2016/10/24 20:10
- *  描述：    TODO
+ *  描述：    Pager的数据模型
  */
 
 import android.view.View;

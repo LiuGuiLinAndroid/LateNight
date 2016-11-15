@@ -7,4 +7,35 @@
         <attr name="maxZoom" format="dimension" />
     </declare-styleable>
 
+    <!--职业-->
+    <string-array name="array_0ccupation">
+        <item>Android工程师</item>
+        <item>JAVA工程师</item>
+        <item>C/C++工程师</item>
+        <item>IOS工程师</item>
+        <item>Python工程师</item>
+        <item>BSP工程师工程师</item>
+        <item>PHP工程师</item>
+        <item>C#工程师</item>
+        <item>UI设计师</item>
+        <item>产品经理</item>
+        <item>研发助理</item>
+        <item>CEO</item>
+        <item>CTO</item>
+        <item>财务</item>
+        <item>会计</item>
+        <item>司机</item>
+        <item>自由职业者</item>
+        <item>警察</item>
+        <item>城管</item>
+        <item>学生</item>
+        <item>鉴黄师</item>
+        <item>化妆师</item>
+        <item>明星</item>
+        <item>导演</item>
+        <item>武林高手</item>
+        <item>天外飞仙</item>
+        <item>降龙十八掌</item>
+    </string-array>
+
 </resources>

@@ -14,11 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.SmallVideoData;
-import com.liuguilin.latenight.util.GlideUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -73,14 +72,14 @@ public class SmallVideoAdapter extends BaseAdapter {
         }
         data = mList.get(position);
         viewHolder.jc.setUp(data.getUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, data.getTitle());
-        GlideUtils.loadImageView(mContext, data.getImgUrl(), viewHolder.jc.thumbImageView);
+        //GlideUtils.loadImageView(mContext, data.getImgUrl(), viewHolder.jc.thumbImageView);
+        //PicassoUtils.loadImageViewSize(mContext, data.getImgUrl(), widht, height / 2, viewHolder.jc.thumbImageView);
+        Picasso.with(mContext).load(data.getImgUrl()).into(viewHolder.jc.thumbImageView);
         //设置预览
         return convertView;
     }
 
     class ViewHolder {
-        private TextView tv_title;
-        private TextView tv_time;
         private JCVideoPlayerStandard jc;
     }
 }
