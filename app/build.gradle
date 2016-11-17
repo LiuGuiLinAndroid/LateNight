@@ -95,4 +95,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     //NumberPickerView
     compile 'cn.carbswang.android:NumberPickerView:1.1.1'
+    //MPAndroidChart
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
 }

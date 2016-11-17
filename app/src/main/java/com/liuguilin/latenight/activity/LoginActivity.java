@@ -96,6 +96,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //初始化提示框
         dialog = new CustomDialog(this, 0, 0, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        TextView tv_login = (TextView) dialog.findViewById(R.id.tv_loding_text);
+        tv_login.setText("正在登陆...");
         //屏幕外点击无效
         dialog.setCancelable(false);
 
@@ -183,12 +185,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 //自动登录
                                 SharePreUtils.putBoolean(LoginActivity.this, Constants.SHARE_AUTO_LOGIN, check_auto_login.isChecked());
 
-                                if (isFirstLogin()) {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                } else {
+                                //不能通过判断第一次，因为这样每一次重新安装都需要选择一次更新一次属性
+                                //if (isFirstLogin()) {
+                                //    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                //} else {
+                                //     引导
+                                //    startActivity(new Intent(LoginActivity.this, SelectPhotoActivity.class));
+                                //}
+
+                                //根据值来,如果为空就说明没设置过，如果不为空的话说明设置过
+                                GankUser userSex = BmobUser.getCurrentUser(GankUser.class);
+                                if (!TextUtils.isEmpty(userSex.getHeight())) {
                                     //引导
                                     startActivity(new Intent(LoginActivity.this, SelectPhotoActivity.class));
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 }
+
                                 finish();
                             } else {
                                 TastyToast.makeText(LoginActivity.this, "登录失败" + e.toString(), TastyToast.LENGTH_LONG,

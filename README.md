@@ -68,6 +68,8 @@
 
 - 15.FlowLayout-master:https://github.com/qiushi123/FlowLayout-master
 
+- 16.MPAndroidChart:https://github.com/PhilJay/MPAndroidChart
+
 ##五.更新日志
 
 ###Version1.0.1
@@ -135,6 +137,10 @@
 - 61.新增登录加载进度 
 - 62.完善设置
 - 63.新增更多职业
+- 64.创建AppDownloadActivity应用下载
+- 65.创建DonationActivity捐赠
+- 66.更改更新资料的逻辑
+
  
 ###Version1.0.0
 

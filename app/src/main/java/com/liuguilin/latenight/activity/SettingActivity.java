@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
+import com.liuguilin.latenight.util.DataCleanManager;
+import com.sdsmdg.tastytoast.TastyToast;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
@@ -28,6 +30,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private LinearLayout ll_about_app;
     //清理缓存
     private LinearLayout ll_clear_data;
+    //缓存大小
+    private TextView tv_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         ll_about_app.setOnClickListener(this);
         ll_clear_data = (LinearLayout) findViewById(R.id.ll_clear_data);
         ll_clear_data.setOnClickListener(this);
+        tv_data = (TextView) findViewById(R.id.tv_data);
+        try {
+            //获取缓存大小
+            tv_data.setText(DataCleanManager.getTotalCacheSize(this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -59,7 +70,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
             case R.id.ll_clear_data:
-                Toast.makeText(this, "清理缓存", Toast.LENGTH_SHORT).show();
+                DataCleanManager.clearAllCache(this);
+                TastyToast.makeText(this, "清理成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
                 break;
         }
     }

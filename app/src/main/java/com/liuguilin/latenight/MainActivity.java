@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.liuguilin.gankclient.R;
@@ -29,6 +31,7 @@ import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.SharePreUtils;
+import com.liuguilin.latenight.view.CustomDialog;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobUser;
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     //launcher卡片
     private HorizontalInfiniteCycleViewPager infiniteCycleViewPager;
 
+    private CustomDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
     //初始化View
     private void initView() {
+
+        //初始化提示框
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        TextView tv_login = (TextView) dialog.findViewById(R.id.tv_loding_text);
+        tv_login.setText("更新信息中...");
+        //屏幕外点击无效
+        dialog.setCancelable(false);
+
         infiniteCycleViewPager = (HorizontalInfiniteCycleViewPager) findViewById(R.id.hicvp);
         HorizontalPagerAdapter horizontalPagerAdapter = new HorizontalPagerAdapter(this, false);
         infiniteCycleViewPager.setAdapter(horizontalPagerAdapter);
@@ -159,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUser() {
+        dialog.show();
         //获取到学生的信息
         String imagePhoto = SharePreUtils.getString(this, Constants.SHARE_USER_PHOTO, "");
         int age = SharePreUtils.getInt(this, Constants.SHARE_USER_AGE, 18);
@@ -188,8 +202,9 @@ public class MainActivity extends AppCompatActivity {
         user.update(bmobUser.getObjectId(), new UpdateListener() {
             @Override
             public void done(BmobException e) {
+                dialog.dismiss();
                 if (e != null) {
-                    TastyToast.makeText(MainActivity.this, "更新信息失敗", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                    TastyToast.makeText(MainActivity.this, "更新信息失敗" + e.toString(), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                 }
             }
         });

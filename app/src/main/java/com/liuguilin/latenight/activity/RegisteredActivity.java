@@ -15,15 +15,18 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.GankUser;
 import com.liuguilin.latenight.util.PhoneFormatCheckUtils;
+import com.liuguilin.latenight.view.CustomDialog;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import cn.bmob.v3.BmobSMS;
@@ -49,6 +52,8 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
     private EditText et_pass;
     //确认密码
     private EditText et_password;
+
+    private CustomDialog dialog;
 
     private Handler handler = new Handler() {
         @Override
@@ -81,6 +86,14 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
 
     //初始化View
     private void initView() {
+
+        //初始化提示框
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        TextView tv_login = (TextView) dialog.findViewById(R.id.tv_loding_text);
+        tv_login.setText("正在注册...");
+        //屏幕外点击无效
+        dialog.setCancelable(false);
+
         reg_et_phone = (EditText) findViewById(R.id.reg_et_phone);
         reg_et_sms = (EditText) findViewById(R.id.reg_et_sms);
         reg_btn_getsms = (Button) findViewById(R.id.reg_btn_getsms);
@@ -162,10 +175,11 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                 }
                 break;
             case R.id.reg_btn_regisered:
-                if (!TextUtils.isEmpty(phone) & !TextUtils.isEmpty(pass) & !TextUtils.isEmpty(password) ) {
+                if (!TextUtils.isEmpty(phone) & !TextUtils.isEmpty(pass) & !TextUtils.isEmpty(password)) {
                     if (!TextUtils.isEmpty(sms)) {
                         if (PhoneFormatCheckUtils.isChinaPhoneLegal(phone)) {
-                            if(pass.equals(password)) {
+                            if (pass.equals(password)) {
+                                dialog.show();
                                 //注册
                                 GankUser user = new GankUser();
                                 user.setPassword(password);
@@ -173,6 +187,7 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                                 user.signOrLogin(sms, new SaveListener<GankUser>() {
                                     @Override
                                     public void done(GankUser gankUser, BmobException e) {
+                                        dialog.dismiss();
                                         if (e == null) {
                                             TastyToast.makeText(RegisteredActivity.this, "注冊成功", TastyToast.LENGTH_LONG,
                                                     TastyToast.SUCCESS);
@@ -183,7 +198,7 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
                                         }
                                     }
                                 });
-                            }else {
+                            } else {
                                 TastyToast.makeText(this, "两次输入的密码不不一致", TastyToast.LENGTH_LONG, TastyToast.INFO);
                             }
                         } else {
