@@ -11,7 +11,10 @@ package com.liuguilin.latenight.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.kymjs.rxvolley.RxVolley;
@@ -21,6 +24,8 @@ import com.liuguilin.latenight.adapter.MusicAdapter;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.entity.MusicData;
 import com.liuguilin.latenight.util.L;
+import com.liuguilin.latenight.util.PicassoUtils;
+import com.liuguilin.latenight.view.CustomDialog;
 import com.liuguilin.latenight.view.ListViewToScrollView;
 
 import org.json.JSONArray;
@@ -29,6 +34,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class MusicActivity extends BaseActivity {
 
@@ -42,6 +49,15 @@ public class MusicActivity extends BaseActivity {
     private ListViewToScrollView mListView;
 
     private ProgressBar progressBar;
+    private CustomDialog dialog;
+    private ImageView iv_picture;
+    //支持缩放
+    private PhotoViewAttacher mAttacher;
+    //屏幕宽高
+    private int width, height;
+    private WindowManager wm;
+
+    private List<String>mListImg = new ArrayList<>();
 
     private Handler handler = new Handler() {
         @Override
@@ -53,6 +69,15 @@ public class MusicActivity extends BaseActivity {
                     mAdapter = new MusicAdapter(MusicActivity.this, mList);
                     mListView.setAdapter(mAdapter);
                     progressBar.setVisibility(View.GONE);
+                    mAdapter.setOnClickListener(new MusicAdapter.PagerItemClickListener() {
+                        @Override
+                        public void onClickListener(int position) {
+                            PicassoUtils.loadImageViewSize(MusicActivity.this, mListImg.get(position), width, height, iv_picture);
+                            mAttacher = new PhotoViewAttacher(iv_picture);
+                            mAttacher.update();
+                            dialog.show();
+                        }
+                    });
                     break;
             }
         }
@@ -68,7 +93,12 @@ public class MusicActivity extends BaseActivity {
 
     //初始化View
     private void initView() {
-
+        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        width = wm.getDefaultDisplay().getWidth();
+        height = wm.getDefaultDisplay().getHeight();
+        L.i("width:" + width + "height:" + height);
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_picture, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        iv_picture = (ImageView) dialog.findViewById(R.id.iv_picture);
         mListView = (ListViewToScrollView) findViewById(R.id.mListView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -118,9 +148,10 @@ public class MusicActivity extends BaseActivity {
 
             data.setImgBgUrl(jsonData.getString("cover"));
             data.setImgPhotoUrl(jsonAuthor.getString("web_url"));
+            mListImg.add(jsonData.getString("cover"));
             data.setName(jsonAuthor.getString("user_name"));
             data.setTime(jsonData.getString("last_update_date"));
-            data.setMusicUrl(jsonData.getString("music_id"));
+            data.setMusicUrl(jsonData.getString("web_url"));
             data.setTvTitle(jsonData.getString("title"));
             data.setTvMessage(jsonData.getString("charge_edt"));
             data.setStory_title(jsonData.getString("story_title"));
@@ -131,7 +162,8 @@ public class MusicActivity extends BaseActivity {
                 handler.sendEmptyMessage(Constants.HANDLER_LOFING_MUSIC_LIST);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            progressBar.setVisibility(View.GONE);
+            //解析失败
         }
     }
 

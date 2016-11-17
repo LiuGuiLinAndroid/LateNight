@@ -22,6 +22,7 @@ import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.MusicData;
 import com.liuguilin.latenight.service.MusicService;
 import com.liuguilin.latenight.util.GlideUtils;
+import com.liuguilin.latenight.util.L;
 
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class MusicAdapter extends BaseAdapter {
     private List<MusicData> mList;
     private LayoutInflater inflater;
     private MusicData data;
+
+    private PagerItemClickListener onPagerItemClickListener;
 
     public MusicAdapter(Context mContext, List<MusicData> mList) {
         this.mContext = mContext;
@@ -56,7 +59,7 @@ public class MusicAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -71,13 +74,14 @@ public class MusicAdapter extends BaseAdapter {
             viewHolder.tv_message = (TextView) convertView.findViewById(R.id.tv_message);
             viewHolder.story_title = (TextView) convertView.findViewById(R.id.story_title);
             viewHolder.tv_context = (TextView) convertView.findViewById(R.id.tv_context);
+            viewHolder.look_canvas = (TextView) convertView.findViewById(R.id.look_canvas);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         data = mList.get(position);
-        GlideUtils.loadImageView(mContext, data.getImgBgUrl(), viewHolder.ll_bg);
+        //GlideUtils.loadImageView(mContext, data.getImgBgUrl(), viewHolder.ll_bg);
         GlideUtils.loadImageView(mContext, data.getImgPhotoUrl(), viewHolder.profile_image);
         viewHolder.tv_name.setText(data.getName());
         viewHolder.tv_time.setText(data.getTime());
@@ -86,6 +90,16 @@ public class MusicAdapter extends BaseAdapter {
         viewHolder.story_title.setText(data.getStory_title());
         viewHolder.tv_context.setText(data.getTvContent());
 
+        //点击事件
+        viewHolder.look_canvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onPagerItemClickListener != null) {
+                    onPagerItemClickListener.onClickListener(position);
+                }
+            }
+        });
+
         //设置点击事件
         viewHolder.iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +107,9 @@ public class MusicAdapter extends BaseAdapter {
                 Intent intent = new Intent(mContext, MusicService.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("url", data.getMusicUrl());
+                L.i("播放地址：" + data.getMusicUrl());
                 intent.putExtras(bundle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startService(intent);
             }
         });
@@ -115,5 +131,14 @@ public class MusicAdapter extends BaseAdapter {
         private TextView tv_context;
         //查看封面
         private TextView look_canvas;
+    }
+
+    public interface PagerItemClickListener {
+        public void onClickListener(int position);
+    }
+
+    //实现接口
+    public void setOnClickListener(PagerItemClickListener onPagerItemClickListener) {
+        this.onPagerItemClickListener = onPagerItemClickListener;
     }
 }
