@@ -65,6 +65,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     private WeatherAdapter mAdapter;
 
     private ArrayList<GraphData> items = new ArrayList<GraphData>();
+    private String city = "深圳";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,7 +247,8 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_refresh:
-                mLocationClient.start();
+                mList.clear();
+                getNewWeather(city);
                 TastyToast.makeText(this, "正在刷新数据", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 break;
         }
@@ -261,13 +263,14 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                 case BDLocation.TypeGpsLocation:
                 case BDLocation.TypeNetWorkLocation:
                 case BDLocation.TypeOffLineLocation:
-                    getNewWeather(location.getCity());
+                    city = location.getCity();
+                    getNewWeather(city);
                     break;
                 //错误
                 case BDLocation.TypeServerError:
                 case BDLocation.TypeNetWorkException:
                 case BDLocation.TypeCriteriaException:
-                    getNewWeather("深圳");
+                    getNewWeather(city);
                     break;
             }
         }

@@ -140,6 +140,8 @@
 - 64.创建AppDownloadActivity应用下载
 - 65.创建DonationActivity捐赠
 - 66.更改更新资料的逻辑
+- 67.完善天气数据刷新机制
+- 68.创建用户编辑菜单
 
  
 ###Version1.0.0

@@ -15,6 +15,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -98,5 +100,23 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
         }
+    }
+
+    //创建菜单
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_menu, menu);
+        return true;
+    }
+
+    //菜单操作
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_edit_user:
+                startActivity(new Intent(this, EditorUserActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
