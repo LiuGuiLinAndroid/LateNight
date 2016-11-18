@@ -11,20 +11,24 @@ package com.liuguilin.latenight.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.util.DataCleanManager;
+import com.liuguilin.latenight.view.CustomDialog;
 import com.sdsmdg.tastytoast.TastyToast;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
     //版本号
     private TextView tv_version;
+    //版本更新
     private LinearLayout ll_update_version;
     //关于
     private LinearLayout ll_about_app;
@@ -32,6 +36,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private LinearLayout ll_clear_data;
     //缓存大小
     private TextView tv_data;
+    //提示框
+    private CustomDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,14 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     //初始化View
     private void initView() {
+
+        //初始化提示框
+        dialog = new CustomDialog(this, 0, 0, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        TextView tv_login = (TextView) dialog.findViewById(R.id.tv_loding_text);
+        tv_login.setText("检查新版本...");
+        //屏幕外点击无效
+        dialog.setCancelable(false);
+
         tv_version = (TextView) findViewById(R.id.tv_version);
         tv_version.setText(Constants.getVersion(this));
         ll_update_version = (LinearLayout) findViewById(R.id.ll_update_version);
@@ -64,7 +78,14 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_update_version:
-                Toast.makeText(this, "版本更新", Toast.LENGTH_SHORT).show();
+                dialog.show();
+                RxVolley.get(Constants.UPDATE_APP_URL, new HttpCallback() {
+                    @Override
+                    public void onSuccess(String t) {
+                        dialog.dismiss();
+                        //在这里判断是否有新版本，有的话提示更新，没有的话就GG
+                    }
+                });
                 break;
             case R.id.ll_about_app:
                 startActivity(new Intent(this, AboutActivity.class));

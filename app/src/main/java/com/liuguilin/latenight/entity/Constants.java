@@ -100,6 +100,9 @@ public class Constants {
     public static final String ONE_MUSIC_SPECK_LIST = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/468/";
 
 
+    //版本更新地址
+    public static final String UPDATE_APP_URL = "";
+
     //城市
     public static final String PROVINCE_URL = "http://www.hisihi.com/app.php?s=/school/province";
     //学校

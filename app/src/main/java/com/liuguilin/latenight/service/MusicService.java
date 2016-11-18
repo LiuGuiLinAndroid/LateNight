@@ -33,7 +33,7 @@ public class MusicService extends Service {
         //拿到播放地址
         String musicUrl = intent.getStringExtra("url");
         L.i("music url:" + musicUrl);
-        playMusic(musicUrl);
+        //playMusic(musicUrl);
         return START_STICKY;
     }
 
