@@ -9,7 +9,12 @@ package com.liuguilin.latenight.activity;
  *  描述：    天气
  */
 
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,12 +26,25 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.Utils;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.http.VolleyError;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.WeatherAdapter;
-import com.liuguilin.latenight.entity.GraphData;
 import com.liuguilin.latenight.entity.WeatherData;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.view.RiseNumberTextView;
@@ -39,7 +57,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherActivity extends BaseActivity implements View.OnClickListener {
+public class WeatherActivity extends BaseActivity implements View.OnClickListener, OnChartGestureListener, OnChartValueSelectedListener {
 
     //定位
     public LocationClient mLocationClient = null;
@@ -64,8 +82,11 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     private List<WeatherData> mList = new ArrayList<>();
     private WeatherAdapter mAdapter;
 
-    private ArrayList<GraphData> items = new ArrayList<GraphData>();
     private String city = "深圳";
+
+    private LineChart mLineChar;
+    private ArrayList<Entry> values = new ArrayList<Entry>();
+    private LineDataSet set1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +95,76 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
         initLocation();
         initView();
+        initMpAndroid();
+    }
 
+    //初始化折线图
+    private void initMpAndroid() {
+        mLineChar = (LineChart) findViewById(R.id.mLineChar);
+        //设置手势滑动事件
+        mLineChar.setOnChartGestureListener(this);
+        //设置数值选择监听
+        mLineChar.setOnChartValueSelectedListener(this);
+        //后台绘制
+        mLineChar.setDrawGridBackground(false);
+        //设置描述文本
+        mLineChar.getDescription().setEnabled(false);
+        //设置支持触控手势
+        mLineChar.setTouchEnabled(true);
+        //设置缩放
+        mLineChar.setDragEnabled(true);
+        //设置推动
+        mLineChar.setScaleEnabled(true);
+        //如果禁用,扩展可以在x轴和y轴分别完成
+        mLineChar.setPinchZoom(true);
+
+        //x轴
+        LimitLine llXAxis = new LimitLine(10f, "标记");
+        //设置线宽
+        llXAxis.setLineWidth(4f);
+        //
+        llXAxis.enableDashedLine(10f, 10f, 0f);
+        //设置
+        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        llXAxis.setTextSize(10f);
+
+        XAxis xAxis = mLineChar.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        //设置x轴的最大值
+        xAxis.setAxisMaximum(5f);
+        //设置x轴的最小值
+        xAxis.setAxisMinimum(0f);
+
+        LimitLine ll1 = new LimitLine(30f, "高温");
+        ll1.setLineWidth(4f);
+        ll1.enableDashedLine(10f, 10f, 0f);
+        ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        ll1.setTextSize(10f);
+
+        LimitLine ll2 = new LimitLine(0f, "低温");
+        ll2.setLineWidth(4f);
+        ll2.enableDashedLine(10f, 10f, 0f);
+        ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        ll2.setTextSize(10f);
+
+        YAxis leftAxis = mLineChar.getAxisLeft();
+        //重置所有限制线,以避免重叠线
+        leftAxis.removeAllLimitLines();
+        //设置优秀线
+        leftAxis.addLimitLine(ll1);
+        //设置及格线
+        leftAxis.addLimitLine(ll2);
+        //y轴最大
+        leftAxis.setAxisMaximum(40f);
+        //y轴最小
+        leftAxis.setAxisMinimum(-10f);
+        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+        leftAxis.setDrawZeroLine(false);
+
+        // 限制数据(而不是背后的线条勾勒出了上面)
+        leftAxis.setDrawLimitLinesBehindData(true);
+
+        mLineChar.getAxisRight().setEnabled(false);
     }
 
     //初始化View
@@ -96,6 +186,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         iv_refresh.setOnClickListener(this);
         //开启定位
         mLocationClient.start();
+        L.i("开始定位");
     }
 
     //初始化定位函数
@@ -116,6 +207,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         option.SetIgnoreCacheException(false);
         option.setEnableSimulateGps(false);
         mLocationClient.setLocOption(option);
+        L.i("初始化定位");
     }
 
     //开始执行
@@ -210,28 +302,69 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                 JSONObject jsonInfo = json.getJSONObject("info");
                 JSONArray jsonArray = jsonInfo.getJSONArray("day");
 
-                switch (i) {
-                    case 0:
-                        GraphData data = new GraphData("今天", jsonArray.getInt(2));
-                        items.add(data);
-                        break;
-                    case 1:
-                        GraphData data1 = new GraphData("明天", jsonArray.getInt(2));
-                        items.add(data1);
-                        break;
-                    case 2:
-                        GraphData data2 = new GraphData("后天", jsonArray.getInt(2));
-                        items.add(data2);
-                        break;
-                    default:
-                        GraphData data3 = new GraphData(json.getString("date"), jsonArray.getInt(2));
-                        items.add(data3);
-                        break;
-                }
+                int code = Integer.parseInt((jsonArray.get(2)).toString());
+                L.i("code:" + code);
+                values.add(new Entry(i, code));
             }
+            //设置数据
+            setData(values);
+            //默认动画
+            mLineChar.animateX(2500);
+            //刷新
+            //mChart.invalidate();
+            // 得到这个文字
+            Legend l = mLineChar.getLegend();
+            // 修改文字 ...
+            l.setForm(Legend.LegendForm.LINE);
             progressBar.setVisibility(View.GONE);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    //传递数据集
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void setData(ArrayList<Entry> values) {
+        if (mLineChar.getData() != null && mLineChar.getData().getDataSetCount() > 0) {
+            set1 = (LineDataSet) mLineChar.getData().getDataSetByIndex(0);
+            set1.setValues(values);
+            mLineChar.getData().notifyDataChanged();
+            mLineChar.notifyDataSetChanged();
+        } else {
+            // 创建一个数据集,并给它一个类型
+            set1 = new LineDataSet(values, "一周天气近况");
+
+            // 在这里设置线
+            set1.enableDashedLine(10f, 5f, 0f);
+            set1.enableDashedHighlightLine(10f, 5f, 0f);
+            set1.setColor(Color.BLACK);
+            set1.setCircleColor(Color.BLACK);
+            set1.setLineWidth(1f);
+            set1.setCircleRadius(3f);
+            set1.setDrawCircleHole(false);
+            set1.setValueTextSize(9f);
+            set1.setDrawFilled(true);
+            set1.setFormLineWidth(1f);
+            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            set1.setFormSize(15.f);
+
+            if (Utils.getSDKInt() >= 18) {
+                // 填充背景只支持18以上
+                //Drawable drawable = ContextCompat.getDrawable(this, R.mipmap.ic_launcher);
+                //set1.setFillDrawable(drawable);
+                set1.setFillColor(0xFF2AA0F7);
+            } else {
+                set1.setFillColor(Color.BLACK);
+            }
+            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+            //添加数据集
+            dataSets.add(set1);
+
+            //创建一个数据集的数据对象
+            LineData data = new LineData(dataSets);
+
+            //谁知数据
+            mLineChar.setData(data);
         }
     }
 
@@ -248,10 +381,61 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.iv_refresh:
                 mList.clear();
+                values.clear();
                 getNewWeather(city);
                 TastyToast.makeText(this, "正在刷新数据", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 break;
         }
+    }
+
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+    }
+
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+    }
+
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+
+    }
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me) {
+
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+
+    }
+
+    @Override
+    public void onNothingSelected() {
+
     }
 
     //定位回调

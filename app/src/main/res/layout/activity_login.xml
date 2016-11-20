@@ -10,14 +10,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:src="@drawable/liuguilin"
             app:civ_border_color="@color/color_main"
             app:civ_border_width="2dp"/>
@@ -88,6 +88,13 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_perm_identity_black_24dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </android.support.design.widget.TextInputLayout>
 
             <EditText
                 android:id="@+id/login_et_name"
@@ -220,7 +227,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:lines="2"
             android:text="@string/text_terms"

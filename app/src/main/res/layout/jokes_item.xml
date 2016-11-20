@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true">
@@ -28,14 +27,14 @@
                 android:layout_height="wrap_content"
                 android:text="title"
                 android:textColor="@color/color_red"
-                android:textSize="25sp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="content"
-                android:textSize="18sp"/>
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/tv_time"
@@ -44,7 +43,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="right"
                 android:text="time"
-                android:textSize="18sp"/>
+                android:textSize="15sp"/>
 
         </LinearLayout>
 

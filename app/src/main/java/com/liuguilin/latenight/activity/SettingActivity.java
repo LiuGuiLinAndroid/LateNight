@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kymjs.rxvolley.RxVolley;
-import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.Constants;
 import com.liuguilin.latenight.util.DataCleanManager;
@@ -79,13 +77,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.ll_update_version:
                 dialog.show();
-                RxVolley.get(Constants.UPDATE_APP_URL, new HttpCallback() {
-                    @Override
-                    public void onSuccess(String t) {
-                        dialog.dismiss();
-                        //在这里判断是否有新版本，有的话提示更新，没有的话就GG
-                    }
-                });
+//                RxVolley.get(Constants.UPDATE_APP_URL, new HttpCallback() {
+//                    @Override
+//                    public void onSuccess(String t) {
+//                        dialog.dismiss();
+//                        //在这里判断是否有新版本，有的话提示更新，没有的话就GG
+//                    }
+//                });
                 break;
             case R.id.ll_about_app:
                 startActivity(new Intent(this, AboutActivity.class));

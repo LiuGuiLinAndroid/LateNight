@@ -17,7 +17,7 @@ import android.widget.BaseAdapter;
 
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.entity.SmallVideoData;
-import com.squareup.picasso.Picasso;
+import com.liuguilin.latenight.util.PicassoUtils;
 
 import java.util.List;
 
@@ -72,9 +72,8 @@ public class SmallVideoAdapter extends BaseAdapter {
         }
         data = mList.get(position);
         viewHolder.jc.setUp(data.getUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, data.getTitle());
-        //GlideUtils.loadImageView(mContext, data.getImgUrl(), viewHolder.jc.thumbImageView);
-        //PicassoUtils.loadImageViewSize(mContext, data.getImgUrl(), widht, height / 2, viewHolder.jc.thumbImageView);
-        Picasso.with(mContext).load(data.getImgUrl()).into(viewHolder.jc.thumbImageView);
+        //Picasso.with(mContext).load(data.getImgUrl()).into(viewHolder.jc.thumbImageView);
+        PicassoUtils.loadImageViewSize(mContext,data.getImgUrl(),widht,height/3,viewHolder.jc.thumbImageView);
         //设置预览
         return convertView;
     }

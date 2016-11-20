@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class L {
 
-    private static final String TAG = "lateNight";
+    private static final String TAG = "LateNight";
 
     public static boolean DEBUG = true;
 

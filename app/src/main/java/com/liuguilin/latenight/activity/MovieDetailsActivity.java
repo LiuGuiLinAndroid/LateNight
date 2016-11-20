@@ -10,6 +10,7 @@ package com.liuguilin.latenight.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,9 @@ public class MovieDetailsActivity extends BaseActivity {
     private TextView user_name;
     private TextView user_time;
 
+    private WindowManager wm;
+    private  int width;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,10 @@ public class MovieDetailsActivity extends BaseActivity {
         user_name = (TextView) findViewById(R.id.user_name);
         user_time = (TextView) findViewById(R.id.user_time);
         iv_title_img = (ImageView) findViewById(R.id.iv_title_img);
+
+        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+         width = wm.getDefaultDisplay().getWidth();
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
@@ -116,7 +124,7 @@ public class MovieDetailsActivity extends BaseActivity {
             JSONObject jsonObject = new JSONObject(t);
             JSONObject jsonData = jsonObject.getJSONObject("data");
             //设置图片
-            PicassoUtils.loadImageViewSize(this, jsonData.getString("detailcover"), 650, 300, iv_title_img);
+            PicassoUtils.loadImageViewSize(this, jsonData.getString("detailcover"), width, 500, iv_title_img);
             //设置预览图
             GlideUtils.loadImageView(this, jsonData.getString("indexcover"), custom_videoplayer_standard.thumbImageView);
             custom_videoplayer_standard.setUp(jsonData.getString("video"), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, "");

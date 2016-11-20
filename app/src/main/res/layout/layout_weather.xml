@@ -152,6 +152,10 @@
         android:layout_height="wrap_content"/>
 
     <!--一周天气折线图-->
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/mLineChar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 
     <!--相关参数-->
     <ListView
