@@ -7,7 +7,7 @@
 ##一.截图
 >截图分每一个阶段截图，也可以分版本截图，但是都不是最终的版本截图，因为项目现在还在开发...
 
-https://github.com/LiuGuiLinAndroid/LateNight/blob/master/preview/Version1.0.2.png?raw=true
+![](https://github.com/LiuGuiLinAndroid/LateNight/blob/master/preview/Version1.0.2.png?raw=true)
 
 - Version1.0.0
 
