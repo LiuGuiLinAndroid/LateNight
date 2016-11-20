@@ -9,23 +9,6 @@
 
 ![](https://github.com/LiuGuiLinAndroid/LateNight/blob/master/preview/Version1.0.2.png?raw=true)
 
-- Version1.0.0
-
-![这里写图片描述](http://img.blog.csdn.net/20161030100318539)
-
-- Version1.0.1
-
-![这里写图片描述](http://img.blog.csdn.net/20161030141612648)
-
-- Version1.0.1
-
-![这里写图片描述](http://img.blog.csdn.net/20161103221245736)
-
-- Version1.0.1
-
-![这里写图片描述](http://img.blog.csdn.net/20161110173254849)
-
-
 ##二.使用到的图标
 
 - Material icons:https://design.google.com/icons/
