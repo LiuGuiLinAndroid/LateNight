@@ -97,4 +97,9 @@ dependencies {
     compile 'cn.carbswang.android:NumberPickerView:1.1.1'
     //MPAndroidChart
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+    //Retrofit2.0
+    compile ('com.squareup.retrofit2:retrofit:2.1.0'){
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.squareup.okio'
+    }
 }

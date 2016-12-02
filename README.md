@@ -55,11 +55,15 @@
 
 - 16.MPAndroidChart:https://github.com/PhilJay/MPAndroidChart
 
+- 17.Retrofit2.0:http://square.github.io/retrofit/
+
 ##五.更新日志
 
 ###Version1.0.2
 
 - 1.Update README
+- 2.新增Retrofit2.0
+- 3.请求Girl 将RxVolley更改为Retrofit2.0
 
 ###Version1.0.1
 

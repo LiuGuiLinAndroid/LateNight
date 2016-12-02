@@ -17,11 +17,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.kymjs.rxvolley.RxVolley;
-import com.kymjs.rxvolley.client.HttpCallback;
 import com.liuguilin.gankclient.R;
 import com.liuguilin.latenight.adapter.GirlGridAdapter;
 import com.liuguilin.latenight.entity.GirlData;
+import com.liuguilin.latenight.impl.GankApi;
 import com.liuguilin.latenight.util.L;
 import com.liuguilin.latenight.util.PicassoUtils;
 import com.liuguilin.latenight.view.CustomDialog;
@@ -30,9 +29,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class GirlActivity extends BaseActivity {
@@ -51,6 +56,8 @@ public class GirlActivity extends BaseActivity {
     private int width, height;
     private WindowManager wm;
 
+    private GankApi api;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,12 @@ public class GirlActivity extends BaseActivity {
 
     //初始化View
     private void initView() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://gank.io/")
+                .build();
+        api = retrofit.create(GankApi.class);
+
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         width = wm.getDefaultDisplay().getWidth();
         height = wm.getDefaultDisplay().getHeight();
@@ -108,18 +121,36 @@ public class GirlActivity extends BaseActivity {
 
     //获取美女
     private void getGirl() {
-        String GANK_SEARCH_GIRL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/" + count;
-        RxVolley.get(GANK_SEARCH_GIRL, new HttpCallback() {
+//        String GANK_SEARCH_GIRL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/" + count;
+//        RxVolley.get(GANK_SEARCH_GIRL, new HttpCallback() {
+//            @Override
+//            public void onSuccess(String t) {
+//                L.i("girl:" + t.toString());
+//                parsingJson(t);
+//            }
+//        });
+        api.getGirl().enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onSuccess(String t) {
-                L.i("girl:" + t.toString());
-                parsingJson(t);
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                L.i("成功");
+                try {
+                    String result = response.body().string();
+                    parsingJson(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                L.i("失败");
             }
         });
     }
 
     //解析图片
     private void parsingJson(String t) {
+        L.i("parsingJson" + t);
         try {
             JSONObject jsonObject = new JSONObject(t);
             JSONArray jsonArrayResults = jsonObject.getJSONArray("results");
@@ -132,7 +163,7 @@ public class GirlActivity extends BaseActivity {
                 mList.add(data);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            L.i("error");
         }
         girlAdapter = new GirlGridAdapter(this, mList);
         girlGridView.setAdapter(girlAdapter);
