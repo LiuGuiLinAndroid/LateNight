@@ -4,24 +4,24 @@
 
 >免责声明：本软件所使用到的图片资源以及接口都来源于网络,有任何侵权行为请告知删除
 
-##一.截图
+## 一.截图
 >截图分每一个阶段截图，也可以分版本截图，但是都不是最终的版本截图，因为项目现在还在开发...
 
 ![](https://github.com/LiuGuiLinAndroid/LateNight/blob/master/preview/Version1.0.2.png?raw=true)
 
-##二.使用到的图标
+## 二.使用到的图标
 
 - Material icons:https://design.google.com/icons/
 - iconfont:http://www.iconfont.cn/
 
-##三.使用到的接口
+## 三.使用到的接口
 
 - 1.Gank:http://www.gank.io/api
 - 2.知乎日报:https://github.com/izzyleung/ZhihuDailyPurify/wiki/知乎日报-API-分析
 - 3.One一个:暂未公布
 - 4.百度apistore:http://apistore.baidu.com/
 
-##四.使用到的框架
+## 四.使用到的框架
 
 - 1.RxVolley:https://github.com/kymjs/RxVolley
     
@@ -57,15 +57,15 @@
 
 - 17.Retrofit2.0:http://square.github.io/retrofit/
 
-##五.更新日志
+## 五.更新日志
 
-###Version1.0.2
+### Version1.0.2
 
 - 1.Update README
 - 2.新增Retrofit2.0
 - 3.请求Girl 将RxVolley更改为Retrofit2.0
 
-###Version1.0.1
+### Version1.0.1
 
 - 1.实现StandardAdapter
 - 2.更名StandardData数据类
@@ -142,7 +142,7 @@
 - 73.版本更新至1.0.2
 
  
-###Version1.0.0
+### Version1.0.0
 
 - 1.创建项目上传到Github
 - 2.创建一系列package
@@ -228,7 +228,7 @@
 
 ## 六.常规性的bug
 
-###1.Jar冲突
+### 1.Jar冲突
 
 **OKHttp**
 ```java
@@ -276,7 +276,7 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
     }
 ```
 
-###2.ScrollView嵌套ListView冲突
+### 2.ScrollView嵌套ListView冲突
 >出现的现象时ListView只有一个item，我的解决办法是重新计算高度，但是我发现我的ZoomScrollView嵌套的话ListView就滑动不了了，而ScrollView是可以的
 >还是先用原生的，后面再去优化吧，重新计算高度的方法在这，只需要在设置适配器后面调用就好了
 
@@ -305,23 +305,24 @@ Error:Execution failed for task ':app:transformClassesWithJarMergingForDebug'.
     }
 ```
 
-###2.ListView嵌套ScrollView冲突
+### 2.ListView嵌套ScrollView冲突
+
 >音乐的列表里面内容比较多，会嵌套ScrollView。所有这里就造成了ScrollView无法滑动的情况，我的解决办法是
 
 
 
-##七.联系方式
+## 七.联系方式
 
-####[点击关注我的微博](http://weibo.com/Glorystys)
-####QQ邮箱：748778890@qq.com
-####Google邮箱：liuguilin74@gmail.com
-###博客地址：http://blog.csdn.net/qq_26787115
+#### [点击关注我的微博](http://weibo.com/Glorystys)
+#### QQ邮箱：748778890@qq.com
+#### Google邮箱：liuguilin74@gmail.com
+### 博客地址：http://blog.csdn.net/qq_26787115
 
-####**我的公众号，期待你的关注**
+#### **我的公众号，期待你的关注**
 
 ![weixin](http://img.blog.csdn.net/20160108203741937)
 
 
-##八.License
+## 八.License
   
 >开源协议[Apache-2.0](https://opensource.org/licenses/apache2.0.php)
